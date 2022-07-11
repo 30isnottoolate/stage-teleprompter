@@ -14,6 +14,7 @@ class Teleprompter extends React.Component {
       speed: 1
     };
 
+    this.handleKeyPress = this.handleKeyPress.bind(this);
     this.forwardAction = this.forwardAction.bind(this);
     this.backwardAction = this.backwardAction.bind(this);
     this.changeableInterval = this.changeableInterval.bind(this);
@@ -22,6 +23,19 @@ class Teleprompter extends React.Component {
 
   componentDidMount() {
     this.changeableInterval();
+    document.addEventListener("keydown", this.handleKeyPress);
+  }
+  
+  componentWillUnmount() {
+    document.removeEventListener("keydown", this.handleKeyPress);
+  }
+  
+  handleKeyPress(event) {
+    if (event.key == "a") {
+      this.forwardAction();
+    } else if (event.key == "b") {
+      this.backwardAction();
+    }
   }
 
   forwardAction() {
@@ -69,7 +83,7 @@ class Teleprompter extends React.Component {
       setTimeout(this.moveSlide, HIGH_SPEED);
     }
   }
-  
+
   moveSlide() {
     this.setState((prevState) => {
       if (document.getElementById("slide").offsetHeight > (prevState.position *
@@ -90,8 +104,8 @@ class Teleprompter extends React.Component {
   render() {
     return (
       <div id="app">
-        <button id="forward" onClick={this.forwardAction} >FORWARD</button>
-        <button id="backward" onClick={this.backwardAction} >BACKWARD</button>
+        <button id="forward" onClick={this.forwardAction} >FORWARD (A)</button>
+        <button id="backward" onClick={this.backwardAction} >BACKWARD (B)</button>
         <button id="mode" >MODE</button>
         <div id="slide" style={{top: this.state.position}} >
           <p id="text">
