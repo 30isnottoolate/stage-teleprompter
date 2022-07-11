@@ -7,9 +7,37 @@ class Teleprompter extends React.Component {
     super(props);
     this.state = {
       position: 0,
-      direction: 0,
+      direction: 1,
       speed: 1
     };
+
+    this.myInterval = this.myInterval.bind(this);
+    this.moveSlide = this.moveSlide.bind(this);
+  }
+
+  componentDidMount() {
+    this.myInterval();
+  }
+
+  myInterval() {
+      setTimeout(this.moveSlide, 25);
+  }
+
+  moveSlide() {
+    this.setState((prevState) => {
+      if (document.getElementById("slide").offsetHeight > (prevState.position *
+        (-1) + document.body.offsetHeight / 2)) {
+        return {
+          position: prevState.position - prevState.direction
+        }
+      } else {
+        return {
+          position: prevState.position + prevState.direction,
+          direction: 0
+        }
+      }
+    });
+    this.myInterval();
   }
 
   render() {
