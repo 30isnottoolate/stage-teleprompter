@@ -2,6 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './app_styles.css';
 
+const LOW_SPEED = 25; //this.state.speed = 1
+const HIGH_SPEED = 10; //this.state.speed = 2
+
 class Teleprompter extends React.Component {
   constructor(props) {
     super(props);
@@ -11,22 +14,25 @@ class Teleprompter extends React.Component {
       speed: 1
     };
 
-    this.myInterval = this.myInterval.bind(this);
+    this.changeableInterval = this.changeableInterval.bind(this);
     this.moveSlide = this.moveSlide.bind(this);
   }
 
   componentDidMount() {
-    this.myInterval();
+    this.changeableInterval();
   }
 
-  myInterval() {
-      setTimeout(this.moveSlide, 25);
+  changeableInterval() {
+    if (this.state.speed === 1) {
+      setTimeout(this.moveSlide, LOW_SPEED);
+    } else if (this.state.speed === 2) {
+      setTimeout(this.moveSlide, HIGH_SPEED);
+    }
   }
-
   moveSlide() {
     this.setState((prevState) => {
       if (document.getElementById("slide").offsetHeight > (prevState.position *
-        (-1) + document.body.offsetHeight / 2)) {
+        (-1) + document.body.offsetHeight / 2) && prevState.position <= 0) {
         return {
           position: prevState.position - prevState.direction
         }
@@ -37,7 +43,7 @@ class Teleprompter extends React.Component {
         }
       }
     });
-    this.myInterval();
+    this.changeableInterval();
   }
 
   render() {
