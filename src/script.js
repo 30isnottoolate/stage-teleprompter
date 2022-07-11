@@ -10,16 +10,56 @@ class Teleprompter extends React.Component {
     super(props);
     this.state = {
       position: 0,
-      direction: 1,
+      direction: 0,
       speed: 1
     };
 
+    this.forwardAction = this.forwardAction.bind(this);
+    this.backwardAction = this.backwardAction.bind(this);
     this.changeableInterval = this.changeableInterval.bind(this);
     this.moveSlide = this.moveSlide.bind(this);
   }
 
   componentDidMount() {
     this.changeableInterval();
+  }
+
+  forwardAction() {
+    this.setState((prevState) => {
+      if (prevState.direction === 0) {
+        return {
+          direction: 1,
+          speed: 1
+        }
+      } else if (prevState.direction === 1 && prevState.speed === 1) {
+        return {
+          speed: 2
+        }
+      } else if (prevState.direction === -1 || prevState.speed === 2) {
+        return {
+          direction: 0
+        }
+      }
+    });
+  }
+
+  backwardAction() {
+    this.setState((prevState) => {
+      if (prevState.direction === 0) {
+        return {
+          direction: -1,
+          speed: 1
+        }
+      } else if (prevState.direction === -1 && prevState.speed === 1) {
+        return {
+          speed: 2
+        }
+      } else if (prevState.direction === 1 || prevState.speed === 2) {
+        return {
+          direction: 0
+        }
+      }
+    });
   }
 
   changeableInterval() {
@@ -29,6 +69,7 @@ class Teleprompter extends React.Component {
       setTimeout(this.moveSlide, HIGH_SPEED);
     }
   }
+  
   moveSlide() {
     this.setState((prevState) => {
       if (document.getElementById("slide").offsetHeight > (prevState.position *
@@ -49,8 +90,8 @@ class Teleprompter extends React.Component {
   render() {
     return (
       <div id="app">
-        <button id="forward" >FORWARD</button>
-        <button id="backward" >BACKWARD</button>
+        <button id="forward" onClick={this.forwardAction} >FORWARD</button>
+        <button id="backward" onClick={this.backwardAction} >BACKWARD</button>
         <button id="mode" >MODE</button>
         <div id="slide" style={{top: this.state.position}} >
           <p id="text">
