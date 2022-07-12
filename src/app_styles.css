@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap');
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -8,8 +10,8 @@ body {
   user-select: none;
   background-color: #000000;
   color: #ffffff;
-  font-family: "Helvetica";
-  line-height: 1.2;
+  font-family: "Roboto";
+  line-height: 1.175;
 }
 
 #app {
@@ -24,9 +26,9 @@ body {
   left:0px;
   width:100vw;
   z-index: -1;
-  padding: 0px 20px 0px 30px;
+  padding: 0px 15px 0px 15px;
 }
 
 #text {
-  font-size: 70px
+  font-size: 5.8vw
 }
