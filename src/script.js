@@ -31,9 +31,9 @@ class Teleprompter extends React.Component {
   }
   
   handleKeyPress(event) {
-    if (event.key == "a") {
+    if (event.key === "a") {
       this.forwardAction();
-    } else if (event.key == "b") {
+    } else if (event.key === "b") {
       this.backwardAction();
     }
   }
