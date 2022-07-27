@@ -12,7 +12,8 @@ class Teleprompter extends React.Component {
     this.state = {
       position: START_POS,
       direction: 0,
-      speed: 1
+      speed: 1,
+      vault: "1234"
     };
 
     this.handleKeyPress = this.handleKeyPress.bind(this);
@@ -25,6 +26,16 @@ class Teleprompter extends React.Component {
   componentDidMount() {
     this.changeableInterval();
     document.addEventListener("keydown", this.handleKeyPress);
+    
+    fetch("https://raw.githubusercontent.com/30isnottoolate/stage-teleprompter/main/liber.json")
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+      this.setState({
+        vault: data
+      })
+    })
+    .catch(() => console.log("Database missing."));
   }
   
   componentWillUnmount() {
