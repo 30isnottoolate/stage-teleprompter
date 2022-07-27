@@ -4,12 +4,13 @@ import './app_styles.css';
 
 const LOW_SPEED = 25; //this.state.speed = 1
 const HIGH_SPEED = 10; //this.state.speed = 2
+const START_POS = 50;
 
 class Teleprompter extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      position: 0,
+      position: START_POS,
       direction: 0,
       speed: 1
     };
@@ -31,7 +32,7 @@ class Teleprompter extends React.Component {
   }
   
   handleKeyPress(event) {
-    if (event.key === "a") {
+    if (event.key === "c") {
       this.forwardAction();
     } else if (event.key === "b") {
       this.backwardAction();
@@ -87,7 +88,7 @@ class Teleprompter extends React.Component {
   moveSlide() {
     this.setState((prevState) => {
       if (document.getElementById("slide").offsetHeight > (prevState.position *
-        (-1) + document.body.offsetHeight / 2) && prevState.position <= 0) {
+        (-1) + document.body.offsetHeight / 2) && prevState.position <= START_POS) {
         return {
           position: prevState.position - prevState.direction
         }
@@ -104,9 +105,11 @@ class Teleprompter extends React.Component {
   render() {
     return (
       <div id="app">
-        <button id="forward" onClick={this.forwardAction} >FORWARD (A)</button>
-        <button id="backward" onClick={this.backwardAction} >BACKWARD (B)</button>
-        <button id="mode" >MODE</button>
+        <div id="control" className={this.state.direction != 0 ? "transparent" : "visible"}>
+          <button id="mode" >SELECTION (A)</button>
+          <button id="backward" onClick={this.backwardAction} >BACKWARD (B)</button>
+          <button id="forward" onClick={this.forwardAction} >FORWARD (C)</button>
+        </div>
         <div id="slide" style={{top: this.state.position}} >
           <p id="text">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do 
