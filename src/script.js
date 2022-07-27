@@ -105,7 +105,7 @@ class Teleprompter extends React.Component {
   render() {
     return (
       <div id="app">
-        <div id="control" className={this.state.direction != 0 ? "transparent" : "visible"}>
+        <div id="control" className={this.state.direction !== 0 ? "transparent" : "visible"}>
           <button id="mode" >SELECTION (A)</button>
           <button id="backward" onClick={this.backwardAction} >BACKWARD (B)</button>
           <button id="forward" onClick={this.forwardAction} >FORWARD (C)</button>
