@@ -125,9 +125,7 @@ class Teleprompter extends React.Component {
           <button id="forward" onClick={this.forwardAction} >FORWARD (C)</button>
         </div>
         <div id="slide" style={{top: this.state.position}} >
-          <p id="text">
-          {this.state.currentText}
-          </p>
+          <p id="text" dangerouslySetInnerHTML={{__html: this.state.currentText}} />
         </div>
       </div>
     );
