@@ -1,6 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './app_styles.css';
+import './Teleprompter.css';
 
 const LOW_SPEED = 25; //this.state.speed = 1
 const HIGH_SPEED = 10; //this.state.speed = 2
@@ -132,5 +131,4 @@ class Teleprompter extends React.Component {
   }
 }
 
-const container = ReactDOM.createRoot(document.getElementById('app-container'));
-container.render(<Teleprompter/>);
+export default Teleprompter;
