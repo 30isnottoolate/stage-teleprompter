@@ -14,7 +14,7 @@ class Teleprompter extends React.Component {
       speed: 1,
       mode: "read", //read, select, set
       vault: "1234",
-      numberOfTexts: 0,
+      textCount: 0,
       currentText: "Loading..."
     };
 
@@ -34,6 +34,7 @@ class Teleprompter extends React.Component {
     .then(data => {
       this.setState({
         vault: data,
+        textCount: data.textCount,
         currentText: data.texts.text_001.text
       })
     })
