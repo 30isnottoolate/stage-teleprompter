@@ -133,3 +133,20 @@ class Teleprompter extends React.Component {
 }
 
 export default Teleprompter;
+
+class TextList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+
+    }
+  }
+
+  render() {
+    return (
+      <div id="list">
+
+      </div>
+    )
+  }
+}
