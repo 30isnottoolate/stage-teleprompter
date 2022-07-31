@@ -10,7 +10,7 @@ class Teleprompter extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      mode: "start", //start, select, read, set
+      mode: "select", //select, read, set
       vault: "",
       textCount: 0,
       currentIndex: 1,
@@ -41,7 +41,7 @@ class Teleprompter extends React.Component {
   }
   
   render() {
-    if (this.state.mode === "start" || this.state.mode === "select") {
+    if (this.state.mode === "select") {
       return (
         <TextList state={this.state} action={this.switchMode} />
       )
