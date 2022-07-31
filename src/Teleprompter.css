@@ -11,7 +11,8 @@ body {
   background-color: #000000;
   color: #ffffff;
   font-family: "Roboto";
-  line-height: 1.175;
+  line-height: 1.2;
+  overflow: hidden;
 }
 
 #app {
@@ -51,6 +52,14 @@ body {
   width:100vw;
   z-index: -1;
   padding: 0px 15px 0px 15px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  margin-left: 4vw;
 }
 
 #text {
