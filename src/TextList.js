@@ -39,9 +39,11 @@ class TextList extends React.Component {
           )
         } else {
           let list = "";
+          let index = 0;
 
           for (const item in this.props.state.vault.texts) {
-            list = list + "<li>" + this.props.state.vault.texts[item].title + "</li>"
+            index++;
+            list = list + "<li id=li-" + index + " >" + this.props.state.vault.texts[item].title + "</li>"
           }
 
           return (
@@ -50,18 +52,20 @@ class TextList extends React.Component {
               <p>Select a text.</p>
               <ul dangerouslySetInnerHTML={{__html: list}} />
               <div id="control">
-                <button id="button_a" >SELECT (A)</button>
-                <button id="button_b" >UP (B)</button>
-                <button id="button_c" >DOWN (C)</button>
+                <button id="button-a" >SELECT (A)</button>
+                <button id="button-b" >UP (B)</button>
+                <button id="button-c" >DOWN (C)</button>
               </div>
             </div>
           )
         }
       } else if (this.props.state.mode === "select") {
         let list = "";
+        let index = 0;
 
         for (const item in this.props.state.vault.texts) {
-          list = list + "<li>" + this.props.state.vault.texts[item].title + "</li>"
+          index++;
+          list = list + "<li id=li-" + index + " >" + this.props.state.vault.texts[item].title + "</li>"
         }
 
         return (
