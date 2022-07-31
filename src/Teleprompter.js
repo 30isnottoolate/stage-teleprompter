@@ -1,17 +1,14 @@
 import React from 'react';
 import './Teleprompter.css';
 import TextSlide from './TextSlide';
-
-const LOW_SPEED = 25; //this.state.speed = 1
-const HIGH_SPEED = 10; //this.state.speed = 2
-const START_POS = 50;
+import TextList from './TextList';
 
 class Teleprompter extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      mode: "read", //read, select, set
-      vault: "123",
+      mode: "start", //start, select, read, set
+      vault: "",
       textCount: 0
     };
 
@@ -21,7 +18,6 @@ class Teleprompter extends React.Component {
     fetch("https://raw.githubusercontent.com/30isnottoolate/misc/main/liber.json")
     .then(response => response.json())
     .then(data => {
-      console.log(data);
       this.setState({
         vault: data,
         textCount: data.textCount
@@ -31,8 +27,10 @@ class Teleprompter extends React.Component {
   }
   
   render() {
-    if (this.state.mode === "select") {
-
+    if (this.state.mode === "start" || this.state.mode === "select") {
+      return (
+        <TextList state={this.state} />
+      )
     } else if (this.state.mode == "read") {
       return (
         <TextSlide state={this.state} />
