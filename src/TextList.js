@@ -48,7 +48,7 @@ class TextList extends React.Component {
             currentIndex: (prevState.currentIndex - 1),
             markerPos: {
               position: "absolute",
-              top: (prevState.currentIndex -1) * this.props.state.fontSize * this.props.state.lineHeight
+              top: (prevState.currentIndex - 1) * this.props.state.fontSize * this.props.state.lineHeight
             }
           }));
         } else {
@@ -67,11 +67,11 @@ class TextList extends React.Component {
     }
   
     render() {
-      if (this.props.state.mode === "start") {
+      if (this.props.state.mode === "start" || this.props.state.mode === "select") {
         if (this.props.state.textCount === 0) {
           return (
             <div id="text-list" style={{fontSize: this.props.state.fontSize}}>
-              <p>Welcome!</p>
+              <p id="head-line">HELLO!</p>
               <p>Loading text list...</p>
             </div>
           )
@@ -86,7 +86,7 @@ class TextList extends React.Component {
 
           return (
             <div id="text-list" style={{fontSize: this.props.state.fontSize}}>
-              <p>Welcome! Select a text.</p>
+              <p id="head-line">SELECT:</p>
               <ul dangerouslySetInnerHTML={{__html: list}} />
               <p style={this.state.markerPos}>&gt;</p>
               <div id="control">
@@ -97,28 +97,8 @@ class TextList extends React.Component {
             </div>
           )
         }
-      } else if (this.props.state.mode === "select") {
-        let list = "";
-        let index = 0;
-
-        for (const item in this.props.state.vault.texts) {
-          index++;
-          list = list + `<li id="li-${index}">${this.props.state.vault.texts[item].title}</li>`;
-        }
-
-        return (
-          <div id="text-list" style={{fontSize: this.props.state.fontSize}}>
-            <p>Select a text.</p>
-            <ul dangerouslySetInnerHTML={{__html: list}} />
-            <p style={this.state.markerPos}>&gt;</p>
-            <div id="control">
-              <button id="button-a" >SELECT (A)</button>
-              <button id="button-b" >UP (B)</button>
-              <button id="button-c" >DOWN (C)</button>
-            </div>
-          </div>
-        )
-      }
+      } 
+      
     }
   }
 
