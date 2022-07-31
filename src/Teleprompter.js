@@ -25,15 +25,22 @@ class Teleprompter extends React.Component {
     })
     .catch(() => console.log("Database missing."));
   }
+
+  switchMode = (index, mode) => {
+    this.setState({
+      mode: mode,
+      currentIndex: index
+    });
+  }
   
   render() {
     if (this.state.mode === "start" || this.state.mode === "select") {
       return (
-        <TextList state={this.state} />
+        <TextList state={this.state} action={this.switchMode} />
       )
     } else if (this.state.mode == "read") {
       return (
-        <TextSlide state={this.state} />
+        <TextSlide state={this.state} action={this.switchMode} />
       )
     } else if (this.state.mode === "set") {
 
