@@ -24,7 +24,7 @@ class TextSlide extends React.Component {
   
     componentDidMount() {
       this.setState({
-        currentText: this.props.state.vault.texts["text_00" + this.props.state.currentIndex].text
+        currentText: this.props.state.vault.texts["text_" + this.props.state.currentIndex].text
       })
       this.changeableInterval();
       document.addEventListener("keydown", this.handleKeyPress);
