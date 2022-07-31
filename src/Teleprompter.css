@@ -22,6 +22,10 @@ body {
   border: 0px;
 }
 
+#head-line {
+  text-align: center;
+}
+
 #control {
   display: grid;
   background-color: #000000;
