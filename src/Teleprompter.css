@@ -62,10 +62,6 @@ li {
   margin-left: 4vw;
 }
 
-#text {
-  font-size: 5.8vw
-}
-
 .transparent {
   opacity: 0.5;
   transition-property: opacity;
