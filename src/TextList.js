@@ -29,11 +29,48 @@ class TextList extends React.Component {
     }
   
     render() {
-      return (
-        <div id="text-list">
-          
-        </div>
-      )
+      if (this.props.state.mode === "start") {
+        if (this.props.state.textCount === 0) {
+          return (
+            <div id="text-list">
+              <p>Welcome!</p>
+              <p>Loading text list...</p>
+            </div>
+          )
+        } else {
+          let list = "";
+
+          for (const item in this.props.state.vault.texts) {
+            list = list + "<li>" + this.props.state.vault.texts[item].title + "</li>"
+          }
+
+          return (
+            <div id="text-list">
+              <p>Welcome!</p>
+              <p>Select a text.</p>
+              <ul dangerouslySetInnerHTML={{__html: list}} />
+              <div id="control">
+                <button id="button_a" >SELECT (A)</button>
+                <button id="button_b" >UP (B)</button>
+                <button id="button_c" >DOWN (C)</button>
+              </div>
+            </div>
+          )
+        }
+      } else if (this.props.state.mode === "select") {
+        let list = "";
+
+        for (const item in this.props.state.vault.texts) {
+          list = list + "<li>" + this.props.state.vault.texts[item].title + "</li>"
+        }
+
+        return (
+          <div id="text-list">
+            <p>Select a text.</p>
+            <ul dangerouslySetInnerHTML={{__html: list}} />
+          </div>
+        )
+      }
     }
   }
 
