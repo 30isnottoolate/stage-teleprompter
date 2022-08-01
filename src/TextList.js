@@ -85,14 +85,14 @@ class TextList extends React.Component {
           }
 
           return (
-            <div id="text-list" style={{fontSize: this.props.state.fontSize}}>
+            <div id="text-list" style={{fontSize: this.props.state.fontSize, color: this.props.state.uiColor}}>
               <p id="head-line">SELECT:</p>
               <ul dangerouslySetInnerHTML={{__html: list}} />
-              <p style={this.state.markerPos}>&gt;</p>
+              <p id="text-marker" style={this.state.markerPos}>&#129170;</p>
               <div id="control">
-                <button id="button-a" >SELECT (A)</button>
-                <button id="button-b" >UP (B)</button>
-                <button id="button-c" >DOWN (C)</button>
+                <button id="button-a" style={{color: this.props.state.uiColor, borderColor: this.props.state.uiColor}}>SELECT (A)</button>
+                <button id="button-b" style={{color: this.props.state.uiColor, borderColor: this.props.state.uiColor}}>UP (B)</button>
+                <button id="button-c" style={{color: this.props.state.uiColor, borderColor: this.props.state.uiColor}}>DOWN (C)</button>
               </div>
             </div>
           )
