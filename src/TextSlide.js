@@ -109,11 +109,11 @@ class TextSlide extends React.Component {
   
     render() {
       return (
-        <div id="text-slide" style={{fontSize: this.props.state.fontSize}}>
+        <div id="text-slide" style={{fontSize: this.props.state.fontSize, color: this.props.state.uiColor}}>
           <div id="control" className={this.state.direction !== 0 ? "transparent" : "visible"}>
-            <button id="mode" >SELECTION (A)</button>
-            <button id="backward" onClick={this.backwardAction} >BACKWARD (B)</button>
-            <button id="forward" onClick={this.forwardAction} >FORWARD (C)</button>
+            <button id="mode"  style={{color: this.props.state.uiColor, borderColor: this.props.state.uiColor}}>SELECTION (A)</button>
+            <button id="backward" onClick={this.backwardAction} style={{color: this.props.state.uiColor, borderColor: this.props.state.uiColor}}>BACKWARD (B)</button>
+            <button id="forward" onClick={this.forwardAction} style={{color: this.props.state.uiColor, borderColor: this.props.state.uiColor}}>FORWARD (C)</button>
           </div>
           <div id="slide" style={{top: this.state.position, fontSize: this.props.state.fontSize}} >
             <p id="text" dangerouslySetInnerHTML={{__html: this.state.currentText}} />
