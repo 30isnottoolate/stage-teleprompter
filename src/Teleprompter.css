@@ -9,7 +9,6 @@
 body {
   user-select: none;
   background-color: #05100b;
-  /*color: #b4f8bb;*/
   font-family: "Roboto";
   line-height: 1.2;
   overflow: hidden;
@@ -29,11 +28,7 @@ p {
 #head-line {
   text-align: center;
 }
-/*
-#text-marker {
-  color: #b4f8bb;
-}
-*/
+
 #control {
   display: grid;
   background-color: #05100b;
@@ -50,11 +45,9 @@ p {
 
 #control > button {
   background-color: #05100b;
-  /*color: #b4f8bb;*/
   font-size: 60px;
   font-weight: bold;
   height: 90px;
-  /*border: 2px solid #b4f8bb;*/
   border-radius: 10px 10px 0 0;
 }
 
