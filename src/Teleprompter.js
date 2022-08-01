@@ -5,7 +5,7 @@ import TextList from './TextList';
 
 const FONT_SIZE = 80;
 const LINE_HEIGHT = 1.2;
-const COLOR_01 = "#b4f8ff";
+const COLOR_01 = "#99d3ff"; // green: #b4f8ff, blue: #99d3ff, red: #ffd6d9, yellow: #fff4ad, white: #ffffff
 
 class Teleprompter extends React.Component {
   constructor(props) {
