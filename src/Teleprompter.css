@@ -14,10 +14,6 @@ body {
   overflow: hidden;
 }
 
-p {
-  padding-left: 15px;
-}
-
 #app {
   width: 100vw; 
   overflow: hidden; 
@@ -72,7 +68,10 @@ ul {
 }
 
 li {
-  padding-left: 55px;
+  white-space: nowrap; 
+  width: 97vw; 
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .transparent {
