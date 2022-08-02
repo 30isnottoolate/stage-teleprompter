@@ -1,4 +1,3 @@
-import { toHaveStyle } from '@testing-library/jest-dom/dist/matchers';
 import React from 'react';
 import './Teleprompter.css';
 
@@ -15,14 +14,6 @@ class TextList extends React.Component {
   
     componentDidMount() {
       document.addEventListener("keydown", this.handleKeyPress);
-      /*for (let i = 0; i < this.props.state.textCount; i++) {
-        console.log(this.state.liPos);
-        this.setState((prevState) => ({
-          liPos: prevState.liPos.push(document.getElementsByTagName("li")[i].offsetHeight)
-        }));
-      }*/
-      //console.log(this.props.state.textCount);
-      //console.log(document.getElementsByTagName("li")[2].offsetHeight);
     }
     
     componentWillUnmount() {
