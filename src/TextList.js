@@ -6,7 +6,7 @@ class TextList extends React.Component {
       super(props);
       this.state = {
         currentIndex: this.props.state.currentIndex,
-        markerPos: this.props.state.currentIndex * this.props.state.fontSize * this.props.state.lineHeight
+        markerPos: this.props.state.markerPos
       };
   
       this.handleKeyPress = this.handleKeyPress.bind(this);
@@ -42,12 +42,12 @@ class TextList extends React.Component {
         } else {
           this.setState({
             currentIndex: this.props.state.textCount,
-            markerPos: 2*(this.props.state.fontSize * this.props.state.lineHeight) - (this.props.state.textCount * this.props.state.fontSize * this.props.state.lineHeight)
+            markerPos: 2 * (this.props.state.fontSize * this.props.state.lineHeight) - (this.props.state.textCount * this.props.state.fontSize * this.props.state.lineHeight)
           });
         }
         
       } else if (event.key === "a") {
-        this.props.action(this.state.currentIndex, "read");
+        this.props.action(this.state.currentIndex, "read", this.state.markerPos);
       }
     }
   
@@ -71,7 +71,7 @@ class TextList extends React.Component {
 
           return (
             <div id="text-list" style={{fontSize: this.props.state.fontSize, color: this.props.state.uiColor}}>
-              <p id="head-line">SELECT:</p>
+              <p id="head-line" className={this.state.currentIndex === 1 ? "visible" : "hidden"}>SELECT:</p>
               <ul dangerouslySetInnerHTML={{__html: list}} style={{position: "absolute", top: this.state.markerPos}}/>
               <p id="text-marker" style={{paddingLeft: (this.props.state.fontSize*0.19)+"px"}}>&#129170;</p>
               <div id="control">
