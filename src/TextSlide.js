@@ -40,7 +40,7 @@ class TextSlide extends React.Component {
       } else if (event.key === "b") {
         this.backwardAction();
       } else if (event.key === "a") {
-        this.props.action(this.props.state.currentIndex, "select");
+        this.props.action(this.props.state.currentIndex, "select", this.props.state.markerPos);
       }
     }
   
