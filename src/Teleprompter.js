@@ -17,7 +17,8 @@ class Teleprompter extends React.Component {
       currentIndex: 1,
       fontSize: FONT_SIZE,
       lineHeight: LINE_HEIGHT,
-      uiColor: COLOR_01
+      uiColor: COLOR_01,
+      markerPos: FONT_SIZE * LINE_HEIGHT
     };
 
   }
@@ -28,17 +29,17 @@ class Teleprompter extends React.Component {
     .then(data => {
       this.setState({
         vault: data,
-        textCount: data.textCount,
-        currentIndex: 1
+        textCount: data.textCount
       });
     })
     .catch(() => console.log("Database missing."));
   }
 
-  switchMode = (index, mode) => {
+  switchMode = (index, mode, pos) => {
     this.setState({
       mode: mode,
-      currentIndex: index
+      currentIndex: index,
+      markerPos: pos
     });
   }
   
