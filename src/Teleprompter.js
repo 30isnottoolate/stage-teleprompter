@@ -35,6 +35,12 @@ class Teleprompter extends React.Component {
     .catch(() => console.log("Database missing."));
   }
 
+  indexTracker = (index) => {
+    this.setState((prevState) => ({
+      currentIndex: prevState.currentIndex + index
+    }));
+  }
+
   switchMode = (index, mode, pos) => {
     this.setState({
       mode: mode,
@@ -46,7 +52,7 @@ class Teleprompter extends React.Component {
   render() {
     if (this.state.mode === "select") {
       return (
-        <TextList state={this.state} action={this.switchMode} />
+        <TextList state={this.state} action={this.switchMode} index={this.indexTracker} />
       )
     } else if (this.state.mode === "read") {
       return (
