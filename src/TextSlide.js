@@ -24,7 +24,7 @@ class TextSlide extends React.Component {
   
     componentDidMount() {
       this.setState({
-        currentText: this.props.state.vault.texts["text_" + this.props.state.currentIndex].text
+        currentText: this.props.state.data.texts["text_" + this.props.state.currentIndex].text
       })
       this.changeableInterval();
       document.addEventListener("keydown", this.handleKeyPress);
@@ -40,7 +40,7 @@ class TextSlide extends React.Component {
       } else if (event.key === "b") {
         this.backwardAction();
       } else if (event.key === "a") {
-        this.props.action(this.props.state.currentIndex, "select", this.props.state.markerPos);
+        this.props.mode("select");
       }
     }
   
