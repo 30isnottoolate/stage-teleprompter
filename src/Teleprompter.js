@@ -12,13 +12,12 @@ class Teleprompter extends React.Component {
     super(props);
     this.state = {
       mode: "select", //select, read, set
-      vault: "",
+      data: "",
       textCount: 0,
       currentIndex: 1,
       fontSize: FONT_SIZE,
       lineHeight: LINE_HEIGHT,
-      uiColor: COLOR_01,
-      markerPos: FONT_SIZE * LINE_HEIGHT
+      uiColor: COLOR_01
     };
 
   }
@@ -28,35 +27,33 @@ class Teleprompter extends React.Component {
     .then(response => response.json())
     .then(data => {
       this.setState({
-        vault: data,
+        data: data,
         textCount: data.textCount
       });
     })
     .catch(() => console.log("Database missing."));
   }
 
-  indexTracker = (index) => {
-    this.setState((prevState) => ({
-      currentIndex: prevState.currentIndex + index
-    }));
+  changeIndex = (index) => {
+    this.setState({
+      currentIndex: index
+    });
   }
 
-  switchMode = (index, mode, pos) => {
+  changeMode = (mode) => {
     this.setState({
-      mode: mode,
-      currentIndex: index,
-      markerPos: pos
+      mode: mode
     });
   }
   
   render() {
     if (this.state.mode === "select") {
       return (
-        <TextList state={this.state} action={this.switchMode} index={this.indexTracker} />
+        <TextList state={this.state} mode={this.changeMode} index={this.changeIndex} />
       )
     } else if (this.state.mode === "read") {
       return (
-        <TextSlide state={this.state} action={this.switchMode} />
+        <TextSlide state={this.state} mode={this.changeMode} />
       )
     } else if (this.state.mode === "set") {
 
