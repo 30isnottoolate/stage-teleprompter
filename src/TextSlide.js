@@ -1,8 +1,7 @@
 import React from 'react';
 import './Teleprompter.css';
 
-const LOW_SPEED = 25; //this.state.speed = 1
-const HIGH_SPEED = 10; //this.state.speed = 2
+const SPEED = 25;
 const START_POS = 50;
 
 class TextSlide extends React.Component {
@@ -11,7 +10,8 @@ class TextSlide extends React.Component {
       this.state = {
         position: START_POS,
         direction: 0,
-        currentText: "Loading..."
+        currentText: "Loading...",
+        timer: ""
       };
   
       this.handleKeyPress = this.handleKeyPress.bind(this);
@@ -22,12 +22,14 @@ class TextSlide extends React.Component {
   
     componentDidMount() {
       this.setState({
-        currentText: this.props.state.data.texts["text_" + this.props.state.currentIndex].text
+        currentText: this.props.state.data.texts["text_" + this.props.state.currentIndex].text,
+        timer: setInterval(this.moveSlide, SPEED)
       });
       document.addEventListener("keydown", this.handleKeyPress);
     }
     
     componentWillUnmount() {
+      clearInterval(this.state.timer);
       document.removeEventListener("keydown", this.handleKeyPress);
     }
     
@@ -83,8 +85,6 @@ class TextSlide extends React.Component {
           }
         }
       });
-      setTimeout(this.moveSlide, LOW_SPEED);
-      console.log("ping")
     }
   
     render() {
