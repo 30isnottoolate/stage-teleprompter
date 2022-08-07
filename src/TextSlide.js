@@ -72,8 +72,8 @@ class TextSlide extends React.Component {
   
     moveSlide() {
       this.setState((prevState) => {
-        if (document.getElementById("slide").offsetHeight > (prevState.position *
-          (-1) + document.body.offsetHeight / 2) && prevState.position <= START_POS) {
+        if (document.body.offsetHeight > (prevState.position *
+          (-1) + window.innerHeight / 2) && prevState.position <= START_POS) {
           return {
             position: prevState.position - prevState.direction
           }
