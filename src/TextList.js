@@ -6,6 +6,9 @@ class TextList extends React.Component {
       super(props);
   
       this.handleKeyPress = this.handleKeyPress.bind(this);
+      this.handleButtonA = this.handleButtonA.bind(this);
+      this.handleButtonB = this.handleButtonB.bind(this);
+      this.handleButtonC = this.handleButtonC.bind(this);
     }
   
     componentDidMount() {
@@ -32,6 +35,26 @@ class TextList extends React.Component {
         
       } else if (event.key === "a") {
         this.props.mode("read");
+      }
+    }
+
+    handleButtonA() {
+      this.props.mode("read");
+    }
+
+    handleButtonB() {
+      if (this.props.state.currentIndex > 1) {
+        this.props.index(this.props.state.currentIndex - 1);
+      } else {
+        this.props.index(this.props.state.textCount);
+      }
+    }
+
+    handleButtonC() {
+      if (this.props.state.currentIndex < this.props.state.textCount) {
+        this.props.index(this.props.state.currentIndex + 1);
+      } else {
+        this.props.index(1);
       }
     }
   
@@ -61,9 +84,9 @@ class TextList extends React.Component {
               <ul dangerouslySetInnerHTML={{__html: list}} style={{position: "absolute", top: listPos}}/>
               <p id="text-marker" style={{paddingLeft: (this.props.state.fontSize * 0.19) + "px"}}>&#129170;</p>
               <div id="control">
-                <button id="button-a" style={{color: this.props.state.uiColor, borderColor: this.props.state.uiColor}}>SELECT (A)</button>
-                <button id="button-b" style={{color: this.props.state.uiColor, borderColor: this.props.state.uiColor}}>UP (B)</button>
-                <button id="button-c" style={{color: this.props.state.uiColor, borderColor: this.props.state.uiColor}}>DOWN (C)</button>
+                <button id="button-a" style={{color: this.props.state.uiColor, borderColor: this.props.state.uiColor}} onClick={this.handleButtonA} >SELECT (A)</button>
+                <button id="button-b" style={{color: this.props.state.uiColor, borderColor: this.props.state.uiColor}} onClick={this.handleButtonB} >UP (B)</button>
+                <button id="button-c" style={{color: this.props.state.uiColor, borderColor: this.props.state.uiColor}} onClick={this.handleButtonC} >DOWN (C)</button>
               </div>
             </div>
           )
