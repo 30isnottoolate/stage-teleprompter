@@ -24,7 +24,6 @@ class TextSlide extends React.Component {
       this.setState({
         currentText: this.props.state.data.texts["text_" + this.props.state.currentIndex].text
       });
-      this.changeableInterval();
       document.addEventListener("keydown", this.handleKeyPress);
     }
     
@@ -85,6 +84,7 @@ class TextSlide extends React.Component {
         }
       });
       setTimeout(this.moveSlide, LOW_SPEED);
+      console.log("ping")
     }
   
     render() {
