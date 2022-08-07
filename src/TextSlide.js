@@ -11,21 +11,19 @@ class TextSlide extends React.Component {
       this.state = {
         position: START_POS,
         direction: 0,
-        speed: 1,
         currentText: "Loading..."
       };
   
       this.handleKeyPress = this.handleKeyPress.bind(this);
       this.forwardAction = this.forwardAction.bind(this);
       this.backwardAction = this.backwardAction.bind(this);
-      this.changeableInterval = this.changeableInterval.bind(this);
       this.moveSlide = this.moveSlide.bind(this);
     }
   
     componentDidMount() {
       this.setState({
         currentText: this.props.state.data.texts["text_" + this.props.state.currentIndex].text
-      })
+      });
       this.changeableInterval();
       document.addEventListener("keydown", this.handleKeyPress);
     }
@@ -35,12 +33,12 @@ class TextSlide extends React.Component {
     }
     
     handleKeyPress(event) {
-      if (event.key === "c") {
-        this.forwardAction();
+      if (event.key === "a") {
+        this.props.mode("select");
       } else if (event.key === "b") {
         this.backwardAction();
-      } else if (event.key === "a") {
-        this.props.mode("select");
+      } else if (event.key === "c") {
+        this.forwardAction();
       }
     }
   
@@ -48,14 +46,9 @@ class TextSlide extends React.Component {
       this.setState((prevState) => {
         if (prevState.direction === 0) {
           return {
-            direction: 1,
-            speed: 1
+            direction: 1
           }
-        } else if (prevState.direction === 1 && prevState.speed === 1) {
-          return {
-            speed: 2
-          }
-        } else if (prevState.direction === -1 || prevState.speed === 2) {
+        } else if (prevState.direction === 1 || prevState.direction === -1) {
           return {
             direction: 0
           }
@@ -67,27 +60,14 @@ class TextSlide extends React.Component {
       this.setState((prevState) => {
         if (prevState.direction === 0) {
           return {
-            direction: -1,
-            speed: 1
+            direction: -1
           }
-        } else if (prevState.direction === -1 && prevState.speed === 1) {
-          return {
-            speed: 2
-          }
-        } else if (prevState.direction === 1 || prevState.speed === 2) {
+        } else if (prevState.direction === 1 || prevState.direction === -1) {
           return {
             direction: 0
           }
         }
       });
-    }
-  
-    changeableInterval() {
-      if (this.state.speed === 1) {
-        setTimeout(this.moveSlide, LOW_SPEED);
-      } else if (this.state.speed === 2) {
-        setTimeout(this.moveSlide, HIGH_SPEED);
-      }
     }
   
     moveSlide() {
@@ -104,7 +84,7 @@ class TextSlide extends React.Component {
           }
         }
       });
-      this.changeableInterval();
+      setTimeout(this.moveSlide, LOW_SPEED);
     }
   
     render() {
