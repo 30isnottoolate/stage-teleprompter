@@ -91,9 +91,9 @@ class TextSlide extends React.Component {
       return (
         <div id="text-slide" style={{fontSize: this.props.state.fontSize, color: this.props.state.uiColor}}>
           <div id="control" className={this.state.direction !== 0 ? "transparent" : "visible"}>
-            <button id="button-a"  style={{color: this.props.state.uiColor, borderColor: this.props.state.uiColor}}>SELECTION (A)</button>
-            <button id="button-b" onClick={this.backwardAction} style={{color: this.props.state.uiColor, borderColor: this.props.state.uiColor}}>BACKWARD (B)</button>
-            <button id="button-c" onClick={this.forwardAction} style={{color: this.props.state.uiColor, borderColor: this.props.state.uiColor}}>FORWARD (C)</button>
+            <button id="button-a"  style={{color: this.props.state.uiColor, borderColor: this.props.state.uiColor}}>&#8984;</button>
+            <button id="button-b" onClick={this.backwardAction} style={{color: this.props.state.uiColor, borderColor: this.props.state.uiColor}}>&#9636;</button>
+            <button id="button-c" onClick={this.forwardAction} style={{color: this.props.state.uiColor, borderColor: this.props.state.uiColor}}>&#9655;</button>
           </div>
           <div id="slide" style={{top: this.state.position, fontSize: this.props.state.fontSize}} >
             <p id="text" dangerouslySetInnerHTML={{__html: this.state.currentText}} />
