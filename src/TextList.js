@@ -109,9 +109,9 @@ class TextList extends React.Component {
               <ul dangerouslySetInnerHTML={{__html: list}} style={{position: "absolute", top: listPos}}/>
               <p id="text-marker" style={{paddingLeft: (this.props.state.fontSize * 0.19) + "px"}}>&#129170;</p>
               <div id="control">
-                <button id="button-a" style={{color: this.props.state.uiColor, borderColor: this.props.state.uiColor}} onClick={this.handleButtonA} >SELECT (A)</button>
-                <button id="button-b" style={{color: this.props.state.uiColor, borderColor: this.props.state.uiColor}} onClick={this.handleButtonB} >UP (B)</button>
-                <button id="button-c" style={{color: this.props.state.uiColor, borderColor: this.props.state.uiColor}} onClick={this.handleButtonC} >DOWN (C)</button>
+                <button id="button-a" style={{color: this.props.state.uiColor, borderColor: this.props.state.uiColor}} onClick={this.handleButtonA} >&#9711; / &#8984;</button>
+                <button id="button-b" style={{color: this.props.state.uiColor, borderColor: this.props.state.uiColor}} onClick={this.handleButtonB} >&#9651;</button>
+                <button id="button-c" style={{color: this.props.state.uiColor, borderColor: this.props.state.uiColor}} onClick={this.handleButtonC} >&#9661;</button>
               </div>
             </div>
           )
