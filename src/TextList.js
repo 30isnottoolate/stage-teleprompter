@@ -27,15 +27,7 @@ class TextList extends React.Component {
     }
     
     handleKeyPress(event) {
-      if (event.key === "c") {
-        if (this.props.state.currentIndex < this.props.state.textCount) {
-          this.props.index(this.props.state.currentIndex + 1);
-        } else {
-          this.props.index(1);
-        }
-      } else if (event.key === "b") {
-        this.props.mode("read");
-      } else if (event.key === "a") {
+      if (event.key === "a") {
         if (!this.state.keyHold) {
           this.setState((prevState) => {
             return {
@@ -43,6 +35,18 @@ class TextList extends React.Component {
               keyDownTime: (new Date()).getTime()
             }
           });
+        }
+      } else if (event.key === "b") {
+        if (this.props.state.currentIndex > 1) {
+          this.props.index(this.props.state.currentIndex - 1);
+        } else {
+          this.props.index(this.props.state.textCount);
+        }
+      } else if (event.key === "c") {
+        if (this.props.state.currentIndex < this.props.state.textCount) {
+          this.props.index(this.props.state.currentIndex + 1);
+        } else {
+          this.props.index(1);
         }
       }
     }
@@ -52,8 +56,8 @@ class TextList extends React.Component {
         if (this.state.keyHold) {
           this.setState((prevState) => {
             if (((new Date()).getTime() - prevState.keyDownTime) > 2000) {
-              console.log("LONG");
-            } else console.log("SHORT");
+              this.props.mode("set");
+            } else this.props.mode("read");
             return {
               keyHold: false,
               keyDownTime: ""
