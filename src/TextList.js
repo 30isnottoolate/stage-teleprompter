@@ -4,8 +4,13 @@ import './Teleprompter.css';
 class TextList extends React.Component {
     constructor(props) {
       super(props);
+      this.state = {
+        keyHold: false,
+        keyDownTime: ""
+      };
   
       this.handleKeyPress = this.handleKeyPress.bind(this);
+      this.handleKeyHold = this.handleKeyHold.bind(this);
       this.handleButtonA = this.handleButtonA.bind(this);
       this.handleButtonB = this.handleButtonB.bind(this);
       this.handleButtonC = this.handleButtonC.bind(this);
@@ -13,10 +18,12 @@ class TextList extends React.Component {
   
     componentDidMount() {
       document.addEventListener("keydown", this.handleKeyPress);
+      document.addEventListener("keyup", this.handleKeyHold);
     }
     
     componentWillUnmount() {
       document.removeEventListener("keydown", this.handleKeyPress);
+      document.removeEventListener("keyup", this.handleKeyHold);
     }
     
     handleKeyPress(event) {
@@ -27,14 +34,32 @@ class TextList extends React.Component {
           this.props.index(1);
         }
       } else if (event.key === "b") {
-        if (this.props.state.currentIndex > 1) {
-          this.props.index(this.props.state.currentIndex - 1);
-        } else {
-          this.props.index(this.props.state.textCount);
-        }
-        
-      } else if (event.key === "a") {
         this.props.mode("read");
+      } else if (event.key === "a") {
+        if (!this.state.keyHold) {
+          this.setState((prevState) => {
+            return {
+              keyHold: !prevState.keyHold,
+              keyDownTime: (new Date()).getTime()
+            }
+          });
+        }
+      }
+    }
+
+    handleKeyHold(event) {
+      if (event.key === "a") {
+        if (this.state.keyHold) {
+          this.setState((prevState) => {
+            if (((new Date()).getTime() - prevState.keyDownTime) > 2000) {
+              console.log("LONG");
+            } else console.log("SHORT");
+            return {
+              keyHold: false,
+              keyDownTime: ""
+            }
+          });
+        }
       }
     }
 
