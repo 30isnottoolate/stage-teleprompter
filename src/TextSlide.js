@@ -15,6 +15,8 @@ class TextSlide extends React.Component {
       };
   
       this.handleKeyPress = this.handleKeyPress.bind(this);
+      this.switchToSelect = this.switchToSelect.bind(this);
+      this.switchToSet = this.switchToSet.bind(this);
       this.forwardAction = this.forwardAction.bind(this);
       this.backwardAction = this.backwardAction.bind(this);
       this.moveSlide = this.moveSlide.bind(this);
@@ -41,6 +43,14 @@ class TextSlide extends React.Component {
       } else if (event.key === "c") {
         this.forwardAction();
       }
+    }
+
+    switchToSelect() {
+      this.props.mode("select");
+    }
+
+    switchToSet() {
+      this.props.mode("set");
     }
   
     forwardAction() {
@@ -91,8 +101,8 @@ class TextSlide extends React.Component {
       return (
         <div id="text-slide" style={{fontSize: this.props.state.fontSize, color: this.props.state.uiColor}}>
           <div id="control" className={this.state.direction !== 0 ? "transparent" : "visible"}>
-            <button id="button-a" style={{color: this.props.state.uiColor, borderColor: this.props.state.uiColor}}>&#8984;</button>
-            <button id="button-b" style={{color: this.props.state.uiColor, borderColor: this.props.state.uiColor}}>&#9636;</button>
+            <button id="button-a" onClick={this.switchToSet} style={{color: this.props.state.uiColor, borderColor: this.props.state.uiColor}}>&#8984;</button>
+            <button id="button-b" onClick={this.switchToSelect} style={{color: this.props.state.uiColor, borderColor: this.props.state.uiColor}}>&#9636;</button>
             <button id="button-c" onClick={this.forwardAction} style={{color: this.props.state.uiColor, borderColor: this.props.state.uiColor}}>&#9655;</button>
           </div>
           <div id="slide" style={{top: this.state.position, fontSize: this.props.state.fontSize}} >
