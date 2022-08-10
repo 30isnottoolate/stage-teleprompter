@@ -35,9 +35,9 @@ class TextSlide extends React.Component {
     
     handleKeyPress(event) {
       if (event.key === "a") {
-        this.props.mode("select");
+        this.props.mode("set");
       } else if (event.key === "b") {
-        this.backwardAction();
+        this.props.mode("select");
       } else if (event.key === "c") {
         this.forwardAction();
       }
@@ -91,8 +91,8 @@ class TextSlide extends React.Component {
       return (
         <div id="text-slide" style={{fontSize: this.props.state.fontSize, color: this.props.state.uiColor}}>
           <div id="control" className={this.state.direction !== 0 ? "transparent" : "visible"}>
-            <button id="button-a"  style={{color: this.props.state.uiColor, borderColor: this.props.state.uiColor}}>&#8984;</button>
-            <button id="button-b" onClick={this.backwardAction} style={{color: this.props.state.uiColor, borderColor: this.props.state.uiColor}}>&#9636;</button>
+            <button id="button-a" style={{color: this.props.state.uiColor, borderColor: this.props.state.uiColor}}>&#8984;</button>
+            <button id="button-b" style={{color: this.props.state.uiColor, borderColor: this.props.state.uiColor}}>&#9636;</button>
             <button id="button-c" onClick={this.forwardAction} style={{color: this.props.state.uiColor, borderColor: this.props.state.uiColor}}>&#9655;</button>
           </div>
           <div id="slide" style={{top: this.state.position, fontSize: this.props.state.fontSize}} >
