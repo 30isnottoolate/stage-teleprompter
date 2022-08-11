@@ -2,6 +2,7 @@ import React from 'react';
 import './Teleprompter.css';
 import TextSlide from './TextSlide';
 import TextList from './TextList';
+import Settings from './Settings.js';
 
 const FONT_SIZE = 80;
 const LINE_HEIGHT = 1.2;
@@ -56,7 +57,9 @@ class Teleprompter extends React.Component {
         <TextSlide state={this.state} mode={this.changeMode} />
       )
     } else if (this.state.mode === "set") {
-
+      return (
+        <Settings state={this.state} mode={this.changeMode} />
+      )
     }
   }
 }
