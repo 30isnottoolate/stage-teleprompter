@@ -28,7 +28,7 @@ class TextList extends React.Component {
     
     handleKeyPress(event) {
       if (!this.state.keyHold) {
-        this.setState((prevState) => {
+        this.setState(() => {
           if (event.key === "a") {
         
           } else if (event.key === "b") {
