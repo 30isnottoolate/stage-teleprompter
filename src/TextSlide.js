@@ -9,7 +9,7 @@ class TextSlide extends React.Component {
       super(props);
       this.state = {
         position: START_POS,
-        direction: 0,
+        active: false,
         currentText: "Loading...",
         timer: ""
       };
@@ -18,7 +18,6 @@ class TextSlide extends React.Component {
       this.switchToSelect = this.switchToSelect.bind(this);
       this.switchToSet = this.switchToSet.bind(this);
       this.forwardAction = this.forwardAction.bind(this);
-      this.backwardAction = this.backwardAction.bind(this);
       this.moveSlide = this.moveSlide.bind(this);
     }
   
@@ -37,9 +36,9 @@ class TextSlide extends React.Component {
     
     handleKeyPress(event) {
       if (event.key === "a") {
-        this.props.mode("set");
+        this.switchToSet();
       } else if (event.key === "b") {
-        this.props.mode("select");
+        this.switchToSelect();
       } else if (event.key === "c") {
         this.forwardAction();
       }
@@ -54,44 +53,24 @@ class TextSlide extends React.Component {
     }
   
     forwardAction() {
-      this.setState((prevState) => {
-        if (prevState.direction === 0) {
-          return {
-            direction: 1
-          }
-        } else if (prevState.direction === 1 || prevState.direction === -1) {
-          return {
-            direction: 0
-          }
-        }
-      });
-    }
-  
-    backwardAction() {
-      this.setState((prevState) => {
-        if (prevState.direction === 0) {
-          return {
-            direction: -1
-          }
-        } else if (prevState.direction === 1 || prevState.direction === -1) {
-          return {
-            direction: 0
-          }
-        }
-      });
+      this.setState((prevState) => ({
+        active: !prevState.active
+      }));
     }
   
     moveSlide() {
       this.setState((prevState) => {
-        if (document.body.offsetHeight > (prevState.position *
-          (-1) + window.innerHeight / 2) && prevState.position <= START_POS) {
-          return {
-            position: prevState.position - prevState.direction
-          }
-        } else {
-          return {
-            position: prevState.position + prevState.direction,
-            direction: 0
+        if (prevState.active) {
+          if (document.body.offsetHeight > (prevState.position *
+            (-1) + window.innerHeight / 2) && prevState.position <= START_POS) {
+            return {
+              position: prevState.position - 1
+            }
+          } else {
+            return {
+              position: prevState.position + 1,
+              active: false
+            }
           }
         }
       });
@@ -100,7 +79,7 @@ class TextSlide extends React.Component {
     render() {
       return (
         <div id="text-slide" style={{fontSize: this.props.state.fontSize, color: this.props.state.uiColor}}>
-          <div id="control" className={this.state.direction !== 0 ? "transparent" : "visible"}>
+          <div id="control" className={this.state.active ? "transparent" : "visible"}>
             <button id="button-a" onClick={this.switchToSet} style={{color: this.props.state.uiColor, borderColor: this.props.state.uiColor}}>&#8984;</button>
             <button id="button-b" onClick={this.switchToSelect} style={{color: this.props.state.uiColor, borderColor: this.props.state.uiColor}}>&#9636;</button>
             <button id="button-c" onClick={this.forwardAction} style={{color: this.props.state.uiColor, borderColor: this.props.state.uiColor}}>&#9655;</button>
