@@ -45,7 +45,7 @@ class TextList extends React.Component {
             }
           }
           return {
-            keyHold: !prevState.keyHold,
+            keyHold: true,
             keyDownTime: (new Date()).getTime()
           }
         });
@@ -53,18 +53,16 @@ class TextList extends React.Component {
     }
 
     handleKeyHold(event) {
-      if (event.key === "a") {
-        if (this.state.keyHold) {
-          this.setState((prevState) => {
-            if (((new Date()).getTime() - prevState.keyDownTime) > 2000) {
-              this.props.mode("set");
-            } else this.props.mode("read");
-            return {
-              keyHold: false,
-              keyDownTime: ""
-            }
-          });
+      if (this.state.keyHold) {
+        if (event.key === "a") {
+          if (((new Date()).getTime() - this.state.keyDownTime) > 2000) {
+            this.props.mode("set");
+          } else this.props.mode("read");
         }
+        this.setState({
+          keyHold: false,
+          keyDownTime: ""
+        });
       }
     }
 
