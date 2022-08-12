@@ -27,27 +27,28 @@ class TextList extends React.Component {
     }
     
     handleKeyPress(event) {
-      if (event.key === "a") {
-        if (!this.state.keyHold) {
-          this.setState((prevState) => {
-            return {
-              keyHold: !prevState.keyHold,
-              keyDownTime: (new Date()).getTime()
+      if (!this.state.keyHold) {
+        this.setState((prevState) => {
+          if (event.key === "a") {
+        
+          } else if (event.key === "b") {
+            if (this.props.state.currentIndex > 1) {
+              this.props.index(this.props.state.currentIndex - 1);
+            } else {
+              this.props.index(this.props.state.textCount);
             }
-          });
-        }
-      } else if (event.key === "b") {
-        if (this.props.state.currentIndex > 1) {
-          this.props.index(this.props.state.currentIndex - 1);
-        } else {
-          this.props.index(this.props.state.textCount);
-        }
-      } else if (event.key === "c") {
-        if (this.props.state.currentIndex < this.props.state.textCount) {
-          this.props.index(this.props.state.currentIndex + 1);
-        } else {
-          this.props.index(1);
-        }
+          } else if (event.key === "c") {
+            if (this.props.state.currentIndex < this.props.state.textCount) {
+              this.props.index(this.props.state.currentIndex + 1);
+            } else {
+              this.props.index(1);
+            }
+          }
+          return {
+            keyHold: !prevState.keyHold,
+            keyDownTime: (new Date()).getTime()
+          }
+        });
       }
     }
 
