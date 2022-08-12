@@ -9,11 +9,21 @@ class Settings extends React.Component {
       };
   
     }
+
+    componentDidMount() {
+      document.addEventListener("keydown", this.handleKeyPress);
+      document.addEventListener("keyup", this.handleKeyHold);
+    }
+    
+    componentWillUnmount() {
+      document.removeEventListener("keydown", this.handleKeyPress);
+      document.removeEventListener("keyup", this.handleKeyHold);
+    }
   
     render() {
       return (
         <div id="settings" style={{fontSize: this.props.state.fontSize, color: this.props.state.uiColor}}>
-          <p>SETTINGS:</p>
+          <p id="head-line">SETTINGS:</p>
           <div id="control">
             <button id="button-a" style={{color: this.props.state.uiColor, borderColor: this.props.state.uiColor}}>&#9711; / &#9636;</button>
             <button id="button-b" style={{color: this.props.state.uiColor, borderColor: this.props.state.uiColor}}>&#9651;</button>
