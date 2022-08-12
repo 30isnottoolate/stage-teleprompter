@@ -8,13 +8,16 @@ class TextSlide extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
-        position: START_POS,
         active: false,
+        timer: "",
+        position: START_POS,
         currentText: "Loading...",
-        timer: ""
+        keyHold: false,
+        keyDownTime: ""
       };
   
       this.handleKeyPress = this.handleKeyPress.bind(this);
+      this.handleKeyHold = this.handleKeyHold.bind(this);
       this.switchToSelect = this.switchToSelect.bind(this);
       this.switchToSet = this.switchToSet.bind(this);
       this.forwardAction = this.forwardAction.bind(this);
@@ -23,8 +26,8 @@ class TextSlide extends React.Component {
   
     componentDidMount() {
       this.setState({
-        currentText: this.props.state.data.texts["text_" + this.props.state.currentIndex].text,
-        timer: setInterval(this.moveSlide, SPEED)
+        timer: setInterval(this.moveSlide, SPEED),
+        currentText: this.props.state.data.texts["text_" + this.props.state.currentIndex].text
       });
       document.addEventListener("keydown", this.handleKeyPress);
       document.addEventListener("keyup", this.handleKeyHold);
@@ -35,14 +38,39 @@ class TextSlide extends React.Component {
       document.removeEventListener("keydown", this.handleKeyPress);
       document.removeEventListener("keyup", this.handleKeyHold);
     }
-    
+
     handleKeyPress(event) {
-      if (event.key === "a") {
-        this.switchToSet();
-      } else if (event.key === "b") {
-        this.switchToSelect();
-      } else if (event.key === "c") {
-        this.forwardAction();
+      if (!this.state.keyHold) {
+        this.setState((prevState) => {
+          if (event.key === "a") {
+            return {
+              keyHold: true,
+              keyDownTime: (new Date()).getTime()
+            }
+          } else if (event.key === "b") {
+            this.switchToSelect();
+          } else if (event.key === "c") {
+            return {
+              active: !prevState.active,
+              keyHold: true,
+              keyDownTime: (new Date()).getTime()
+            }
+          }
+        });
+      }
+    }
+
+    handleKeyHold(event) {
+      if (this.state.keyHold) {
+        if (event.key === "a") {
+          if (((new Date()).getTime() - this.state.keyDownTime) > 2000) {
+            this.switchToSet();
+          }
+        }
+        this.setState({
+          keyHold: false,
+          keyDownTime: ""
+        });
       }
     }
 
