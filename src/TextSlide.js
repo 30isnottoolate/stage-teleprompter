@@ -27,11 +27,13 @@ class TextSlide extends React.Component {
         timer: setInterval(this.moveSlide, SPEED)
       });
       document.addEventListener("keydown", this.handleKeyPress);
+      document.addEventListener("keyup", this.handleKeyHold);
     }
     
     componentWillUnmount() {
       clearInterval(this.state.timer);
       document.removeEventListener("keydown", this.handleKeyPress);
+      document.removeEventListener("keyup", this.handleKeyHold);
     }
     
     handleKeyPress(event) {
@@ -93,4 +95,3 @@ class TextSlide extends React.Component {
   }
 
 export default TextSlide;
-  
