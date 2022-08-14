@@ -24,6 +24,7 @@ class Settings extends React.Component {
       return (
         <div id="settings" style={{fontSize: this.props.state.fontSize, color: this.props.state.uiColor}}>
           <p id="head-line">SETTINGS:</p>
+          <p id="text-marker" style={{paddingLeft: (this.props.state.fontSize * 0.19) + "px"}}>&#129170;</p>
           <ul style={{paddingLeft: (this.props.state.fontSize * 0.69) + "px"}}>
             <li>Font size:</li>
             <li>Line height:</li>
