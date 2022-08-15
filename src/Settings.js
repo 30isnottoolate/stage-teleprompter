@@ -5,7 +5,7 @@ class Settings extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
-
+        settingsIndex: 1
       };
   
     }
@@ -21,10 +21,12 @@ class Settings extends React.Component {
     }
   
     render() {
+      let listPos = (2 - this.state.settingsIndex) * this.props.state.fontSize * this.props.state.lineHeight;
+
       return (
         <div id="settings" style={{fontSize: this.props.state.fontSize, color: this.props.state.uiColor}}>
-          <p id="head-line">SETTINGS:</p>
-          <p id="text-marker" style={{paddingLeft: (this.props.state.fontSize * 0.19) + "px"}}>&#129170;</p>
+          <p id="head-line" className={this.state.settingsIndex === 1 ? "visible" : "hidden"}>SETTINGS:</p>
+          <p id="text-marker" style={{paddingLeft: (this.props.state.fontSize * 0.19) + "px", position: "absolute", top: listPos}} >&#129170;</p>
           <ul style={{paddingLeft: (this.props.state.fontSize * 0.69) + "px"}}>
             <li>Font size:</li>
             <li>Line height:</li>
