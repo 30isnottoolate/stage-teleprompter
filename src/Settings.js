@@ -9,6 +9,9 @@ class Settings extends React.Component {
         keyHold: false,
         keyDownTime: ""
       };
+
+      this.handleKeyPress = this.handleKeyPress.bind(this);
+      this.handleKeyHold = this.handleKeyHold.bind(this);
   
     }
 
