@@ -5,7 +5,9 @@ class Settings extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
-        settingsIndex: 1
+        settingsIndex: 1,
+        keyHold: false,
+        keyDownTime: ""
       };
   
     }
@@ -18,6 +20,54 @@ class Settings extends React.Component {
     componentWillUnmount() {
       document.removeEventListener("keydown", this.handleKeyPress);
       document.removeEventListener("keyup", this.handleKeyHold);
+    }
+
+    handleKeyPress(event) {
+      if (!this.state.keyHold) {
+        this.setState((prevState) => {
+          if (event.key === "a") {
+        
+          } else if (event.key === "b") {
+            if (this.state.settingsIndex > 1) {
+              return {
+                settingsIndex: prevState.settingsIndex - 1
+              }
+            } else {
+              return {
+                settingsIndex: 7
+              }
+            }
+          } else if (event.key === "c") {
+            if (this.state.settingsIndex < 7) {
+              return {
+                settingsIndex: prevState.settingsIndex + 1
+              }
+            } else {
+              return {
+                settingsIndex: 1
+              }
+            }
+          }
+          return {
+            keyHold: true,
+            keyDownTime: (new Date()).getTime()
+          }
+        });
+      }
+    }
+
+    handleKeyHold(event) {
+      if (this.state.keyHold) {
+        if (event.key === "a") {
+          if (((new Date()).getTime() - this.state.keyDownTime) > 2000) {
+            this.props.mode("select");
+          }
+        }
+        this.setState({
+          keyHold: false,
+          keyDownTime: ""
+        });
+      }
     }
   
     render() {
