@@ -80,15 +80,35 @@ class Settings extends React.Component {
         <div id="settings" style={{fontSize: this.props.state.fontSize, color: this.props.state.uiColor}}>
           <p id="head-line" className={this.state.settingsIndex === 1 ? "visible" : "hidden"}>SETTINGS:</p>
           <p id="text-marker" style={{paddingLeft: (this.props.state.fontSize * 0.19) + "px"}} >&#129170;</p>
-          <ul style={{paddingLeft: (this.props.state.fontSize * 0.69) + "px", position: "absolute", top: listPos}}>
-            <li>Font size:</li>
-            <li>Line height:</li>
-            <li>UI color:</li>
-            <li>Text speed:</li>
-            <li>Hold button time:</li>
-            <li>Orientation:</li>
-            <li>Default settings</li>
-          </ul>
+          <table style={{paddingLeft: (this.props.state.fontSize * 0.69) + "px", position: "absolute", top: listPos}}>
+            <tr>
+              <td>Font size:</td>
+              <td>80</td>
+            </tr>
+            <tr>
+              <td>Line height:</td>
+              <td>1.2</td>
+            </tr>
+            <tr>
+              <td>UI color:</td>
+              <td>Blue</td>
+            </tr>
+            <tr>
+              <td>Text speed:</td>
+              <td>100%</td>
+            </tr>
+            <tr>
+              <td>Hold button time:</td>
+              <td>2000ms</td>
+            </tr>
+            <tr>
+              <td>Orientation:</td>
+              <td>Horizontal</td>
+            </tr>
+            <tr>
+              <td>Default settings</td>
+            </tr>
+          </table>
           <div id="control">
             <button id="button-a" style={{color: this.props.state.uiColor, borderColor: this.props.state.uiColor}}>&#9711; / &#9636;</button>
             <button id="button-b" style={{color: this.props.state.uiColor, borderColor: this.props.state.uiColor}}>&#9651;</button>
