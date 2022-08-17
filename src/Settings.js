@@ -83,27 +83,27 @@ class Settings extends React.Component {
           <table style={{paddingLeft: (this.props.state.fontSize * 0.69) + "px", position: "absolute", top: listPos}}>
             <tr>
               <td>Font size:</td>
-              <td>80</td>
+              <td style={{paddingLeft: (this.props.state.fontSize * 0.69) + "px"}}>80</td>
             </tr>
             <tr>
               <td>Line height:</td>
-              <td>1.2</td>
+              <td style={{paddingLeft: (this.props.state.fontSize * 0.69) + "px"}}>1.2</td>
             </tr>
             <tr>
               <td>UI color:</td>
-              <td>Blue</td>
+              <td style={{paddingLeft: (this.props.state.fontSize * 0.69) + "px"}}>Blue</td>
             </tr>
             <tr>
               <td>Text speed:</td>
-              <td>100%</td>
+              <td style={{paddingLeft: (this.props.state.fontSize * 0.69) + "px"}}>100%</td>
             </tr>
             <tr>
               <td>Hold button time:</td>
-              <td>2000ms</td>
+              <td style={{paddingLeft: (this.props.state.fontSize * 0.69) + "px"}}>2000ms</td>
             </tr>
             <tr>
               <td>Orientation:</td>
-              <td>Horizontal</td>
+              <td style={{paddingLeft: (this.props.state.fontSize * 0.69) + "px"}}>Horizontal</td>
             </tr>
             <tr>
               <td>Default settings</td>
