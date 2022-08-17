@@ -63,7 +63,7 @@ body {
   padding: 0px 15px 0px 15px;
 }
 
-ul {
+ul, table {
   list-style-type: none;
   transition-property: top;
   transition-duration: 0.5s;
