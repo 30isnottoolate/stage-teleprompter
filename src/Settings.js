@@ -8,9 +8,7 @@ class Settings extends React.Component {
         settingsIndex: 1,
         keyHold: false,
         keyDownTime: "",
-        settingsValues: {
-
-        }
+        settingsMode: "" //fontSize, lineHeight, uIColor, textSpeed, holdButtonTime, orientation
       };
 
       this.handleKeyPress = this.handleKeyPress.bind(this);
@@ -67,6 +65,8 @@ class Settings extends React.Component {
         if (event.key === "a") {
           if (((new Date()).getTime() - this.state.keyDownTime) > 2000) {
             this.props.mode("select");
+          } else {
+            
           }
         }
         this.setState({
