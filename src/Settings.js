@@ -87,11 +87,11 @@ class Settings extends React.Component {
             <tbody>
             <tr>
               <td>Font size:</td>
-              <td style={{paddingLeft: (this.props.state.fontSize * 1.38) + "px"}}>80</td>
+              <td style={{paddingLeft: (this.props.state.fontSize * 1.38) + "px"}}>{this.props.state.fontSize}</td>
             </tr>
             <tr>
               <td>Line height:</td>
-              <td style={{paddingLeft: (this.props.state.fontSize * 1.38) + "px"}}>1.2</td>
+              <td style={{paddingLeft: (this.props.state.fontSize * 1.38) + "px"}}>{this.props.state.lineHeight}</td>
             </tr>
             <tr>
               <td>UI color:</td>
