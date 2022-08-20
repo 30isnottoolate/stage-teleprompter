@@ -7,6 +7,7 @@ import Settings from './Settings.js';
 const FONT_SIZE = 80;
 const LINE_HEIGHT = 1.2;
 const COLOR_01 = "#99d3ff"; // green: #b4f8ff, blue: #99d3ff, red: #ffd6d9, yellow: #fff4ad, white: #ffffff
+const HOLD_TIME = 2000;
 
 class Teleprompter extends React.Component {
   constructor(props) {
@@ -18,7 +19,8 @@ class Teleprompter extends React.Component {
       currentIndex: 1,
       fontSize: FONT_SIZE,
       lineHeight: LINE_HEIGHT,
-      uiColor: COLOR_01
+      uiColor: COLOR_01,
+      holdButtonTime: HOLD_TIME
     };
 
   }
