@@ -63,7 +63,7 @@ class Settings extends React.Component {
     handleKeyHold(event) {
       if (this.state.keyHold) {
         if (event.key === "a") {
-          if (((new Date()).getTime() - this.state.keyDownTime) > 2000) {
+          if (((new Date()).getTime() - this.state.keyDownTime) > this.props.state.holdButtonTime) {
             this.props.mode("select");
           } else {
             
