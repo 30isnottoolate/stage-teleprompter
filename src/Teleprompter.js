@@ -6,7 +6,7 @@ import Settings from './Settings.js';
 
 const FONT_SIZE = 80;
 const LINE_HEIGHT = 1.2;
-const COLOR_01 = "#99d3ff"; // green: #b4f8ff, blue: #99d3ff, red: #ffd6d9, yellow: #fff4ad, white: #ffffff
+const COLOR_DEFAULT = "#99d3ff"; // green: #b4f8ff, blue: #99d3ff, red: #ffd6d9, yellow: #fff4ad, white: #ffffff
 const HOLD_TIME = 2000;
 
 class Teleprompter extends React.Component {
@@ -19,7 +19,7 @@ class Teleprompter extends React.Component {
       currentIndex: 1,
       fontSize: FONT_SIZE,
       lineHeight: LINE_HEIGHT,
-      uiColor: COLOR_01,
+      uiColor: COLOR_DEFAULT,
       holdButtonTime: HOLD_TIME
     };
 
@@ -48,6 +48,42 @@ class Teleprompter extends React.Component {
       mode: mode
     });
   }
+
+  changeSettings = (setting, value) => {
+    this.setState((prevState) => {
+      if (setting === "fontSize") {
+        return {
+          fontSize: value
+        }
+      } else if (setting === "lineHeight") {
+        return {
+          lineHeight: value
+        }
+      } else if (setting === "uiColor") {
+        return {
+          uIColor: value
+        }
+      } else if (setting === "textSpeed") {
+        return {
+          textSpeed: value
+        }
+      } else if (setting === "holdButtonTime") {
+        return {
+          holdButtonTime: value
+        }
+      } else if (setting === "orientation") {
+        return {
+          orientation: value
+        }
+      } else if (setting === "default") {
+        return {
+          fontSize: FONT_SIZE,
+          lineHeight: LINE_HEIGHT,
+          uIColor: COLOR_DEFAULT
+        }
+      }
+    });
+  }
   
   render() {
     if (this.state.mode === "select") {
@@ -60,7 +96,7 @@ class Teleprompter extends React.Component {
       )
     } else if (this.state.mode === "set") {
       return (
-        <Settings state={this.state} mode={this.changeMode} />
+        <Settings state={this.state} mode={this.changeMode} settings={this.changeSettings} />
       )
     }
   }
