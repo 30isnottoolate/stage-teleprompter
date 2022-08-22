@@ -4,7 +4,7 @@ import TextSlide from './TextSlide';
 import TextList from './TextList';
 import Settings from './Settings.js';
 
-const FONT_SIZE_DEFAULT = 80;
+const FONT_SIZE_DEFAULT = 100;
 const LINE_HEIGHT_DEFAULT = 1.2;
 const UI_COLOR_DEFAULT = "#99d3ff"; // green: #b4f8ff, blue: #99d3ff, red: #ffd6d9, yellow: #fff4ad, white: #ffffff
 const TEXT_SPEED_DEFAULT = 100;
