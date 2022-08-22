@@ -58,8 +58,6 @@ body {
   position: relative;
   width:100vw;
   z-index: -1;
-  transition-property: top;
-  transition-duration: 0.01s;
 }
 
 ul, table {
