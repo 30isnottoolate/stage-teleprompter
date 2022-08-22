@@ -59,7 +59,7 @@ body {
   width:100vw;
   z-index: -1;
   transition-property: top;
-  transition-duration: 0.25s;
+  transition-duration: 0.01s;
 }
 
 ul, table {
