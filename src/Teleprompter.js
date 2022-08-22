@@ -94,8 +94,6 @@ class Teleprompter extends React.Component {
   }
   
   render() {
-    //console.log(window.screen.width);
-    //console.log(window.screen.height);
     if (this.state.mode === "select") {
       return (
         <TextList state={this.state} mode={this.changeMode} index={this.changeIndex} />
