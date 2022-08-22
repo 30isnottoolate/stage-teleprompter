@@ -32,14 +32,14 @@ class TextList extends React.Component {
           if (event.key === "a") {
         
           } else if (event.key === "b") {
-            if (this.props.state.currentIndex > 1) {
-              this.props.index(this.props.state.currentIndex - 1);
+            if (this.props.state.textIndex > 1) {
+              this.props.index(this.props.state.textIndex - 1);
             } else {
               this.props.index(this.props.state.textCount);
             }
           } else if (event.key === "c") {
-            if (this.props.state.currentIndex < this.props.state.textCount) {
-              this.props.index(this.props.state.currentIndex + 1);
+            if (this.props.state.textIndex < this.props.state.textCount) {
+              this.props.index(this.props.state.textIndex + 1);
             } else {
               this.props.index(1);
             }
@@ -71,23 +71,23 @@ class TextList extends React.Component {
     }
 
     handleButtonB() {
-      if (this.props.state.currentIndex > 1) {
-        this.props.index(this.props.state.currentIndex - 1);
+      if (this.props.state.textIndex > 1) {
+        this.props.index(this.props.state.textIndex - 1);
       } else {
         this.props.index(this.props.state.textCount);
       }
     }
 
     handleButtonC() {
-      if (this.props.state.currentIndex < this.props.state.textCount) {
-        this.props.index(this.props.state.currentIndex + 1);
+      if (this.props.state.textIndex < this.props.state.textCount) {
+        this.props.index(this.props.state.textIndex + 1);
       } else {
         this.props.index(1);
       }
     }
   
     render() {
-      let listPos = (2 - this.props.state.currentIndex) * this.props.state.fontSize * this.props.state.lineHeight;
+      let listPos = (2 - this.props.state.textIndex) * this.props.state.fontSize * this.props.state.lineHeight;
 
       if (this.props.state.mode === "start" || this.props.state.mode === "select") {
         if (this.props.state.textCount === 0) {
@@ -107,14 +107,14 @@ class TextList extends React.Component {
           }
 
           return (
-            <div id="text-list" style={{fontSize: this.props.state.fontSize, color: this.props.state.uiColor}}>
-              <p id="head-line" className={this.props.state.currentIndex === 1 ? "visible" : "hidden"}>SELECT:</p>
+            <div id="text-list" style={{fontSize: this.props.state.fontSize, color: this.props.state.uIColor}}>
+              <p id="head-line" className={this.props.state.textIndex === 1 ? "visible" : "hidden"}>SELECT:</p>
               <ul dangerouslySetInnerHTML={{__html: list}} style={{position: "absolute", top: listPos}}/>
               <p id="text-marker" style={{paddingLeft: (this.props.state.fontSize * 0.19) + "px"}}>&#129170;</p>
               <div id="control">
-                <button id="button-a" style={{color: this.props.state.uiColor, borderColor: this.props.state.uiColor}} onClick={this.handleButtonA} >&#9711; / &#8984;</button>
-                <button id="button-b" style={{color: this.props.state.uiColor, borderColor: this.props.state.uiColor}} onClick={this.handleButtonB} >&#9651;</button>
-                <button id="button-c" style={{color: this.props.state.uiColor, borderColor: this.props.state.uiColor}} onClick={this.handleButtonC} >&#9661;</button>
+                <button id="button-a" style={{color: this.props.state.uIColor, borderColor: this.props.state.uIColor}} onClick={this.handleButtonA} >&#9711; / &#8984;</button>
+                <button id="button-b" style={{color: this.props.state.uIColor, borderColor: this.props.state.uIColor}} onClick={this.handleButtonB} >&#9651;</button>
+                <button id="button-c" style={{color: this.props.state.uIColor, borderColor: this.props.state.uIColor}} onClick={this.handleButtonC} >&#9661;</button>
               </div>
             </div>
           )
