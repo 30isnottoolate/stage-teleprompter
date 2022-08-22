@@ -1,7 +1,7 @@
 import React from 'react';
 import './Teleprompter.css';
 
-const SPEED = 25;
+const SPEED = 3200;
 
 class TextSlide extends React.Component {
     constructor(props) {
@@ -25,7 +25,7 @@ class TextSlide extends React.Component {
   
     componentDidMount() {
       this.setState({
-        timer: setInterval(this.moveSlide, SPEED),
+        timer: setInterval(this.moveSlide, SPEED / (this.props.state.fontSize * this.props.state.lineHeight)),
         position: this.props.state.fontSize * this.props.state.lineHeight,
         currentText: this.props.state.data.texts["text_" + this.props.state.textIndex].text
       });
