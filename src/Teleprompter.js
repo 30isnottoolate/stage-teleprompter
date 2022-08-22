@@ -4,10 +4,13 @@ import TextSlide from './TextSlide';
 import TextList from './TextList';
 import Settings from './Settings.js';
 
-const FONT_SIZE = 80;
-const LINE_HEIGHT = 1.2;
-const COLOR_DEFAULT = "#99d3ff"; // green: #b4f8ff, blue: #99d3ff, red: #ffd6d9, yellow: #fff4ad, white: #ffffff
-const HOLD_TIME = 2000;
+const FONT_SIZE_DEFAULT = 80;
+const LINE_HEIGHT_DEFAULT = 1.2;
+const UI_COLOR_DEFAULT = "#99d3ff"; // green: #b4f8ff, blue: #99d3ff, red: #ffd6d9, yellow: #fff4ad, white: #ffffff
+const TEXT_SPEED_DEFAULT = 100;
+const HOLD_TIME_DEFAULT = 2000;
+const ORIENTATION = "horizontal"; // horizontal / vertical
+
 
 class Teleprompter extends React.Component {
   constructor(props) {
@@ -16,11 +19,13 @@ class Teleprompter extends React.Component {
       mode: "select", //select, read, set
       data: "",
       textCount: 0,
-      currentIndex: 1,
-      fontSize: FONT_SIZE,
-      lineHeight: LINE_HEIGHT,
-      uiColor: COLOR_DEFAULT,
-      holdButtonTime: HOLD_TIME
+      textIndex: 1,
+      fontSize: FONT_SIZE_DEFAULT,
+      lineHeight: LINE_HEIGHT_DEFAULT,
+      uIColor: UI_COLOR_DEFAULT,
+      textSpeed: TEXT_SPEED_DEFAULT,
+      holdButtonTime: HOLD_TIME_DEFAULT,
+      orientation: ORIENTATION
     };
 
   }
@@ -39,7 +44,7 @@ class Teleprompter extends React.Component {
 
   changeIndex = (index) => {
     this.setState({
-      currentIndex: index
+      textIndex: index
     });
   }
 
@@ -59,7 +64,7 @@ class Teleprompter extends React.Component {
         return {
           lineHeight: value
         }
-      } else if (setting === "uiColor") {
+      } else if (setting === "uIColor") {
         return {
           uIColor: value
         }
@@ -77,15 +82,20 @@ class Teleprompter extends React.Component {
         }
       } else if (setting === "default") {
         return {
-          fontSize: FONT_SIZE,
-          lineHeight: LINE_HEIGHT,
-          uIColor: COLOR_DEFAULT
+          fontSize: FONT_SIZE_DEFAULT,
+          lineHeight: LINE_HEIGHT_DEFAULT,
+          uIColor: UI_COLOR_DEFAULT,
+          textSpeed: TEXT_SPEED_DEFAULT,
+          holdButtonTime: HOLD_TIME_DEFAULT,
+          orientation: ORIENTATION
         }
       }
     });
   }
   
   render() {
+    //console.log(window.screen.width);
+    //console.log(window.screen.height);
     if (this.state.mode === "select") {
       return (
         <TextList state={this.state} mode={this.changeMode} index={this.changeIndex} />
