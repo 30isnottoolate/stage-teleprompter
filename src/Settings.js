@@ -80,7 +80,7 @@ class Settings extends React.Component {
       let listPos = (2 - this.state.settingsIndex) * this.props.state.fontSize * this.props.state.lineHeight;
 
       return (
-        <div id="settings" style={{fontSize: this.props.state.fontSize, color: this.props.state.uiColor}}>
+        <div id="settings" style={{fontSize: this.props.state.fontSize, color: this.props.state.uIColor}}>
           <p id="head-line" className={this.state.settingsIndex === 1 ? "visible" : "hidden"}>SETTINGS:</p>
           <p id="text-marker" style={{paddingLeft: (this.props.state.fontSize * 0.19) + "px"}} >&#129170;</p>
           <table style={{paddingLeft: (this.props.state.fontSize * 0.69) + "px", position: "absolute", top: listPos}}>
@@ -115,9 +115,9 @@ class Settings extends React.Component {
             </tbody>
           </table>
           <div id="control">
-            <button id="button-a" style={{color: this.props.state.uiColor, borderColor: this.props.state.uiColor}}>&#9711; / &#9636;</button>
-            <button id="button-b" style={{color: this.props.state.uiColor, borderColor: this.props.state.uiColor}}>&#9651;</button>
-            <button id="button-c" style={{color: this.props.state.uiColor, borderColor: this.props.state.uiColor}}>&#9661;</button>
+            <button id="button-a" style={{color: this.props.state.uIColor, borderColor: this.props.state.uIColor}}>&#9711; / &#9636;</button>
+            <button id="button-b" style={{color: this.props.state.uIColor, borderColor: this.props.state.uIColor}}>&#9651;</button>
+            <button id="button-c" style={{color: this.props.state.uIColor, borderColor: this.props.state.uIColor}}>&#9661;</button>
           </div>
         </div>
       )
