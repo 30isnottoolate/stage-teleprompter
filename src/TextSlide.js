@@ -2,7 +2,6 @@ import React from 'react';
 import './Teleprompter.css';
 
 const SPEED = 25;
-const START_POS = 50;
 
 class TextSlide extends React.Component {
     constructor(props) {
@@ -10,7 +9,7 @@ class TextSlide extends React.Component {
       this.state = {
         active: false,
         timer: "",
-        position: START_POS,
+        position: 0,
         currentText: "Loading...",
         keyHold: false,
         keyDownTime: ""
@@ -27,7 +26,8 @@ class TextSlide extends React.Component {
     componentDidMount() {
       this.setState({
         timer: setInterval(this.moveSlide, SPEED),
-        currentText: this.props.state.data.texts["text_" + this.props.state.currentIndex].text
+        position: this.props.state.fontSize * this.props.state.lineHeight,
+        currentText: this.props.state.data.texts["text_" + this.props.state.textIndex].text
       });
       document.addEventListener("keydown", this.handleKeyPress);
       document.addEventListener("keyup", this.handleKeyHold);
@@ -92,7 +92,7 @@ class TextSlide extends React.Component {
       this.setState((prevState) => {
         if (prevState.active) {
           if (document.body.offsetHeight > (prevState.position *
-            (-1) + window.innerHeight / 2) && prevState.position <= START_POS) {
+            (-1) + (this.props.state.fontSize * this.props.state.lineHeight * 2)) && prevState.position <= (this.props.state.fontSize * this.props.state.lineHeight)) {
             return {
               position: prevState.position - 1
             }
@@ -108,14 +108,15 @@ class TextSlide extends React.Component {
   
     render() {
       return (
-        <div id="text-slide" style={{fontSize: this.props.state.fontSize, color: this.props.state.uiColor}}>
-          <div id="control" className={this.state.active ? "transparent" : "visible"}>
-            <button id="button-a" onClick={this.switchToSet} style={{color: this.props.state.uiColor, borderColor: this.props.state.uiColor}}>&#8984;</button>
-            <button id="button-b" onClick={this.switchToSelect} style={{color: this.props.state.uiColor, borderColor: this.props.state.uiColor}}>&#9636;</button>
-            <button id="button-c" onClick={this.forwardAction} style={{color: this.props.state.uiColor, borderColor: this.props.state.uiColor}}>&#9655;</button>
-          </div>
-          <div id="slide" style={{top: this.state.position, fontSize: this.props.state.fontSize}} >
+        <div id="text-slide" style={{fontSize: this.props.state.fontSize, color: this.props.state.uIColor}}>
+          <p id="text-marker" style={{paddingLeft: (this.props.state.fontSize * 0.19) + "px", position: "absolute", top: (this.props.state.fontSize * this.props.state.lineHeight)}}>&#129170;</p>
+          <div id="slide" style={{top: this.state.position, fontSize: this.props.state.fontSize, paddingLeft: (this.props.state.fontSize * 0.69) + "px"}} >
             <p id="text" dangerouslySetInnerHTML={{__html: this.state.currentText}} />
+          </div>
+          <div id="control" className={this.state.active ? "transparent" : "visible"}>
+            <button id="button-a" onClick={this.switchToSet} style={{color: this.props.state.uIColor, borderColor: this.props.state.uIColor}}>&#8984;</button>
+            <button id="button-b" onClick={this.switchToSelect} style={{color: this.props.state.uIColor, borderColor: this.props.state.uIColor}}>&#9636;</button>
+            <button id="button-c" onClick={this.forwardAction} style={{color: this.props.state.uIColor, borderColor: this.props.state.uIColor}}>&#9655;</button>
           </div>
         </div>
       )
