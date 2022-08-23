@@ -5,10 +5,10 @@ class Settings extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
-        settingsIndex: 1,
         keyHold: false,
         keyDownTime: "",
-        settingsMode: "" //fontSize, lineHeight, uIColor, textSpeed, holdButtonTime, orientation
+        settingsIndex: 1,
+        inChangeMode: false
       };
 
       this.handleKeyPress = this.handleKeyPress.bind(this);
@@ -28,37 +28,44 @@ class Settings extends React.Component {
     }
 
     handleKeyPress(event) {
-      if (!this.state.keyHold) {
-        this.setState((prevState) => {
-          if (event.key === "a") {
-        
-          } else if (event.key === "b") {
-            if (this.state.settingsIndex > 1) {
+      this.setState((prevState) => {
+        if (!this.state.keyHold) {
+          if (!this.state.inChangeMode) {
+            if (event.key === "a") {
               return {
-                settingsIndex: prevState.settingsIndex - 1
+                keyHold: true,
+                keyDownTime: (new Date()).getTime()
               }
-            } else {
-              return {
-                settingsIndex: 7
+            } else if (event.key === "b") {
+              if (this.state.settingsIndex > 1) {
+                return {
+                  settingsIndex: prevState.settingsIndex - 1
+                }
+              } else {
+                return {
+                  settingsIndex: 7
+                }
+              }
+            } else if (event.key === "c") {
+              if (this.state.settingsIndex < 7) {
+                return {
+                  settingsIndex: prevState.settingsIndex + 1
+                }
+              } else {
+                return {
+                  settingsIndex: 1
+                }
               }
             }
-          } else if (event.key === "c") {
-            if (this.state.settingsIndex < 7) {
+          } else {
+            if (event.key === "a") {
               return {
-                settingsIndex: prevState.settingsIndex + 1
-              }
-            } else {
-              return {
-                settingsIndex: 1
+                inChangeMode: false
               }
             }
           }
-          return {
-            keyHold: true,
-            keyDownTime: (new Date()).getTime()
-          }
-        });
-      }
+        }
+      });
     }
 
     handleKeyHold(event) {
@@ -67,7 +74,13 @@ class Settings extends React.Component {
           if (((new Date()).getTime() - this.state.keyDownTime) > this.props.state.holdButtonTime) {
             this.props.mode("select");
           } else {
-            
+            if (this.state.settingsIndex === 7) {
+              this.props.settings("default");
+            } else {
+              this.setState({
+                inChangeMode: true
+              });
+            }
           }
         }
         this.setState({
