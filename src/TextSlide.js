@@ -108,7 +108,7 @@ class TextSlide extends React.Component {
   
     render() {
       return (
-        <div id="text-slide" style={{fontSize: this.props.state.fontSize, color: this.props.state.uIColor}}>
+        <div id="text-slide" style={{fontSize: this.props.state.fontSize, color: this.props.state.uIColor, lineHeight: this.props.state.lineHeight}}>
           <p id="text-marker" style={{paddingLeft: (this.props.state.fontSize * 0.19) + "px", position: "absolute", top: (this.props.state.fontSize * this.props.state.lineHeight)}}>&#129170;</p>
           <div id="slide" style={{top: this.state.position, fontSize: this.props.state.fontSize, paddingLeft: (this.props.state.fontSize * 0.69) + "px"}} >
             <p id="text" dangerouslySetInnerHTML={{__html: this.state.currentText}} />

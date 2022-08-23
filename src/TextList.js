@@ -107,7 +107,7 @@ class TextList extends React.Component {
           }
 
           return (
-            <div id="text-list" style={{fontSize: this.props.state.fontSize, color: this.props.state.uIColor}}>
+            <div id="text-list" style={{fontSize: this.props.state.fontSize, color: this.props.state.uIColor, lineHeight: this.props.state.lineHeight}}>
               <p id="head-line" className={this.props.state.textIndex === 1 ? "visible" : "hidden"}>SELECT:</p>
               <ul dangerouslySetInnerHTML={{__html: list}} style={{position: "absolute", top: listPos}}/>
               <p id="text-marker" style={{paddingLeft: (this.props.state.fontSize * 0.19) + "px"}}>&#129170;</p>
