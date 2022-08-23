@@ -13,6 +13,7 @@ class Settings extends React.Component {
 
       this.handleKeyPress = this.handleKeyPress.bind(this);
       this.handleKeyHold = this.handleKeyHold.bind(this);
+      this.getColorName = this.getColorName.bind(this);
   
     }
 
@@ -75,12 +76,26 @@ class Settings extends React.Component {
         });
       }
     }
+
+    getColorName() {
+      if (this.props.state.uIColor === "#ffd6d9") {
+        return "red"
+      } else if (this.props.state.uIColor === "#b4f8ff") {
+        return "green"
+      } else if (this.props.state.uIColor === "#99d3ff") {
+        return "blue"
+      } else if (this.props.state.uIColor === "#ffffff") {
+        return "white"
+      } else if (this.props.state.uIColor === "#fff4ad") {
+        return "yellow"
+      }
+    }
   
     render() {
       let listPos = (2 - this.state.settingsIndex) * this.props.state.fontSize * this.props.state.lineHeight;
 
       return (
-        <div id="settings" style={{fontSize: this.props.state.fontSize, color: this.props.state.uIColor}}>
+        <div id="settings" style={{fontSize: this.props.state.fontSize, color: this.props.state.uIColor, lineHeight: this.props.state.lineHeight}}>
           <p id="head-line" className={this.state.settingsIndex === 1 ? "visible" : "hidden"}>SETTINGS:</p>
           <p id="text-marker" style={{paddingLeft: (this.props.state.fontSize * 0.19) + "px"}} >&#129170;</p>
           <table style={{paddingLeft: (this.props.state.fontSize * 0.69) + "px", position: "absolute", top: listPos}}>
@@ -95,19 +110,19 @@ class Settings extends React.Component {
             </tr>
             <tr>
               <td>UI color:</td>
-              <td style={{paddingLeft: (this.props.state.fontSize * 1.38) + "px"}}>Blue</td>
+              <td style={{paddingLeft: (this.props.state.fontSize * 1.38) + "px"}}>{this.getColorName()}</td>
             </tr>
             <tr>
               <td>Text speed:</td>
-              <td style={{paddingLeft: (this.props.state.fontSize * 1.38) + "px"}}>100%</td>
+              <td style={{paddingLeft: (this.props.state.fontSize * 1.38) + "px"}}>{this.props.state.textSpeed}%</td>
             </tr>
             <tr>
               <td>Hold button time:</td>
-              <td style={{paddingLeft: (this.props.state.fontSize * 1.38) + "px"}}>2000ms</td>
+              <td style={{paddingLeft: (this.props.state.fontSize * 1.38) + "px"}}>{this.props.state.holdButtonTime} ms</td>
             </tr>
             <tr>
               <td>Orientation:</td>
-              <td style={{paddingLeft: (this.props.state.fontSize * 1.38) + "px"}}>Horizontal</td>
+              <td style={{paddingLeft: (this.props.state.fontSize * 1.38) + "px"}}>{this.props.state.orientation}</td>
             </tr>
             <tr>
               <td>Default settings</td>
