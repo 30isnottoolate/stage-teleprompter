@@ -27,10 +27,13 @@ class TextList extends React.Component {
     }
     
     handleKeyPress(event) {
-      if (!this.state.keyHold) {
-        this.setState(() => {
+      this.setState(() => {
+        if (!this.state.keyHold) {
           if (event.key === "a") {
-        
+            return {
+              keyHold: true,
+              keyDownTime: (new Date()).getTime()
+            }
           } else if (event.key === "b") {
             if (this.props.state.textIndex > 1) {
               this.props.index(this.props.state.textIndex - 1);
@@ -44,26 +47,30 @@ class TextList extends React.Component {
               this.props.index(1);
             }
           }
-          return {
-            keyHold: true,
-            keyDownTime: (new Date()).getTime()
-          }
-        });
-      }
+        }
+      });
     }
 
     handleKeyHold(event) {
-      if (this.state.keyHold) {
-        if (event.key === "a") {
-          if (((new Date()).getTime() - this.state.keyDownTime) > this.props.state.holdButtonTime) {
-            this.props.mode("set");
-          } else this.props.mode("read");
+      this.setState(() => {
+        if (this.state.keyHold) {
+          if (event.key === "a") {
+            if (((new Date()).getTime() - this.state.keyDownTime) > this.props.state.holdButtonTime) {
+              this.props.mode("set");
+              return {
+                keyHold: false,
+                keyDownTime: ""
+              }
+            } else {
+              this.props.mode("read");
+              return {
+                keyHold: false,
+                keyDownTime: ""
+              }
+            }
+          }
         }
-        this.setState({
-          keyHold: false,
-          keyDownTime: ""
-        });
-      }
+      });
     }
 
     handleButtonA() {
