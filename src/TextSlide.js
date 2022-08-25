@@ -40,8 +40,8 @@ class TextSlide extends React.Component {
     }
 
     handleKeyPress(event) {
-      if (!this.state.keyHold) {
-        this.setState((prevState) => {
+      this.setState((prevState) => {
+        if (!prevState.keyHold) {
           if (event.key === "a") {
             return {
               keyHold: true,
@@ -51,27 +51,32 @@ class TextSlide extends React.Component {
             this.switchToSelect();
           } else if (event.key === "c") {
             return {
-              active: !prevState.active,
-              keyHold: true,
-              keyDownTime: (new Date()).getTime()
+              active: !prevState.active
             }
           }
-        });
-      }
+        }
+      });
     }
 
     handleKeyHold(event) {
-      if (this.state.keyHold) {
-        if (event.key === "a") {
-          if (((new Date()).getTime() - this.state.keyDownTime) > this.props.state.holdButtonTime) {
-            this.switchToSet();
+      this.setState((prevState) => {
+        if (prevState.keyHold) {
+          if (event.key === "a") {
+            if (((new Date()).getTime() - prevState.keyDownTime) > this.props.state.holdButtonTime) {
+              this.switchToSet();
+              return {
+                keyHold: false,
+                keyDownTime: ""
+              }
+            } else {
+              return {
+                keyHold: false,
+                keyDownTime: ""
+              }
+            }
           }
         }
-        this.setState({
-          keyHold: false,
-          keyDownTime: ""
-        });
-      }
+      });
     }
 
     switchToSelect() {
