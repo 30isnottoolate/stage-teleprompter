@@ -25,7 +25,7 @@ class TextSlide extends React.Component {
   
     componentDidMount() {
       this.setState({
-        timer: setInterval(this.moveSlide, SPEED / (this.props.state.fontSize * this.props.state.lineHeight)),
+        timer: setInterval(this.moveSlide, SPEED  / (this.props.state.fontSize * this.props.state.lineHeight * this.props.state.textSpeed / 100)),
         position: this.props.state.fontSize * this.props.state.lineHeight,
         currentText: this.props.state.data.texts["text_" + this.props.state.textIndex].text
       });
