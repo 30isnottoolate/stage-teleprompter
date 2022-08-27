@@ -27,8 +27,8 @@ class TextList extends React.Component {
     }
     
     handleKeyPress(event) {
-      this.setState(() => {
-        if (!this.state.keyHold) {
+      this.setState((prevState) => {
+        if (!prevState.keyHold) {
           if (event.key === "a") {
             return {
               keyHold: true,
@@ -52,8 +52,8 @@ class TextList extends React.Component {
     }
 
     handleKeyHold(event) {
-      this.setState(() => {
-        if (this.state.keyHold) {
+      this.setState((prevState) => {
+        if (prevState.keyHold) {
           if (event.key === "a") {
             if (((new Date()).getTime() - this.state.keyDownTime) > this.props.state.holdButtonTime) {
               this.props.mode("set");
