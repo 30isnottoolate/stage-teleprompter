@@ -60,7 +60,7 @@ body {
   z-index: -1;
 }
 
-ul, table {
+ul {
   list-style-type: none;
   transition-property: top;
   transition-duration: 0.5s;
