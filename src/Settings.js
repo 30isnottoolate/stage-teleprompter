@@ -143,8 +143,8 @@ class Settings extends React.Component {
           </ul>
           <div id="control">
             <button id="button-a" style={{color: this.props.state.uIColor, borderColor: this.props.state.uIColor}}>&#9711; / &#9636;</button>
-            <button id="button-b" style={{color: this.props.state.uIColor, borderColor: this.props.state.uIColor}}>&#9651;</button>
-            <button id="button-c" style={{color: this.props.state.uIColor, borderColor: this.props.state.uIColor}}>&#9661;</button>
+            <button id="button-b" style={{color: this.props.state.uIColor, borderColor: this.props.state.uIColor}}>{this.state.inChangeMode ? String.fromCharCode(9665) : String.fromCharCode(9651)}</button>
+            <button id="button-c" style={{color: this.props.state.uIColor, borderColor: this.props.state.uIColor}}>{this.state.inChangeMode ? String.fromCharCode(9655) : String.fromCharCode(9661)}</button>
           </div>
         </div>
       )
