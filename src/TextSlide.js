@@ -121,7 +121,7 @@ class TextSlide extends React.Component {
           <div id="control" className={this.state.active ? "transparent" : "visible"}>
             <button id="button-a" onClick={this.switchToSet} style={{color: this.props.state.uIColor, borderColor: this.props.state.uIColor}}>&#8984;</button>
             <button id="button-b" onClick={this.switchToSelect} style={{color: this.props.state.uIColor, borderColor: this.props.state.uIColor}}>&#9636;</button>
-            <button id="button-c" onClick={this.forwardAction} style={{color: this.props.state.uIColor, borderColor: this.props.state.uIColor}}>&#9655;</button>
+            <button id="button-c" onClick={this.forwardAction} style={{color: this.props.state.uIColor, borderColor: this.props.state.uIColor}}>{this.state.active ? String.fromCharCode(9634) : String.fromCharCode(9655)}</button>
           </div>
         </div>
       )
