@@ -9,8 +9,6 @@ const COLORS = {
   5: {"name": "yellow", "code": "#fff4ad"},
 }
 
-
-
 class Settings extends React.Component {
     constructor(props) {
       super(props);
