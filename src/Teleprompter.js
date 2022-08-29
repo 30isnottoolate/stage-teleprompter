@@ -7,10 +7,10 @@ import Settings from './Settings.js';
 const FONT_SIZE_DEFAULT = 100;
 const LINE_HEIGHT_DEFAULT = 1.2;
 const UI_COLOR_DEFAULT = "#99d3ff"; // green: #b4f8ff, blue: #99d3ff, red: #ffd6d9, yellow: #fff4ad, white: #ffffff
+const COLOR_INDEX_DEFAULT = 3;
 const TEXT_SPEED_DEFAULT = 100;
 const HOLD_TIME_DEFAULT = 2000;
 const ORIENTATION = "horizontal"; // horizontal / vertical
-
 
 class Teleprompter extends React.Component {
   constructor(props) {
@@ -23,7 +23,7 @@ class Teleprompter extends React.Component {
       fontSize: FONT_SIZE_DEFAULT,
       lineHeight: LINE_HEIGHT_DEFAULT,
       uIColor: UI_COLOR_DEFAULT,
-      colorIndex: 3,
+      colorIndex: COLOR_INDEX_DEFAULT,
       textSpeed: TEXT_SPEED_DEFAULT,
       holdButtonTime: HOLD_TIME_DEFAULT,
       orientation: ORIENTATION
@@ -56,7 +56,7 @@ class Teleprompter extends React.Component {
   }
 
   changeSettings = (setting, value) => {
-    this.setState((prevState) => {
+    this.setState(() => {
       if (setting === "fontSize") {
         return {
           fontSize: value
