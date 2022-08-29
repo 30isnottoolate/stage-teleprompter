@@ -3,7 +3,7 @@ import './Teleprompter.css';
 
 const SPEED = 3200;
 
-class TextSlide extends React.Component {
+class TextSlider extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
@@ -128,4 +128,4 @@ class TextSlide extends React.Component {
     }
   }
 
-export default TextSlide;
+export default TextSlider;
