@@ -23,6 +23,7 @@ class Teleprompter extends React.Component {
       fontSize: FONT_SIZE_DEFAULT,
       lineHeight: LINE_HEIGHT_DEFAULT,
       uIColor: UI_COLOR_DEFAULT,
+      colorIndex: 3,
       textSpeed: TEXT_SPEED_DEFAULT,
       holdButtonTime: HOLD_TIME_DEFAULT,
       orientation: ORIENTATION
@@ -67,6 +68,10 @@ class Teleprompter extends React.Component {
       } else if (setting === "uIColor") {
         return {
           uIColor: value
+        }
+      } else if (setting === "colorIndex") {
+        return {
+          colorIndex: value
         }
       } else if (setting === "textSpeed") {
         return {
