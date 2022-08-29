@@ -1,6 +1,6 @@
 import React from 'react';
 import './Teleprompter.css';
-import TextSlide from './TextSlide';
+import TextSlider from './TextSlider';
 import TextList from './TextList';
 import Settings from './Settings.js';
 
@@ -106,7 +106,7 @@ class Teleprompter extends React.Component {
       )
     } else if (this.state.mode === "read") {
       return (
-        <TextSlide state={this.state} mode={this.changeMode} />
+        <TextSlider state={this.state} mode={this.changeMode} />
       )
     } else if (this.state.mode === "set") {
       return (
