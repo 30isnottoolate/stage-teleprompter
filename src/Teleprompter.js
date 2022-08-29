@@ -90,6 +90,7 @@ class Teleprompter extends React.Component {
           fontSize: FONT_SIZE_DEFAULT,
           lineHeight: LINE_HEIGHT_DEFAULT,
           uIColor: UI_COLOR_DEFAULT,
+          colorIndex: COLOR_INDEX_DEFAULT,
           textSpeed: TEXT_SPEED_DEFAULT,
           holdButtonTime: HOLD_TIME_DEFAULT,
           orientation: ORIENTATION
