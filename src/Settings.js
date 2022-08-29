@@ -147,16 +147,10 @@ class Settings extends React.Component {
     }
 
     getColorName() {
-      if (this.props.state.uIColor === "#ffd6d9") {
-        return "red"
-      } else if (this.props.state.uIColor === "#b4f8ff") {
-        return "green"
-      } else if (this.props.state.uIColor === "#99d3ff") {
-        return "blue"
-      } else if (this.props.state.uIColor === "#ffffff") {
-        return "white"
-      } else if (this.props.state.uIColor === "#fff4ad") {
-        return "yellow"
+      for (let item in COLORS) {
+        if (COLORS[item].code === this.props.state.uIColor) {
+          return COLORS[item].name;
+        }
       }
     }
   
