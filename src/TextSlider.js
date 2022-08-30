@@ -17,10 +17,10 @@ class TextSlider extends React.Component {
   
       this.handleKeyPress = this.handleKeyPress.bind(this);
       this.handleKeyHold = this.handleKeyHold.bind(this);
-      this.switchToSelect = this.switchToSelect.bind(this);
-      this.switchToSet = this.switchToSet.bind(this);
-      this.forwardAction = this.forwardAction.bind(this);
       this.moveSlide = this.moveSlide.bind(this);
+      this.handleButtonA = this.handleButtonA.bind(this);
+      this.handleButtonB = this.handleButtonB.bind(this);
+      this.handleButtonC = this.handleButtonC.bind(this);
     }
   
     componentDidMount() {
@@ -48,7 +48,7 @@ class TextSlider extends React.Component {
               keyDownTime: (new Date()).getTime()
             }
           } else if (event.key === "b") {
-            this.switchToSelect();
+            this.props.mode("select");
           } else if (event.key === "c") {
             return {
               active: !prevState.active
@@ -63,7 +63,7 @@ class TextSlider extends React.Component {
         if (prevState.keyHold) {
           if (event.key === "a") {
             if (((new Date()).getTime() - prevState.keyDownTime) > this.props.state.holdButtonTime) {
-              this.switchToSet();
+              this.props.mode("set");
               return {
                 keyHold: false,
                 keyDownTime: ""
@@ -77,20 +77,6 @@ class TextSlider extends React.Component {
           }
         }
       });
-    }
-
-    switchToSelect() {
-      this.props.mode("select");
-    }
-
-    switchToSet() {
-      this.props.mode("set");
-    }
-  
-    forwardAction() {
-      this.setState((prevState) => ({
-        active: !prevState.active
-      }));
     }
   
     moveSlide() {
@@ -110,6 +96,20 @@ class TextSlider extends React.Component {
         }
       });
     }
+
+    handleButtonA() {
+      this.props.mode("set");
+    }
+
+    handleButtonB() {
+      this.props.mode("select");
+    }
+
+    handleButtonC() {
+      this.setState((prevState) => ({
+        active: !prevState.active
+      }));
+    }
   
     render() {
       return (
@@ -119,9 +119,9 @@ class TextSlider extends React.Component {
             <p id="text" dangerouslySetInnerHTML={{__html: this.state.currentText}} />
           </div>
           <div id="control" className={this.state.active ? "transparent" : "visible"}>
-            <button id="button-a" onClick={this.switchToSet} style={{color: this.props.state.uIColor, borderColor: this.props.state.uIColor}}>&#8984;</button>
-            <button id="button-b" onClick={this.switchToSelect} style={{color: this.props.state.uIColor, borderColor: this.props.state.uIColor}}>&#9636;</button>
-            <button id="button-c" onClick={this.forwardAction} style={{color: this.props.state.uIColor, borderColor: this.props.state.uIColor}}>{this.state.active ? String.fromCharCode(9634) : String.fromCharCode(9655)}</button>
+            <button id="button-a" style={{color: this.props.state.uIColor, borderColor: this.props.state.uIColor}} onClick={this.handleButtonA}>&#8984;</button>
+            <button id="button-b" style={{color: this.props.state.uIColor, borderColor: this.props.state.uIColor}} onClick={this.handleButtonB}>&#9636;</button>
+            <button id="button-c" style={{color: this.props.state.uIColor, borderColor: this.props.state.uIColor}} onClick={this.handleButtonC}>{this.state.active ? String.fromCharCode(9634) : String.fromCharCode(9655)}</button>
           </div>
         </div>
       )
