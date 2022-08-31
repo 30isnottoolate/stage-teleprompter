@@ -29,15 +29,33 @@ class Teleprompter extends React.Component {
       orientation: ORIENTATION
     };
 
+    this.defaultSettings = this.defaultSettings.bind(this);
+
   }
 
   componentDidMount() {
     fetch("https://raw.githubusercontent.com/30isnottoolate/misc/main/liber.json")
     .then(response => response.json())
     .then(data => {
-      this.setState({
-        data: data,
-        textCount: data.textCount
+      this.setState(() => {
+        if (localStorage.fontSize !== null) {
+          return {
+            data: data,
+            textCount: data.textCount,
+            fontSize: parseInt(localStorage.getItem("fontSize")),
+            lineHeight: parseFloat(localStorage.getItem("lineHeight")),
+            uIColor: localStorage.getItem("uIColor"),
+            colorIndex: parseInt(localStorage.getItem("colorIndex")),
+            textSpeed: parseInt(localStorage.getItem("textSpeed")),
+            holdButtonTime: parseInt(localStorage.getItem("holdButtonTime")),
+            orientation: localStorage.getItem("orientation")
+          }
+        } else {
+          return {
+            data: data,
+            textCount: data.textCount
+          }
+        }
       });
     })
     .catch(() => console.log("Database missing."));
@@ -57,46 +75,31 @@ class Teleprompter extends React.Component {
 
   changeSettings = (setting, value) => {
     this.setState(() => {
-      if (setting === "fontSize") {
-        return {
-          fontSize: value
-        }
-      } else if (setting === "lineHeight") {
-        return {
-          lineHeight: value
-        }
-      } else if (setting === "uIColor") {
-        return {
-          uIColor: value
-        }
-      } else if (setting === "colorIndex") {
-        return {
-          colorIndex: value
-        }
-      } else if (setting === "textSpeed") {
-        return {
-          textSpeed: value
-        }
-      } else if (setting === "holdButtonTime") {
-        return {
-          holdButtonTime: value
-        }
-      } else if (setting === "orientation") {
-        return {
-          orientation: value
-        }
-      } else if (setting === "default") {
-        return {
-          fontSize: FONT_SIZE_DEFAULT,
-          lineHeight: LINE_HEIGHT_DEFAULT,
-          uIColor: UI_COLOR_DEFAULT,
-          colorIndex: COLOR_INDEX_DEFAULT,
-          textSpeed: TEXT_SPEED_DEFAULT,
-          holdButtonTime: HOLD_TIME_DEFAULT,
-          orientation: ORIENTATION
-        }
+      return {
+        [setting]: value
       }
     });
+  }
+
+  defaultSettings() {
+    this.setState(() => {
+      localStorage.setItem("fontSize", FONT_SIZE_DEFAULT);
+      localStorage.setItem("lineHeight", LINE_HEIGHT_DEFAULT);
+      localStorage.setItem("uIColor", UI_COLOR_DEFAULT);
+      localStorage.setItem("colorIndex", COLOR_INDEX_DEFAULT);
+      localStorage.setItem("textSpeed", TEXT_SPEED_DEFAULT);
+      localStorage.setItem("holdButtonTime", HOLD_TIME_DEFAULT);
+      localStorage.setItem("orientation", ORIENTATION);
+      return {
+        fontSize: FONT_SIZE_DEFAULT,
+        lineHeight: LINE_HEIGHT_DEFAULT,
+        uIColor: UI_COLOR_DEFAULT,
+        colorIndex: COLOR_INDEX_DEFAULT,
+        textSpeed: TEXT_SPEED_DEFAULT,
+        holdButtonTime: HOLD_TIME_DEFAULT,
+        orientation: ORIENTATION
+      }
+    })
   }
   
   render() {
@@ -110,7 +113,7 @@ class Teleprompter extends React.Component {
       )
     } else if (this.state.mode === "set") {
       return (
-        <Settings state={this.state} mode={this.changeMode} settings={this.changeSettings} />
+        <Settings state={this.state} mode={this.changeMode} settings={this.changeSettings} default={this.defaultSettings} />
       )
     }
   }
