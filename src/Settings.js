@@ -160,17 +160,28 @@ class Settings extends React.Component {
     }
   
     render() {
-      let listPos = (2 - this.state.settingsIndex) * this.props.state.fontSize * this.props.state.lineHeight;
-      let markerPos;
+      let listPosY = (2 - this.state.settingsIndex) * this.props.state.fontSize * this.props.state.lineHeight;
+      let listPosXA;
+      let listPosXB;
+      let controlStyle;
+
+      if (this.props.state.orientation === "vertical") {
+        controlStyle = {width: "100vh"};
+      }
+
       if (this.state.inChangeMode) {
-        markerPos = this.props.state.fontSize * 7.5;
-      } else markerPos = this.props.state.fontSize * 0.19;
+        listPosXA = this.props.state.fontSize * 0.69 - this.props.state.fontSize * 8.02;
+        listPosXB = this.props.state.fontSize * 0.69;
+      } else {
+        listPosXA = this.props.state.fontSize * 0.69;
+        listPosXB = this.props.state.fontSize * 8.02;
+      }
 
       return (
-        <div id="settings" style={{fontSize: this.props.state.fontSize, color: this.props.state.uIColor, lineHeight: this.props.state.lineHeight}}>
+        <div id="settings" className={this.props.state.orientation === "vertical" ? "rotate-cw" : ""} style={{fontSize: this.props.state.fontSize, color: this.props.state.uIColor, lineHeight: this.props.state.lineHeight}}>
           <p id="head-line" className={this.state.settingsIndex === 1 ? "visible" : "hidden"}>SETTINGS:</p>
-          <p id="text-marker" style={{position: "absolute", left: markerPos}} >&#129170;</p>
-          <ul style={{ position: "absolute", top: listPos, left: (this.props.state.fontSize * 0.69) }}>
+          <p id="text-marker" style={{position: "absolute", left: this.props.state.fontSize * 0.19}} >&#129170;</p>
+          <ul style={{ position: "absolute", top: listPosY, left: listPosXA }}>
             <li>Font size:</li>
             <li>Line height:</li>
             <li>UI color:</li>
@@ -179,7 +190,7 @@ class Settings extends React.Component {
             <li>Orientation:</li>
             <li>Default settings</li>
           </ul>
-          <ul style={{ position: "absolute", top: listPos, left: this.props.state.fontSize * 8.02 }}>
+          <ul style={{ position: "absolute", top: listPosY, left: listPosXB}}>
             <li>{this.props.state.fontSize}</li>
             <li>{this.props.state.lineHeight.toFixed(2)}</li>
             <li>{this.getColorName()}</li>
@@ -188,7 +199,7 @@ class Settings extends React.Component {
             <li>{this.props.state.orientation}</li>
             <li></li>
           </ul>
-          <div id="control">
+          <div id="control" style={controlStyle}>
             <button id="button-a" style={{color: this.props.state.uIColor, borderColor: this.props.state.uIColor}}>&#9711; / &#9636;</button>
             <button id="button-b" style={{color: this.props.state.uIColor, borderColor: this.props.state.uIColor}}>{this.state.inChangeMode ? String.fromCharCode(9665) : String.fromCharCode(9651)}</button>
             <button id="button-c" style={{color: this.props.state.uIColor, borderColor: this.props.state.uIColor}}>{this.state.inChangeMode ? String.fromCharCode(9655) : String.fromCharCode(9661)}</button>
