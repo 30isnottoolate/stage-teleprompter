@@ -14,17 +14,14 @@ body {
   overflow: hidden;
 }
 
-.main{
+.rotate-cw{
   transform: rotate(90deg);
-  transform-origin:bottom left;
-  
-  position:absolute;
+  transform-origin: bottom left;
+  position: absolute;
   top: -100vw;
   left: 0;
-  
-  height:100vw;
-  width:100vh;
-
+  height: 100vw;
+  width: 100vh;
   overflow: auto;
 }
 
@@ -76,7 +73,7 @@ body {
 
 ul {
   list-style-type: none;
-  transition-property: top;
+  transition-property: top left;
   transition-duration: 0.5s;
 }
 
