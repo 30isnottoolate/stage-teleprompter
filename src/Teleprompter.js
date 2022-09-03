@@ -51,6 +51,7 @@ class Teleprompter extends React.Component {
             orientation: localStorage.getItem("orientation")
           }
         } else {
+          this.defaultSettings();
           return {
             data: data,
             textCount: data.textCount
