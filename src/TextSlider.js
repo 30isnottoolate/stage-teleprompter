@@ -21,6 +21,8 @@ class TextSlider extends React.Component {
       this.handleButtonA = this.handleButtonA.bind(this);
       this.handleButtonB = this.handleButtonB.bind(this);
       this.handleButtonC = this.handleButtonC.bind(this);
+
+      this.slideRef = React.createRef();
     }
   
     componentDidMount() {
@@ -82,8 +84,8 @@ class TextSlider extends React.Component {
     moveSlide() {
       this.setState((prevState) => {
         if (prevState.active) {
-          if (document.body.offsetHeight > (prevState.position *
-            (-1) + (this.props.state.fontSize * this.props.state.lineHeight * 2)) && prevState.position <= (this.props.state.fontSize * this.props.state.lineHeight)) {
+          if (this.slideRef.current.offsetHeight > (prevState.position *
+            (-1) + (this.props.state.fontSize * this.props.state.lineHeight * 2)) && (prevState.position) <= (this.props.state.fontSize * this.props.state.lineHeight)) {
             return {
               position: prevState.position - 1
             }
@@ -109,13 +111,14 @@ class TextSlider extends React.Component {
       this.setState((prevState) => ({
         active: !prevState.active
       }));
+      console.log("this is it: " + this.slideRef.current.offsetHeight);
     }
   
     render() {
       return (
         <div id="text-slide" style={{fontSize: this.props.state.fontSize, color: this.props.state.uIColor, lineHeight: this.props.state.lineHeight}}>
           <p id="text-marker" style={{paddingLeft: (this.props.state.fontSize * 0.19) + "px", position: "absolute", top: (this.props.state.fontSize * this.props.state.lineHeight)}}>&#129170;</p>
-          <div id="slide" style={{top: this.state.position, fontSize: this.props.state.fontSize, paddingLeft: (this.props.state.fontSize * 0.69) + "px"}} >
+          <div id="slide" ref={this.slideRef} style={{top: this.state.position, fontSize: this.props.state.fontSize, paddingLeft: (this.props.state.fontSize * 0.69) + "px"}} >
             <p id="text" dangerouslySetInnerHTML={{__html: this.state.currentText}} />
           </div>
           <div id="control" className={this.state.active ? "transparent" : "visible"}>
