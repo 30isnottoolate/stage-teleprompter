@@ -58,6 +58,7 @@ body {
   background-color: #05100b;
   font-size: 5.5vh;
   font-weight: bold;
+  text-align: center;
   height: 9vh;
   border-radius: 10px 10px 0 0;
   border-width: 3px;
@@ -83,20 +84,14 @@ li {
   text-overflow: ellipsis;
 }
 
-.transparent {
-  opacity: 0.5;
+.hidden {
+  opacity: 0;
   transition-property: opacity;
   transition-duration: 0.6s;
 }
 
 .visible {
   opacity: 1;
-  transition-property: opacity;
-  transition-duration: 0.6s;
-}
-
-.hidden {
-  opacity: 0;
   transition-property: opacity;
   transition-duration: 0.6s;
 }
