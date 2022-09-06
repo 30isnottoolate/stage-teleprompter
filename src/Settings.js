@@ -163,10 +163,10 @@ class Settings extends React.Component {
       let listPosY = (2 - this.state.settingsIndex) * this.props.state.fontSize * this.props.state.lineHeight;
       let listPosXA;
       let listPosXB;
-      let controlStyle;
+      let orientationStyle;
 
       if (this.props.state.orientation === "vertical") {
-        controlStyle = {width: "100vh"};
+        orientationStyle = {width: "100vh"};
       }
 
       if (this.state.inChangeMode) {
@@ -199,7 +199,7 @@ class Settings extends React.Component {
             <li>{this.props.state.orientation}</li>
             <li></li>
           </ul>
-          <div id="control" style={controlStyle}>
+          <div id="control" style={orientationStyle}>
             <button id="button-a" style={{color: this.props.state.uIColor, borderColor: this.props.state.uIColor}}>&#9711; / &#9636;</button>
             <button id="button-b" style={{color: this.props.state.uIColor, borderColor: this.props.state.uIColor}}>{this.state.inChangeMode ? String.fromCharCode(9665) : String.fromCharCode(9651)}</button>
             <button id="button-c" style={{color: this.props.state.uIColor, borderColor: this.props.state.uIColor}}>{this.state.inChangeMode ? String.fromCharCode(9655) : String.fromCharCode(9661)}</button>
