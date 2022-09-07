@@ -79,7 +79,6 @@ ul {
 
 li {
   white-space: nowrap; 
-  width: 97vw; 
   overflow: hidden;
   text-overflow: ellipsis;
 }
