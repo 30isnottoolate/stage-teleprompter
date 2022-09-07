@@ -111,23 +111,22 @@ class TextSlider extends React.Component {
       this.setState((prevState) => ({
         active: !prevState.active
       }));
-      console.log("this is it: " + this.slideRef.current.offsetHeight);
     }
   
     render() {
-      let orientationStyle;
+      let respWidth;
 
       if (this.props.state.orientation === "vertical") {
-        orientationStyle = {width: "100vh"};
-      } else orientationStyle = {width: "100vw"};
+        respWidth = "100vh";
+      } else respWidth = "100vw";
       
       return (
         <div id="text-slide" className={this.props.state.orientation === "vertical" ? "rotate-cw" : ""} style={{fontSize: this.props.state.fontSize, color: this.props.state.uIColor, lineHeight: this.props.state.lineHeight}}>
           <p id="text-marker" style={{paddingLeft: (this.props.state.fontSize * 0.19) + "px", position: "absolute", top: (this.props.state.fontSize * this.props.state.lineHeight)}}>&#129170;</p>
-          <div id="slide" ref={this.slideRef} style={{top: this.state.position, orientationStyle, fontSize: this.props.state.fontSize, paddingLeft: (this.props.state.fontSize * 0.69) + "px"}} >
+          <div id="slide" ref={this.slideRef} style={{top: this.state.position, width: respWidth, fontSize: this.props.state.fontSize, paddingLeft: (this.props.state.fontSize * 0.69) + "px"}} >
             <p id="text" dangerouslySetInnerHTML={{__html: this.state.currentText}} />
           </div>
-          <div id="control" style={orientationStyle}>
+          <div id="control" style={{width: respWidth}}>
             <button id="button-a" style={{color: this.props.state.uIColor, borderColor: this.props.state.uIColor}} onClick={this.handleButtonA}>&#8984;</button>
             <button id="button-b" style={{color: this.props.state.uIColor, borderColor: this.props.state.uIColor}} onClick={this.handleButtonB}>&#9636;</button>
             <button id="button-c" style={{color: this.props.state.uIColor, borderColor: this.props.state.uIColor}} onClick={this.handleButtonC}>{this.state.active ? String.fromCharCode(9634) : String.fromCharCode(9655)}</button>
