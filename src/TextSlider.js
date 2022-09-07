@@ -131,7 +131,7 @@ class TextSlider extends React.Component {
           <div id="slide" ref={this.slideRef} style={{top: this.state.position, width: respWidth, fontSize: this.props.state.fontSize, paddingLeft: (this.props.state.fontSize * 0.69), transitionProperty: slideStyle}} >
             <p id="text" dangerouslySetInnerHTML={{__html: this.state.currentText}} />
           </div>
-          <div id="control" style={{width: respWidth}}>
+          <div id="control" className={this.state.active ? "transparent" : "visible"} style={{width: respWidth}}>
             <button id="button-a" style={{color: this.props.state.uIColor, borderColor: this.props.state.uIColor}} onClick={this.handleButtonA}>&#8984;</button>
             <button id="button-b" style={{color: this.props.state.uIColor, borderColor: this.props.state.uIColor}} onClick={this.handleButtonB}>&#9636;</button>
             <button id="button-c" style={{color: this.props.state.uIColor, borderColor: this.props.state.uIColor}} onClick={this.handleButtonC}>{this.state.active ? String.fromCharCode(9634) : String.fromCharCode(9655)}</button>

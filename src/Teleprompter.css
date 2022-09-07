@@ -90,6 +90,12 @@ li {
   transition-duration: 0.6s;
 }
 
+.transparent {
+  opacity: 0.5;
+  transition-property: opacity;
+  transition-duration: 0.6s;
+}
+
 .visible {
   opacity: 1;
   transition-property: opacity;
