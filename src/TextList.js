@@ -96,9 +96,10 @@ class TextList extends React.Component {
     render() {
       let listPos = (2 - this.props.state.textIndex) * this.props.state.fontSize * this.props.state.lineHeight;
       let respWidth;
+      let list = "";
 
       if (this.props.state.orientation === "vertical") {
-        respWidth = "100vh";
+        respWidth = "100vh"
       } else respWidth = "100vw";
 
 
@@ -111,19 +112,15 @@ class TextList extends React.Component {
             </div>
           )
         } else {
-          let list = "";
-          let index = 0;
-
           for (const item in this.props.state.data.texts) {
-            index++;
-            list = list + `<li id="li-${index}" style="padding-left:${this.props.state.fontSize * 0.69}px; width:${respWidth}">${this.props.state.data.texts[item].title}</li>`;
+            list = list + `<li>${this.props.state.data.texts[item].title}</li>`;
           }
 
           return (
             <div id="text-list" className={this.props.state.orientation === "vertical" ? "rotate-cw" : ""} style={{fontSize: this.props.state.fontSize, color: this.props.state.uIColor, lineHeight: this.props.state.lineHeight}}>
               <p id="head-line" className={this.props.state.textIndex === 1 ? "visible" : "hidden"}>SELECT:</p>
-              <ul dangerouslySetInnerHTML={{__html: list}} style={{position: "absolute", top: listPos, width: respWidth}}/>
-              <p id="text-marker" style={{paddingLeft: (this.props.state.fontSize * 0.19) + "px"}}>&#129170;</p>
+              <ul dangerouslySetInnerHTML={{__html: list}} style={{position: "absolute", top: listPos, width: respWidth, paddingLeft: (this.props.state.fontSize * 0.69)}}/>
+              <p id="text-marker" style={{paddingLeft: (this.props.state.fontSize * 0.19)}}>&#129170;</p>
               <div id="control" style={{width: respWidth}}>
                 <button id="button-a" style={{color: this.props.state.uIColor, borderColor: this.props.state.uIColor}} onClick={this.handleButtonA} >&#9711; / &#8984;</button>
                 <button id="button-b" style={{color: this.props.state.uIColor, borderColor: this.props.state.uIColor}} onClick={this.handleButtonB} >&#9651;</button>
