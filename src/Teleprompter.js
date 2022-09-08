@@ -110,7 +110,7 @@ class Teleprompter extends React.Component {
       )
     } else if (this.state.mode === "read") {
       return (
-        <TextSlider state={this.state} mode={this.changeMode} />
+        <TextSlider state={this.state} mode={this.changeMode} index={this.changeIndex} />
       )
     } else if (this.state.mode === "set") {
       return (
