@@ -11,6 +11,7 @@ class TextSlider extends React.Component {
         timer: "",
         position: 0,
         currentText: "Loading...",
+        endReached: false,
         keyHold: false,
         keyDownTime: ""
       };
@@ -52,8 +53,15 @@ class TextSlider extends React.Component {
           } else if (event.key === "b") {
             this.props.mode("select");
           } else if (event.key === "c") {
-            return {
-              active: !prevState.active
+            if (this.state.endReached) {
+              return {
+                keyHold: true,
+                keyDownTime: (new Date()).getTime()
+              }
+            } else {
+              return {
+                active: !prevState.active
+              }
             }
           }
         }
@@ -76,6 +84,35 @@ class TextSlider extends React.Component {
                 keyDownTime: ""
               }
             }
+          } else if (event.key === "c") {
+            if (this.state.endReached) {
+              if (((new Date()).getTime() - prevState.keyDownTime) > this.props.state.holdButtonTime) {
+                if (this.props.state.textIndex < this.props.state.textCount) {
+                  this.props.index(this.props.state.textIndex + 1);
+                  return {
+                    position: this.props.state.fontSize * this.props.state.lineHeight,
+                    currentText: this.props.state.data.texts["text_" + (this.props.state.textIndex + 1)].text,
+                    endReached: false,
+                    keyHold: false,
+                    keyDownTime: ""
+                  }
+                } else {
+                  this.props.index(1);
+                  return {
+                    position: this.props.state.fontSize * this.props.state.lineHeight,
+                    currentText: this.props.state.data.texts["text_" + 1].text,
+                    endReached: false,
+                    keyHold: false,
+                    keyDownTime: ""
+                  }
+                }
+              } else {
+                return {
+                  keyHold: false,
+                  keyDownTime: ""
+                }
+              }
+            }
           }
         }
       });
@@ -91,8 +128,9 @@ class TextSlider extends React.Component {
             }
           } else {
             return {
+              active: false,
               position: prevState.position + 1,
-              active: false
+              endReached: true
             }
           }
         }
@@ -124,6 +162,16 @@ class TextSlider extends React.Component {
       if (this.props.state.textSpeed < 50) {
         slideStyle = "top";
       } else slideStyle = "none";
+
+      const buttonCLabel = () => {
+        if (this.state.endReached) {
+          return String.fromCharCode(9661);
+        } else {
+          if (this.state.active) {
+            return String.fromCharCode(9634);
+          } else return String.fromCharCode(9655);
+        }
+      }
       
       return (
         <div id="text-slide" className={this.props.state.orientation === "vertical" ? "rotate-cw" : ""} style={{fontSize: this.props.state.fontSize, color: this.props.state.uIColor, lineHeight: this.props.state.lineHeight}}>
@@ -134,7 +182,7 @@ class TextSlider extends React.Component {
           <div id="control" className={this.state.active ? "transparent" : "visible"} style={{width: respWidth}}>
             <button id="button-a" style={{color: this.props.state.uIColor, borderColor: this.props.state.uIColor}} onClick={this.handleButtonA}>&#8984;</button>
             <button id="button-b" style={{color: this.props.state.uIColor, borderColor: this.props.state.uIColor}} onClick={this.handleButtonB}>&#9636;</button>
-            <button id="button-c" style={{color: this.props.state.uIColor, borderColor: this.props.state.uIColor}} onClick={this.handleButtonC}>{this.state.active ? String.fromCharCode(9634) : String.fromCharCode(9655)}</button>
+            <button id="button-c" style={{color: this.props.state.uIColor, borderColor: this.props.state.uIColor}} onClick={this.handleButtonC}>{buttonCLabel()}</button>
           </div>
         </div>
       )
