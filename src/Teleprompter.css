@@ -78,7 +78,7 @@ ul {
   transition-duration: 0.5s;
 }
 
-li {
+li, #head-line, #sub-line {
   white-space: nowrap; 
   overflow: hidden;
   text-overflow: ellipsis;
