@@ -36,31 +36,31 @@ class Teleprompter extends React.Component {
 
   componentDidMount() {
     fetch("https://raw.githubusercontent.com/30isnottoolate/misc/main/liber.json")
-    .then(response => response.json())
-    .then(data => {
-      this.setState(() => {
-        if (localStorage.fontSize !== null) {
-          return {
-            data: data,
-            textCount: data.textCount,
-            fontSize: parseInt(localStorage.getItem("fontSize")),
-            lineHeight: parseFloat(localStorage.getItem("lineHeight")),
-            uIColor: localStorage.getItem("uIColor"),
-            colorIndex: parseInt(localStorage.getItem("colorIndex")),
-            textSpeed: parseInt(localStorage.getItem("textSpeed")),
-            holdButtonTime: parseInt(localStorage.getItem("holdButtonTime")),
-            orientation: localStorage.getItem("orientation")
+      .then(response => response.json())
+      .then(data => {
+        this.setState(() => {
+          if (localStorage.fontSize !== null) {
+            return {
+              data: data,
+              textCount: data.textCount,
+              fontSize: parseInt(localStorage.getItem("fontSize")),
+              lineHeight: parseFloat(localStorage.getItem("lineHeight")),
+              uIColor: localStorage.getItem("uIColor"),
+              colorIndex: parseInt(localStorage.getItem("colorIndex")),
+              textSpeed: parseInt(localStorage.getItem("textSpeed")),
+              holdButtonTime: parseInt(localStorage.getItem("holdButtonTime")),
+              orientation: localStorage.getItem("orientation")
+            }
+          } else {
+            this.defaultSettings();
+            return {
+              data: data,
+              textCount: data.textCount
+            }
           }
-        } else {
-          this.defaultSettings();
-          return {
-            data: data,
-            textCount: data.textCount
-          }
-        }
-      });
-    })
-    .catch(() => console.log("Database missing."));
+        });
+      })
+      .catch(() => console.log("Database missing."));
   }
 
   changeIndex = (index) => {
@@ -103,7 +103,7 @@ class Teleprompter extends React.Component {
       }
     })
   }
-  
+
   render() {
     if (this.state.mode === "start") {
       return (
