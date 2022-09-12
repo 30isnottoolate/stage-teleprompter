@@ -98,7 +98,17 @@ class StartHelp extends React.Component {
   }
 
   handleButtonC() {
-
+    this.setState((prevState) => {
+      if (this.state.helpIndex < 5) {
+        return {
+          helpIndex: prevState.helpIndex + 1
+        }
+      } else {
+        return {
+          helpIndex: 1
+        }
+      }
+    })
   }
 
   render() {
