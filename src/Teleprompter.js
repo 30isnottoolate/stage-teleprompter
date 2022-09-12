@@ -17,7 +17,7 @@ class Teleprompter extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      mode: "select", //start, select, read, set
+      mode: "start", //start, select, read, set
       data: "",
       textCount: 0,
       textIndex: 1,
