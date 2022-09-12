@@ -3,6 +3,7 @@ import './Teleprompter.css';
 import TextSlider from './TextSlider';
 import TextList from './TextList';
 import Settings from './Settings.js';
+import StartHelp from './StartHelp';
 
 const FONT_SIZE_DEFAULT = 100;
 const LINE_HEIGHT_DEFAULT = 1.2;
@@ -104,7 +105,11 @@ class Teleprompter extends React.Component {
   }
   
   render() {
-    if (this.state.mode === "select") {
+    if (this.state.mode === "start") {
+      return (
+        <StartHelp state={this.state} mode={this.changeMode} />
+      )
+    } else if (this.state.mode === "select") {
       return (
         <TextList state={this.state} mode={this.changeMode} index={this.changeIndex} />
       )
