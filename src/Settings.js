@@ -51,11 +51,11 @@ class Settings extends React.Component {
                 }
               } else {
                 return {
-                  settingsIndex: 7
+                  settingsIndex: 8
                 }
               }
             } else if (event.key === "c") {
-              if (this.state.settingsIndex < 7) {
+              if (this.state.settingsIndex < 8) {
                 return {
                   settingsIndex: prevState.settingsIndex + 1
                 }
@@ -138,6 +138,12 @@ class Settings extends React.Component {
                   keyHold: false,
                   keyDownTime: ""
                 }
+              } else if (this.state.settingsIndex === 8) {
+                this.props.mode("start");
+                return {
+                  keyHold: false,
+                  keyDownTime: ""
+                }
               } else {
                 return {
                   keyHold: false,
@@ -189,6 +195,7 @@ class Settings extends React.Component {
             <li>Alt key time:</li>
             <li>Orientation:</li>
             <li>Default settings</li>
+            <li>Got to start screen</li>
           </ul>
           <ul style={{ position: "absolute", top: listPosY, left: listPosXB}}>
             <li>{this.props.state.fontSize}</li>
