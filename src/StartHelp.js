@@ -112,7 +112,7 @@ class StartHelp extends React.Component {
   }
 
   render() {
-    let listPosY = (3 - this.state.helpIndex) * this.props.state.fontSize * this.props.state.lineHeight;
+    let listPos = (3 - this.state.helpIndex) * this.props.state.fontSize * this.props.state.lineHeight;
     let respWidth;
 
     if (this.props.state.orientation === "vertical") {
@@ -124,7 +124,7 @@ class StartHelp extends React.Component {
         <p id="head-line" className={this.state.helpIndex <= 2 ? "visible" : "hidden"}>KV Teleprompter</p>
         <p id="sub-line" className={this.state.helpIndex === 1 ? "visible" : "hidden"} style={{position: "absolute", left: (this.props.state.fontSize * 0.69)}}>Control symbols:</p>
         <p id="text-marker" style={{position: "absolute", left: (this.props.state.fontSize * 0.19), top: (2 * this.props.state.fontSize * this.props.state.lineHeight)}}>&#129170;</p>
-        <ul style={{ position: "absolute", top: listPosY, left: this.props.state.fontSize * 0.69, width: respWidth}}>
+        <ul style={{ position: "absolute", top: listPos, left: this.props.state.fontSize * 0.69, width: respWidth}}>
             <li>&#9651;&#9661; - Previous / Next</li>
             <li>&#9665;&#9655; - Change setting</li>
             <li>&#9655;&#9634; - Start / Stop</li>
