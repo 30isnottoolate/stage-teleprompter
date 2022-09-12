@@ -1,9 +1,9 @@
 import React from 'react';
 import './Teleprompter.css';
-import TextSlider from './TextSlider';
-import TextList from './TextList';
+import TextSlider from './TextSlider.js';
+import TextList from './TextList.js';
 import Settings from './Settings.js';
-import StartHelp from './StartHelp';
+import StartHelp from './StartHelp.js';
 
 const FONT_SIZE_DEFAULT = 100;
 const LINE_HEIGHT_DEFAULT = 1.2;
@@ -17,7 +17,7 @@ class Teleprompter extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      mode: "select", //select, read, set
+      mode: "select", //start, select, read, set
       data: "",
       textCount: 0,
       textIndex: 1,
