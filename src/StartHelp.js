@@ -34,11 +34,11 @@ class StartHelp extends React.Component {
   }
 
   handleButtonA() {
-
+    this.props.mode("set");
   }
 
   handleButtonB() {
-
+    this.props.mode("select");
   }
 
   handleButtonC() {
@@ -50,9 +50,9 @@ class StartHelp extends React.Component {
       <div id="text-list" className={this.props.state.orientation === "vertical" ? "rotate-cw" : ""} style={{ fontSize: this.props.state.fontSize, color: this.props.state.uIColor, lineHeight: this.props.state.lineHeight }}>
         <p id="head-line">KV Teleprompter</p>
         <div id="control">
-          <button id="button-a" style={{ color: this.props.state.uIColor, borderColor: this.props.state.uIColor }} onClick={this.handleButtonA} >A</button>
-          <button id="button-b" style={{ color: this.props.state.uIColor, borderColor: this.props.state.uIColor }} onClick={this.handleButtonB} >B</button>
-          <button id="button-c" style={{ color: this.props.state.uIColor, borderColor: this.props.state.uIColor }} onClick={this.handleButtonC} >C</button>
+          <button id="button-a" style={{ color: this.props.state.uIColor, borderColor: this.props.state.uIColor }} onClick={this.handleButtonA} >&#8984;</button>
+          <button id="button-b" style={{ color: this.props.state.uIColor, borderColor: this.props.state.uIColor }} onClick={this.handleButtonB} >&#9636;</button>
+          <button id="button-c" style={{ color: this.props.state.uIColor, borderColor: this.props.state.uIColor }} onClick={this.handleButtonC} >&#9661;</button>
         </div>
       </div>
     )
