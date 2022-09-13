@@ -123,7 +123,7 @@ class StartHelp extends React.Component {
       <div id="text-list" className={this.props.state.orientation === "vertical" ? "rotate-cw" : ""} style={{ fontSize: this.props.state.fontSize, color: this.props.state.uIColor, lineHeight: this.props.state.lineHeight }}>
         <p id="head-line" className={this.state.helpIndex <= 2 ? "visible" : "hidden"}>KV Teleprompter</p>
         <p id="sub-line" className={this.state.helpIndex === 1 ? "visible" : "hidden"} style={{ position: "absolute", left: (this.props.state.fontSize * 0.69) }}>Control symbols:</p>
-        <p id="text-marker" style={{ left: (this.props.state.fontSize * 0.19), top: (2 * this.props.state.fontSize * this.props.state.lineHeight) }}>&#129170;</p>
+        <p id="text-marker" style={{ top: (2 * this.props.state.fontSize * this.props.state.lineHeight), left: (this.props.state.fontSize * 0.19) }}>&#129170;</p>
         <ul style={{ top: listPos, left: this.props.state.fontSize * 0.69, width: respWidth }}>
           <li>&#9651;&#9661; - Previous / Next</li>
           <li>&#9665;&#9655; - Change setting</li>
