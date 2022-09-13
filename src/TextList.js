@@ -119,8 +119,8 @@ class TextList extends React.Component {
         return (
           <div id="text-list" className={this.props.state.orientation === "vertical" ? "rotate-cw" : ""} style={{ fontSize: this.props.state.fontSize, color: this.props.state.uIColor, lineHeight: this.props.state.lineHeight }}>
             <p id="head-line" className={this.props.state.textIndex === 1 ? "visible" : "hidden"}>SELECT:</p>
-            <ul dangerouslySetInnerHTML={{ __html: list }} style={{ position: "absolute", top: listPos, width: respWidth, paddingLeft: (this.props.state.fontSize * 0.69) }} />
-            <p id="text-marker" style={{ paddingLeft: (this.props.state.fontSize * 0.19) }}>&#129170;</p>
+            <ul dangerouslySetInnerHTML={{ __html: list }} style={{ position: "absolute", top: listPos, width: respWidth, left: (this.props.state.fontSize * 0.69) }} />
+            <p id="text-marker" style={{  position: "absolute", left: (this.props.state.fontSize * 0.19) }}>&#129170;</p>
             <div id="control" style={{ width: respWidth }}>
               <button id="button-a" style={{ color: this.props.state.uIColor, borderColor: this.props.state.uIColor }} onClick={this.handleButtonA} >&#9711; / &#8984;</button>
               <button id="button-b" style={{ color: this.props.state.uIColor, borderColor: this.props.state.uIColor }} onClick={this.handleButtonB} >&#9651;</button>
