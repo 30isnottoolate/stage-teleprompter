@@ -166,9 +166,9 @@ class Settings extends React.Component {
   }
 
   render() {
-    let listPosY = (2 - this.state.settingsIndex) * this.props.state.fontSize * this.props.state.lineHeight;
-    let listPosXA;
-    let listPosXB;
+    let listPosTop = (2 - this.state.settingsIndex) * this.props.state.fontSize * this.props.state.lineHeight;
+    let listPosLeftA;
+    let listPosLeftB;
     let respWidth;
 
     if (this.props.state.orientation === "vertical") {
@@ -176,18 +176,18 @@ class Settings extends React.Component {
     } else respWidth = "100vw";
 
     if (this.state.inChangeMode) {
-      listPosXA = this.props.state.fontSize * 0.69 - this.props.state.fontSize * 8.02;
-      listPosXB = this.props.state.fontSize * 0.69;
+      listPosLeftA = this.props.state.fontSize * 0.69 - this.props.state.fontSize * 8.02;
+      listPosLeftB = this.props.state.fontSize * 0.69;
     } else {
-      listPosXA = this.props.state.fontSize * 0.69;
-      listPosXB = this.props.state.fontSize * 8.02;
+      listPosLeftA = this.props.state.fontSize * 0.69;
+      listPosLeftB = this.props.state.fontSize * 8.02;
     }
 
     return (
       <div id="settings" className={this.props.state.orientation === "vertical" ? "rotate-cw" : ""} style={{ fontSize: this.props.state.fontSize, color: this.props.state.uIColor, lineHeight: this.props.state.lineHeight }}>
         <p id="head-line" className={this.state.settingsIndex === 1 ? "visible" : "hidden"}>SETTINGS:</p>
         <p id="text-marker" style={{ left: this.props.state.fontSize * 0.19 }} >&#129170;</p>
-        <ul style={{ top: listPosY, left: listPosXA }}>
+        <ul style={{ top: listPosTop, left: listPosLeftA }}>
           <li>Font size:</li>
           <li>Line height:</li>
           <li>UI color:</li>
@@ -197,7 +197,7 @@ class Settings extends React.Component {
           <li>Default settings</li>
           <li>Got to start screen</li>
         </ul>
-        <ul style={{ top: listPosY, left: listPosXB }}>
+        <ul style={{ top: listPosTop, left: listPosLeftB }}>
           <li>{this.props.state.fontSize}</li>
           <li>{this.props.state.lineHeight.toFixed(2)}</li>
           <li>{this.getColorName()}</li>
