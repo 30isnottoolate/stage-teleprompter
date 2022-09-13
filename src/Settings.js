@@ -187,7 +187,7 @@ class Settings extends React.Component {
       <div id="settings" className={this.props.state.orientation === "vertical" ? "rotate-cw" : ""} style={{ fontSize: this.props.state.fontSize, color: this.props.state.uIColor, lineHeight: this.props.state.lineHeight }}>
         <p id="head-line" className={this.state.settingsIndex === 1 ? "visible" : "hidden"}>SETTINGS:</p>
         <p id="text-marker" style={{ left: this.props.state.fontSize * 0.19 }} >&#129170;</p>
-        <ul style={{ position: "absolute", top: listPosY, left: listPosXA }}>
+        <ul style={{ top: listPosY, left: listPosXA }}>
           <li>Font size:</li>
           <li>Line height:</li>
           <li>UI color:</li>
@@ -197,7 +197,7 @@ class Settings extends React.Component {
           <li>Default settings</li>
           <li>Got to start screen</li>
         </ul>
-        <ul style={{ position: "absolute", top: listPosY, left: listPosXB }}>
+        <ul style={{ top: listPosY, left: listPosXB }}>
           <li>{this.props.state.fontSize}</li>
           <li>{this.props.state.lineHeight.toFixed(2)}</li>
           <li>{this.getColorName()}</li>
