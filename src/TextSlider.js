@@ -192,7 +192,7 @@ class TextSlider extends React.Component {
     return (
       <div id="text-slide" className={this.props.state.orientation === "vertical" ? "rotate-cw" : ""} style={{ fontSize: this.props.state.fontSize, color: this.props.state.uIColor, lineHeight: this.props.state.lineHeight }}>
         <p id="text-marker" style={{ top: (this.props.state.fontSize * this.props.state.lineHeight), left: (this.props.state.fontSize * 0.19) }}>&#129170;</p>
-        <div id="slide" ref={this.slideRef} style={{ top: this.state.position, width: respWidth, fontSize: this.props.state.fontSize, left: (this.props.state.fontSize * 0.69), transitionProperty: slideStyle }} >
+        <div id="slide" ref={this.slideRef} style={{ top: this.state.position, width: `calc(${respWidth} - ${(this.props.state.fontSize * 0.69)}px)`, fontSize: this.props.state.fontSize, left: (this.props.state.fontSize * 0.69), transitionProperty: slideStyle }} >
           <p id="text" dangerouslySetInnerHTML={{ __html: this.state.currentText }} />
         </div>
         <div id="control" className={this.state.active ? "transparent" : "visible"} style={{ width: respWidth }}>
