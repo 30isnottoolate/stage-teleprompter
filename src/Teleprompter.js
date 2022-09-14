@@ -30,6 +30,7 @@ class Teleprompter extends React.Component {
       orientation: ORIENTATION
     };
 
+    this.defaultLocalStorage = this.defaultLocalStorage.bind(this);
     this.defaultSettings = this.defaultSettings.bind(this);
 
   }
@@ -94,6 +95,16 @@ class Teleprompter extends React.Component {
         [setting]: value
       }
     });
+  }
+
+  defaultLocalStorage() {
+    localStorage.setItem("fontSize", FONT_SIZE_DEFAULT);
+    localStorage.setItem("lineHeight", LINE_HEIGHT_DEFAULT);
+    localStorage.setItem("uIColor", UI_COLOR_DEFAULT);
+    localStorage.setItem("colorIndex", COLOR_INDEX_DEFAULT);
+    localStorage.setItem("textSpeed", TEXT_SPEED_DEFAULT);
+    localStorage.setItem("holdButtonTime", HOLD_TIME_DEFAULT);
+    localStorage.setItem("orientation", ORIENTATION);
   }
 
   defaultSettings() {
