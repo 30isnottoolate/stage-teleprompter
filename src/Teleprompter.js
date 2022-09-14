@@ -74,7 +74,6 @@ class Teleprompter extends React.Component {
         });
       })
       .catch(() => console.log("Database missing."));
-      console.log(localStorage.length);
   }
 
   changeIndex = (index) => {
