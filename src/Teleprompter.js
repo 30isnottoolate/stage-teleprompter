@@ -39,7 +39,7 @@ class Teleprompter extends React.Component {
       .then(response => response.json())
       .then(data => {
         this.setState(() => {
-          if (localStorage.fontSize !== null) {
+          if (localStorage.length === 7) {
             return {
               data: data,
               textCount: data.textCount,
@@ -52,15 +52,29 @@ class Teleprompter extends React.Component {
               orientation: localStorage.getItem("orientation")
             }
           } else {
-            this.defaultSettings();
+            localStorage.setItem("fontSize", FONT_SIZE_DEFAULT);
+            localStorage.setItem("lineHeight", LINE_HEIGHT_DEFAULT);
+            localStorage.setItem("uIColor", UI_COLOR_DEFAULT);
+            localStorage.setItem("colorIndex", COLOR_INDEX_DEFAULT);
+            localStorage.setItem("textSpeed", TEXT_SPEED_DEFAULT);
+            localStorage.setItem("holdButtonTime", HOLD_TIME_DEFAULT);
+            localStorage.setItem("orientation", ORIENTATION);
             return {
               data: data,
-              textCount: data.textCount
+              textCount: data.textCount,
+              fontSize: FONT_SIZE_DEFAULT,
+              lineHeight: LINE_HEIGHT_DEFAULT,
+              uIColor: UI_COLOR_DEFAULT,
+              colorIndex: COLOR_INDEX_DEFAULT,
+              textSpeed: TEXT_SPEED_DEFAULT,
+              holdButtonTime: HOLD_TIME_DEFAULT,
+              orientation: ORIENTATION
             }
           }
         });
       })
       .catch(() => console.log("Database missing."));
+      console.log(localStorage.length);
   }
 
   changeIndex = (index) => {
