@@ -1,22 +1,21 @@
 import React from 'react';
 import './Teleprompter.css';
 
-const COLORS = {
-  1: {"name": "red", "code": "#ffd6d9"},
-  2: {"name": "green", "code": "#b4f8ff"},
-  3: {"name": "blue", "code": "#99d3ff"},
-  4: {"name": "white", "code": "#ffffff"},
-  5: {"name": "yellow", "code": "#fff4ad"},
-}
-
 class Settings extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      settingsIndex: 1,
+      inChangeMode: false,
       keyHold: false,
       keyDownTime: "",
-      settingsIndex: 1,
-      inChangeMode: false
+      colors: {
+        1: {"name": "red", "code": "#ffd6d9"},
+        2: {"name": "green", "code": "#b4f8ff"},
+        3: {"name": "blue", "code": "#99d3ff"},
+        4: {"name": "white", "code": "#ffffff"},
+        5: {"name": "yellow", "code": "#fff4ad"},
+      }
     };
 
     this.handleKeyPress = this.handleKeyPress.bind(this);
@@ -83,7 +82,7 @@ class Settings extends React.Component {
             } else if (prevState.settingsIndex === 2 && this.props.state.lineHeight > 1) {
               this.props.settings("lineHeight", this.props.state.lineHeight - 0.01);
             } else if (prevState.settingsIndex === 3 && this.props.state.colorIndex > 1) {
-              this.props.settings("uIColor", COLORS[this.props.state.colorIndex - 1].code);
+              this.props.settings("uIColor", prevState.colors[this.props.state.colorIndex - 1].code);
               this.props.settings("colorIndex", this.props.state.colorIndex - 1);
             } else if (prevState.settingsIndex === 4 && this.props.state.textSpeed > 20) {
               this.props.settings("textSpeed", this.props.state.textSpeed - 1);
@@ -102,7 +101,7 @@ class Settings extends React.Component {
             } else if (prevState.settingsIndex === 2 && this.props.state.lineHeight < 1.5) {
               this.props.settings("lineHeight", this.props.state.lineHeight + 0.01);
             } else if (prevState.settingsIndex === 3 && this.props.state.colorIndex < 5) {
-              this.props.settings("uIColor", COLORS[this.props.state.colorIndex + 1].code);
+              this.props.settings("uIColor", prevState.colors[this.props.state.colorIndex + 1].code);
               this.props.settings("colorIndex", this.props.state.colorIndex + 1);
             } else if (prevState.settingsIndex === 4 && this.props.state.textSpeed < 200) {
               this.props.settings("textSpeed", this.props.state.textSpeed + 1);
@@ -158,9 +157,9 @@ class Settings extends React.Component {
   }
 
   getColorName() {
-    for (let item in COLORS) {
-      if (COLORS[item].code === this.props.state.uIColor) {
-        return COLORS[item].name;
+    for (let item in this.state.colors) {
+      if (this.state.colors[item].code === this.props.state.uIColor) {
+        return this.state.colors[item].name;
       }
     }
   }
