@@ -9,7 +9,7 @@
 body {
   user-select: none;
   background-color: #05100b;
-  font-family: "Roboto";
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
   line-height: 1.2;
   overflow: hidden;
 }
