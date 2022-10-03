@@ -1,7 +1,7 @@
 import React from 'react';
 import './Teleprompter.css';
 
-const SPEED = 3200;
+const READ_SPEED_COEF = 0.0151; // char/ms
 
 class TextSlider extends React.Component {
   constructor(props) {
@@ -28,12 +28,23 @@ class TextSlider extends React.Component {
 
   componentDidMount() {
     this.setState({
-      timer: setInterval(this.moveSlide, SPEED / (this.props.state.fontSize * this.props.state.lineHeight * this.props.state.textSpeed / 100)),
       position: this.props.state.fontSize * this.props.state.lineHeight,
       currentText: this.props.state.data.texts["text_" + this.props.state.textIndex].text
     });
+
     document.addEventListener("keydown", this.handleKeyPress);
     document.addEventListener("keyup", this.handleKeyHold);
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.currentText !== prevState.currentText) {
+      let intervalValue = (this.state.currentText.length / (this.slideRef.current.offsetHeight * READ_SPEED_COEF))* (100 / this.props.state.textSpeed);
+      let intervalID = setInterval(() => { this.moveSlide(); }, intervalValue);
+
+      this.setState({
+        timer: intervalID
+      });
+    }
   }
 
   componentWillUnmount() {
@@ -137,8 +148,9 @@ class TextSlider extends React.Component {
   moveSlide() {
     this.setState((prevState) => {
       if (prevState.active) {
-        if (this.slideRef.current.offsetHeight > (prevState.position *
-          (-1) + (this.props.state.fontSize * this.props.state.lineHeight * 2)) && (prevState.position) <= (this.props.state.fontSize * this.props.state.lineHeight)) {
+        if (this.slideRef.current.offsetHeight > (prevState.position * (-1) +
+          (this.props.state.fontSize * this.props.state.lineHeight * 2)) &&
+          (prevState.position) <= (this.props.state.fontSize * this.props.state.lineHeight)) {
           return {
             position: prevState.position - 1
           }
