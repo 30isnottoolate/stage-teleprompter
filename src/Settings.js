@@ -20,7 +20,6 @@ class Settings extends React.Component {
 
     this.handleKeyPress = this.handleKeyPress.bind(this);
     this.handleKeyHold = this.handleKeyHold.bind(this);
-    this.getColorName = this.getColorName.bind(this);
 
   }
 
@@ -68,7 +67,6 @@ class Settings extends React.Component {
           if (event.key === "a") {
             localStorage.setItem("fontSize", this.props.state.fontSize);
             localStorage.setItem("lineHeight", this.props.state.lineHeight);
-            localStorage.setItem("uIColor", stateColor);
             localStorage.setItem("colorIndex", this.props.state.colorIndex);
             localStorage.setItem("textSpeed", this.props.state.textSpeed);
             localStorage.setItem("holdButtonTime", this.props.state.holdButtonTime);
@@ -82,7 +80,6 @@ class Settings extends React.Component {
             } else if (prevState.settingsIndex === 2 && this.props.state.lineHeight > 1) {
               this.props.settings("lineHeight", this.props.state.lineHeight - 0.01);
             } else if (prevState.settingsIndex === 3 && this.props.state.colorIndex > 1) {
-              this.props.settings("uIColor", prevState.colors[this.props.state.colorIndex - 1].code);
               this.props.settings("colorIndex", this.props.state.colorIndex - 1);
             } else if (prevState.settingsIndex === 4 && this.props.state.textSpeed > 20) {
               this.props.settings("textSpeed", this.props.state.textSpeed - 1);
@@ -101,7 +98,6 @@ class Settings extends React.Component {
             } else if (prevState.settingsIndex === 2 && this.props.state.lineHeight < 1.5) {
               this.props.settings("lineHeight", this.props.state.lineHeight + 0.01);
             } else if (prevState.settingsIndex === 3 && this.props.state.colorIndex < 5) {
-              this.props.settings("uIColor", prevState.colors[this.props.state.colorIndex + 1].code);
               this.props.settings("colorIndex", this.props.state.colorIndex + 1);
             } else if (prevState.settingsIndex === 4 && this.props.state.textSpeed < 200) {
               this.props.settings("textSpeed", this.props.state.textSpeed + 1);
@@ -156,14 +152,6 @@ class Settings extends React.Component {
     });
   }
 
-  getColorName() {
-    for (let item in this.state.colors) {
-      if (this.state.colors[item].code === stateColor) {
-        return this.state.colors[item].name;
-      }
-    }
-  }
-
   render() {
     let listPosTop = (2 - this.state.settingsIndex) * this.props.state.fontSize * this.props.state.lineHeight;
     let listPosLeftA;
@@ -200,7 +188,7 @@ class Settings extends React.Component {
         <ul style={{ top: listPosTop, left: listPosLeftB }}>
           <li>{this.props.state.fontSize}</li>
           <li>{this.props.state.lineHeight.toFixed(2)}</li>
-          <li>{this.getColorName()}</li>
+          <li>{this.props.colors[this.props.state.colorIndex].name}</li>
           <li>{this.props.state.textSpeed}%</li>
           <li>{this.props.state.holdButtonTime} ms</li>
           <li>{this.props.state.orientation}</li>
