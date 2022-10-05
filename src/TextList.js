@@ -29,17 +29,9 @@ class TextList extends React.Component {
 						keyDownTime: (new Date()).getTime()
 					}
 				} else if (event.key === "b") {
-					if (this.props.state.textIndex > 1) {
-						this.props.index(this.props.state.textIndex - 1);
-					} else {
-						this.props.index(this.props.state.textCount);
-					}
+					this.handleButtonBUp();
 				} else if (event.key === "c") {
-					if (this.props.state.textIndex < this.props.state.textCount) {
-						this.props.index(this.props.state.textIndex + 1);
-					} else {
-						this.props.index(1);
-					}
+					this.handleButtonCDown();
 				}
 			}
 		});
@@ -52,16 +44,16 @@ class TextList extends React.Component {
 					if (((new Date()).getTime() - this.state.keyDownTime) > this.props.state.holdButtonTime) {
 						this.props.mode("set");
 					} else {
-						this.props.mode("read");
+						this.handleButtonASelectSet();
 					}
 				}
 			}
 		});
 	}
 
-	handleButtonA = () => this.props.mode("read");
+	handleButtonASelectSet = () => this.props.mode("read");
 
-	handleButtonB = () => {
+	handleButtonBUp = () => {
 		if (this.props.state.textIndex > 1) {
 			this.props.index(this.props.state.textIndex - 1);
 		} else {
@@ -69,7 +61,7 @@ class TextList extends React.Component {
 		}
 	}
 
-	handleButtonC = () => {
+	handleButtonCDown = () => {
 		if (this.props.state.textIndex < this.props.state.textCount) {
 			this.props.index(this.props.state.textIndex + 1);
 		} else {
@@ -134,7 +126,7 @@ class TextList extends React.Component {
 									color: stateColor,
 									borderColor: stateColor
 								}}
-								onClick={this.handleButtonA} >
+								onClick={this.handleButtonASelectSet} >
 								&#9711; / &#8984;
 							</button>
 							<button
@@ -143,7 +135,7 @@ class TextList extends React.Component {
 									color: stateColor,
 									borderColor: stateColor
 								}}
-								onClick={this.handleButtonB} >
+								onClick={this.handleButtonBUp} >
 								&#9651;
 							</button>
 							<button
@@ -152,7 +144,7 @@ class TextList extends React.Component {
 									color: stateColor,
 									borderColor: stateColor
 								}}
-								onClick={this.handleButtonC} >
+								onClick={this.handleButtonCDown} >
 								&#9661;
 							</button>
 						</div>
