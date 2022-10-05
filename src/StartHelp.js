@@ -113,6 +113,7 @@ class StartHelp extends React.Component {
 
   render() {
     let listPos = (3 - this.state.helpIndex) * this.props.state.fontSize * this.props.state.lineHeight;
+    let stateColor = this.props.colors[this.props.state.colorIndex].code;
     let respWidth;
 
     if (this.props.state.orientation === "vertical") {
@@ -120,7 +121,7 @@ class StartHelp extends React.Component {
     } else respWidth = "100vw";
 
     return (
-      <div id="text-list" className={this.props.state.orientation === "vertical" ? "rotate-cw" : ""} style={{ fontSize: this.props.state.fontSize, color: this.props.state.uIColor, lineHeight: this.props.state.lineHeight }}>
+      <div id="text-list" className={this.props.state.orientation === "vertical" ? "rotate-cw" : ""} style={{ fontSize: this.props.state.fontSize, color: stateColor, lineHeight: this.props.state.lineHeight }}>
         <p id="head-line" className={this.state.helpIndex <= 2 ? "visible" : "hidden"}>KV Teleprompter</p>
         <p id="sub-line" className={this.state.helpIndex === 1 ? "visible" : "hidden"} style={{ position: "absolute", left: (this.props.state.fontSize * 0.69) }}>Control symbols:</p>
         <p id="text-marker" style={{ top: (2 * this.props.state.fontSize * this.props.state.lineHeight), left: (this.props.state.fontSize * 0.19) }}>&#129170;</p>
@@ -132,9 +133,9 @@ class StartHelp extends React.Component {
           <li>&#8984; - Settings</li>
         </ul>
         <div id="control" style={{ width: respWidth }}>
-          <button id="button-a" style={{ color: this.props.state.uIColor, borderColor: this.props.state.uIColor }} onClick={this.handleButtonA} >&#8984;</button>
-          <button id="button-b" style={{ color: this.props.state.uIColor, borderColor: this.props.state.uIColor }} onClick={this.handleButtonB} >&#9636;</button>
-          <button id="button-c" style={{ color: this.props.state.uIColor, borderColor: this.props.state.uIColor }} onClick={this.handleButtonC} >&#9661;</button>
+          <button id="button-a" style={{ color: stateColor, borderColor: stateColor }} onClick={this.handleButtonA} >&#8984;</button>
+          <button id="button-b" style={{ color: stateColor, borderColor: stateColor }} onClick={this.handleButtonB} >&#9636;</button>
+          <button id="button-c" style={{ color: stateColor, borderColor: stateColor }} onClick={this.handleButtonC} >&#9661;</button>
         </div>
       </div>
     )
