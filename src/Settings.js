@@ -114,10 +114,6 @@ class Settings extends React.Component {
 				if (event.key === "a") {
 					if (((new Date()).getTime() - this.state.keyDownTime) > this.props.state.holdButtonTime) {
 						this.props.mode("select");
-						return {
-							keyHold: false,
-							keyDownTime: ""
-						}
 					} else {
 						if (this.state.settingsIndex === 7) {
 							this.props.default();
@@ -127,10 +123,6 @@ class Settings extends React.Component {
 							}
 						} else if (this.state.settingsIndex === 8) {
 							this.props.mode("start");
-							return {
-								keyHold: false,
-								keyDownTime: ""
-							}
 						} else {
 							return {
 								keyHold: false,
@@ -164,9 +156,24 @@ class Settings extends React.Component {
 		}
 
 		return (
-			<div id="settings" className={this.props.state.orientation === "vertical" ? "rotate-cw" : ""} style={{ fontSize: this.props.state.fontSize, color: stateColor, lineHeight: this.props.state.lineHeight }}>
-				<p id="head-line" className={this.state.settingsIndex === 1 ? "visible" : "hidden"}>SETTINGS:</p>
-				<p id="text-marker" style={{ left: this.props.state.fontSize * 0.19 }} >&#129170;</p>
+			<div
+				id="settings"
+				className={this.props.state.orientation === "vertical" ? "rotate-cw" : ""}
+				style={{
+					fontSize: this.props.state.fontSize,
+					color: stateColor,
+					lineHeight: this.props.state.lineHeight
+				}}>
+				<p
+					id="head-line"
+					className={this.state.settingsIndex === 1 ? "visible" : "hidden"}>
+					SETTINGS:
+				</p>
+				<p
+					id="text-marker"
+					style={{ left: this.props.state.fontSize * 0.19 }} >
+					&#129170;
+				</p>
 				<ul style={{ top: listPosTop, left: listPosLeftA }}>
 					<li>Font size:</li>
 					<li>Line height:</li>
@@ -187,9 +194,30 @@ class Settings extends React.Component {
 					<li></li>
 				</ul>
 				<div id="control" style={{ width: respWidth }}>
-					<button id="button-a" style={{ color: stateColor, borderColor: stateColor }}>&#9711; / &#9636;</button>
-					<button id="button-b" style={{ color: stateColor, borderColor: stateColor }}>{this.state.inChangeMode ? String.fromCharCode(9665) : String.fromCharCode(9651)}</button>
-					<button id="button-c" style={{ color: stateColor, borderColor: stateColor }}>{this.state.inChangeMode ? String.fromCharCode(9655) : String.fromCharCode(9661)}</button>
+					<button
+						id="button-a"
+						style={{
+							color: stateColor,
+							borderColor: stateColor
+						}}>
+						&#9711; / &#9636;
+					</button>
+					<button
+						id="button-b"
+						style={{
+							color: stateColor,
+							borderColor: stateColor
+						}}>
+						{this.state.inChangeMode ? String.fromCharCode(9665) : String.fromCharCode(9651)}
+					</button>
+					<button
+						id="button-c"
+						style={{
+							color: stateColor,
+							borderColor: stateColor
+						}}>
+						{this.state.inChangeMode ? String.fromCharCode(9655) : String.fromCharCode(9661)}
+					</button>
 				</div>
 			</div>
 		)
