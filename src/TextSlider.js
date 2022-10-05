@@ -62,25 +62,21 @@ class TextSlider extends React.Component {
 	handleKeyHold = (event) => {
 		this.setState((prevState) => {
 			let holdButtonCondition = ((new Date()).getTime() - prevState.keyDownTime) > this.props.state.holdButtonTime;
+			let holdButtonReset = {keyHold: false,keyDownTime: ""};
 
 			if (prevState.keyHold) {
 				if (event.key === "a") {
 					if (holdButtonCondition) {
 						this.handleButtonASet();
 					} else {
-						return {
-							keyHold: false,
-							keyDownTime: ""
-						}
+						return holdButtonReset;
 					}
 				} else if (event.key === "b") {
 					if (holdButtonCondition) {
 						this.handleButtonBSelect();
-					} else {
-						return {
-							keyHold: false,
-							keyDownTime: ""
-						}
+					}
+					else {
+						return holdButtonReset;
 					}
 				} else if (event.key === "c") {
 					if (this.state.endReached) {
@@ -105,10 +101,7 @@ class TextSlider extends React.Component {
 								}
 							}
 						} else {
-							return {
-								keyHold: false,
-								keyDownTime: ""
-							}
+							return holdButtonReset;
 						}
 					} else {
 						return {
