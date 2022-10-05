@@ -95,6 +95,7 @@ class TextList extends React.Component {
 
   render() {
     let listPos = (2 - this.props.state.textIndex) * this.props.state.fontSize * this.props.state.lineHeight;
+    let stateColor = this.props.colors[this.props.state.colorIndex].code;
     let respWidth;
     let list = "";
 
@@ -117,14 +118,14 @@ class TextList extends React.Component {
         }
 
         return (
-          <div id="text-list" className={this.props.state.orientation === "vertical" ? "rotate-cw" : ""} style={{ fontSize: this.props.state.fontSize, color: this.props.state.uIColor, lineHeight: this.props.state.lineHeight }}>
+          <div id="text-list" className={this.props.state.orientation === "vertical" ? "rotate-cw" : ""} style={{ fontSize: this.props.state.fontSize, color: stateColor, lineHeight: this.props.state.lineHeight }}>
             <p id="head-line" className={this.props.state.textIndex === 1 ? "visible" : "hidden"}>SELECT:</p>
             <ul dangerouslySetInnerHTML={{ __html: list }} style={{ top: listPos, left: (this.props.state.fontSize * 0.69), width: respWidth }} />
             <p id="text-marker" style={{ left: (this.props.state.fontSize * 0.19) }}>&#129170;</p>
             <div id="control" style={{ width: respWidth }}>
-              <button id="button-a" style={{ color: this.props.state.uIColor, borderColor: this.props.state.uIColor }} onClick={this.handleButtonA} >&#9711; / &#8984;</button>
-              <button id="button-b" style={{ color: this.props.state.uIColor, borderColor: this.props.state.uIColor }} onClick={this.handleButtonB} >&#9651;</button>
-              <button id="button-c" style={{ color: this.props.state.uIColor, borderColor: this.props.state.uIColor }} onClick={this.handleButtonC} >&#9661;</button>
+              <button id="button-a" style={{ color: stateColor, borderColor: stateColor }} onClick={this.handleButtonA} >&#9711; / &#8984;</button>
+              <button id="button-b" style={{ color: stateColor, borderColor: stateColor }} onClick={this.handleButtonB} >&#9651;</button>
+              <button id="button-c" style={{ color: stateColor, borderColor: stateColor }} onClick={this.handleButtonC} >&#9661;</button>
             </div>
           </div>
         )
