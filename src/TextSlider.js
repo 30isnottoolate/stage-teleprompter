@@ -180,6 +180,7 @@ class TextSlider extends React.Component {
   }
 
   render() {
+    let stateColor = this.props.colors[this.props.state.colorIndex].code;
     let respWidth;
     let slideStyle;
 
@@ -202,15 +203,15 @@ class TextSlider extends React.Component {
     }
 
     return (
-      <div id="text-slide" className={this.props.state.orientation === "vertical" ? "rotate-cw" : ""} style={{ fontSize: this.props.state.fontSize, color: this.props.state.uIColor, lineHeight: this.props.state.lineHeight }}>
+      <div id="text-slide" className={this.props.state.orientation === "vertical" ? "rotate-cw" : ""} style={{ fontSize: this.props.state.fontSize, color: stateColor, lineHeight: this.props.state.lineHeight }}>
         <p id="text-marker" style={{ top: (this.props.state.fontSize * this.props.state.lineHeight), left: (this.props.state.fontSize * 0.19) }}>&#129170;</p>
         <div id="slide" ref={this.slideRef} style={{ top: this.state.position, width: `calc(${respWidth} - ${(this.props.state.fontSize * 0.69)}px)`, fontSize: this.props.state.fontSize, left: (this.props.state.fontSize * 0.69), transitionProperty: slideStyle }} >
           <p id="text" dangerouslySetInnerHTML={{ __html: this.state.currentText }} />
         </div>
         <div id="control" className={this.state.active ? "transparent" : "visible"} style={{ width: respWidth }}>
-          <button id="button-a" style={{ color: this.props.state.uIColor, borderColor: this.props.state.uIColor }} onClick={this.handleButtonA}>&#8984;</button>
-          <button id="button-b" style={{ color: this.props.state.uIColor, borderColor: this.props.state.uIColor }} onClick={this.handleButtonB}>&#9636;</button>
-          <button id="button-c" style={{ color: this.props.state.uIColor, borderColor: this.props.state.uIColor }} onClick={this.handleButtonC}>{buttonCLabel()}</button>
+          <button id="button-a" style={{ color: stateColor, borderColor: stateColor }} onClick={this.handleButtonA}>&#8984;</button>
+          <button id="button-b" style={{ color: stateColor, borderColor: stateColor }} onClick={this.handleButtonB}>&#9636;</button>
+          <button id="button-c" style={{ color: stateColor, borderColor: stateColor }} onClick={this.handleButtonC}>{buttonCLabel()}</button>
         </div>
       </div>
     )
