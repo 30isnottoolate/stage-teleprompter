@@ -80,7 +80,7 @@ class TextSlider extends React.Component {
 			if (prevState.keyHold) {
 				if (event.key === "a") {
 					if (((new Date()).getTime() - prevState.keyDownTime) > this.props.state.holdButtonTime) {
-						this.props.mode("set");
+						this.handleButtonASet();
 						return {
 							keyHold: false,
 							keyDownTime: ""
@@ -93,7 +93,7 @@ class TextSlider extends React.Component {
 					}
 				} else if (event.key === "b") {
 					if (((new Date()).getTime() - prevState.keyDownTime) > this.props.state.holdButtonTime) {
-						this.props.mode("select");
+						this.handleButtonBSelect();
 						return {
 							keyHold: false,
 							keyDownTime: ""
@@ -158,15 +158,11 @@ class TextSlider extends React.Component {
 		});
 	}
 
-	handleButtonA = () => {
-		this.props.mode("set");
-	}
+	handleButtonASet = () => this.props.mode("set");
 
-	handleButtonB = () => {
-		this.props.mode("select");
-	}
+	handleButtonBSelect = () => this.props.mode("select");
 
-	handleButtonC = () => {
+	handleButtonCStartStop = () => {
 		this.setState((prevState) => ({
 			active: !prevState.active
 		}));
@@ -235,7 +231,7 @@ class TextSlider extends React.Component {
 							color: stateColor,
 							borderColor: stateColor
 						}}
-						onClick={this.handleButtonA}>
+						onClick={this.handleButtonASet}>
 						&#8984;
 					</button>
 					<button
@@ -244,7 +240,7 @@ class TextSlider extends React.Component {
 							color: stateColor,
 							borderColor: stateColor
 						}}
-						onClick={this.handleButtonB}>
+						onClick={this.handleButtonBSelect}>
 						&#9636;
 					</button>
 					<button
@@ -253,7 +249,7 @@ class TextSlider extends React.Component {
 							color: stateColor,
 							borderColor: stateColor
 						}}
-						onClick={this.handleButtonC}>
+						onClick={this.handleButtonCStartStop}>
 						{buttonCLabel()}
 					</button>
 				</div>
