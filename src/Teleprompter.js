@@ -38,7 +38,9 @@ class Teleprompter extends React.Component {
       .then(response => response.json())
       .then(data => {
         this.setState(() => {
-          if (localStorage.length === 7) {
+          if (localStorage["fontSize"] && localStorage["lineHeight"] && localStorage["uIColor"] &&
+            localStorage["colorIndex"] && localStorage["textSpeed"] && localStorage["holdButtonTime"] &&
+            localStorage["orientation"]) {
             return {
               data: data,
               textCount: data.textCount,
