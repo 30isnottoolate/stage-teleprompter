@@ -68,7 +68,7 @@ class Settings extends React.Component {
           if (event.key === "a") {
             localStorage.setItem("fontSize", this.props.state.fontSize);
             localStorage.setItem("lineHeight", this.props.state.lineHeight);
-            localStorage.setItem("uIColor", this.props.state.uIColor);
+            localStorage.setItem("uIColor", stateColor);
             localStorage.setItem("colorIndex", this.props.state.colorIndex);
             localStorage.setItem("textSpeed", this.props.state.textSpeed);
             localStorage.setItem("holdButtonTime", this.props.state.holdButtonTime);
@@ -158,7 +158,7 @@ class Settings extends React.Component {
 
   getColorName() {
     for (let item in this.state.colors) {
-      if (this.state.colors[item].code === this.props.state.uIColor) {
+      if (this.state.colors[item].code === stateColor) {
         return this.state.colors[item].name;
       }
     }
@@ -168,6 +168,7 @@ class Settings extends React.Component {
     let listPosTop = (2 - this.state.settingsIndex) * this.props.state.fontSize * this.props.state.lineHeight;
     let listPosLeftA;
     let listPosLeftB;
+    let stateColor = this.props.colors[this.props.state.colorIndex].code;
     let respWidth;
 
     if (this.props.state.orientation === "vertical") {
@@ -183,7 +184,7 @@ class Settings extends React.Component {
     }
 
     return (
-      <div id="settings" className={this.props.state.orientation === "vertical" ? "rotate-cw" : ""} style={{ fontSize: this.props.state.fontSize, color: this.props.state.uIColor, lineHeight: this.props.state.lineHeight }}>
+      <div id="settings" className={this.props.state.orientation === "vertical" ? "rotate-cw" : ""} style={{ fontSize: this.props.state.fontSize, color: stateColor, lineHeight: this.props.state.lineHeight }}>
         <p id="head-line" className={this.state.settingsIndex === 1 ? "visible" : "hidden"}>SETTINGS:</p>
         <p id="text-marker" style={{ left: this.props.state.fontSize * 0.19 }} >&#129170;</p>
         <ul style={{ top: listPosTop, left: listPosLeftA }}>
@@ -206,9 +207,9 @@ class Settings extends React.Component {
           <li></li>
         </ul>
         <div id="control" style={{ width: respWidth }}>
-          <button id="button-a" style={{ color: this.props.state.uIColor, borderColor: this.props.state.uIColor }}>&#9711; / &#9636;</button>
-          <button id="button-b" style={{ color: this.props.state.uIColor, borderColor: this.props.state.uIColor }}>{this.state.inChangeMode ? String.fromCharCode(9665) : String.fromCharCode(9651)}</button>
-          <button id="button-c" style={{ color: this.props.state.uIColor, borderColor: this.props.state.uIColor }}>{this.state.inChangeMode ? String.fromCharCode(9655) : String.fromCharCode(9661)}</button>
+          <button id="button-a" style={{ color: stateColor, borderColor: stateColor }}>&#9711; / &#9636;</button>
+          <button id="button-b" style={{ color: stateColor, borderColor: stateColor }}>{this.state.inChangeMode ? String.fromCharCode(9665) : String.fromCharCode(9651)}</button>
+          <button id="button-c" style={{ color: stateColor, borderColor: stateColor }}>{this.state.inChangeMode ? String.fromCharCode(9655) : String.fromCharCode(9661)}</button>
         </div>
       </div>
     )
