@@ -8,12 +8,6 @@ class TextList extends React.Component {
 			keyHold: false,
 			keyDownTime: ""
 		};
-
-		this.handleKeyPress = this.handleKeyPress.bind(this);
-		this.handleKeyHold = this.handleKeyHold.bind(this);
-		this.handleButtonA = this.handleButtonA.bind(this);
-		this.handleButtonB = this.handleButtonB.bind(this);
-		this.handleButtonC = this.handleButtonC.bind(this);
 	}
 
 	componentDidMount() {
@@ -26,7 +20,7 @@ class TextList extends React.Component {
 		document.removeEventListener("keyup", this.handleKeyHold);
 	}
 
-	handleKeyPress(event) {
+	handleKeyPress = (event) => {
 		this.setState((prevState) => {
 			if (!prevState.keyHold) {
 				if (event.key === "a") {
@@ -51,22 +45,14 @@ class TextList extends React.Component {
 		});
 	}
 
-	handleKeyHold(event) {
+	handleKeyHold = (event) => {
 		this.setState((prevState) => {
 			if (prevState.keyHold) {
 				if (event.key === "a") {
 					if (((new Date()).getTime() - this.state.keyDownTime) > this.props.state.holdButtonTime) {
 						this.props.mode("set");
-						return {
-							keyHold: false,
-							keyDownTime: ""
-						}
 					} else {
 						this.props.mode("read");
-						return {
-							keyHold: false,
-							keyDownTime: ""
-						}
 					}
 				}
 			}
@@ -75,7 +61,7 @@ class TextList extends React.Component {
 
 	handleButtonA = () => this.props.mode("read");
 
-	handleButtonB() {
+	handleButtonB = () => {
 		if (this.props.state.textIndex > 1) {
 			this.props.index(this.props.state.textIndex - 1);
 		} else {
@@ -83,7 +69,7 @@ class TextList extends React.Component {
 		}
 	}
 
-	handleButtonC() {
+	handleButtonC = () => {
 		if (this.props.state.textIndex < this.props.state.textCount) {
 			this.props.index(this.props.state.textIndex + 1);
 		} else {
