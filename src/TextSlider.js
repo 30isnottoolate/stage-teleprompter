@@ -60,15 +60,9 @@ class TextSlider extends React.Component {
 						keyDownTime: (new Date()).getTime()
 					}
 				} else if (event.key === "c") {
-					if (this.state.endReached) {
-						return {
-							keyHold: true,
-							keyDownTime: (new Date()).getTime()
-						}
-					} else {
-						return {
-							active: !prevState.active
-						}
+					return {
+						keyHold: true,
+						keyDownTime: (new Date()).getTime()
 					}
 				}
 			}
@@ -128,6 +122,19 @@ class TextSlider extends React.Component {
 							}
 						} else {
 							return {
+								keyHold: false,
+								keyDownTime: ""
+							}
+						}
+					} else {
+						if (((new Date()).getTime() - prevState.keyDownTime) > this.props.state.holdButtonTime) {
+							return {
+								keyHold: false,
+								keyDownTime: ""
+							}
+						} else {
+							return {
+								active: !prevState.active,
 								keyHold: false,
 								keyDownTime: ""
 							}
@@ -223,7 +230,7 @@ class TextSlider extends React.Component {
 				</div>
 				<div
 					id="control"
-					className={this.state.active ? "transparent" : "visible"} 
+					className={this.state.active ? "transparent" : "visible"}
 					style={{ width: respWidth }}>
 					<button
 						id="button-a"
