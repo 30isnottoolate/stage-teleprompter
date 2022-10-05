@@ -127,19 +127,19 @@ class Teleprompter extends React.Component {
   render() {
     if (this.state.mode === "start") {
       return (
-        <StartHelp state={this.state} mode={this.changeMode} />
+        <StartHelp state={this.state} mode={this.changeMode} colors={colors} />
       )
     } else if (this.state.mode === "select") {
       return (
-        <TextList state={this.state} mode={this.changeMode} index={this.changeIndex} />
+        <TextList state={this.state} mode={this.changeMode} index={this.changeIndex} colors={colors} />
       )
     } else if (this.state.mode === "read") {
       return (
-        <TextSlider state={this.state} mode={this.changeMode} index={this.changeIndex} />
+        <TextSlider state={this.state} mode={this.changeMode} index={this.changeIndex} colors={colors} />
       )
     } else if (this.state.mode === "set") {
       return (
-        <Settings state={this.state} mode={this.changeMode} settings={this.changeSettings} default={this.defaultSettings} />
+        <Settings state={this.state} mode={this.changeMode} settings={this.changeSettings} colors={colors} default={this.defaultSettings} />
       )
     }
   }
