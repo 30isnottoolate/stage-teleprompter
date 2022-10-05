@@ -49,17 +49,7 @@ class TextSlider extends React.Component {
 	handleKeyPress = (event) => {
 		this.setState((prevState) => {
 			if (!prevState.keyHold) {
-				if (event.key === "a") {
-					return {
-						keyHold: true,
-						keyDownTime: (new Date()).getTime()
-					}
-				} else if (event.key === "b") {
-					return {
-						keyHold: true,
-						keyDownTime: (new Date()).getTime()
-					}
-				} else if (event.key === "c") {
+				if (event.key === "a" || event.key === "b" || event.key === "c") {
 					return {
 						keyHold: true,
 						keyDownTime: (new Date()).getTime()
@@ -71,14 +61,12 @@ class TextSlider extends React.Component {
 
 	handleKeyHold = (event) => {
 		this.setState((prevState) => {
+			let holdButtonCondition = ((new Date()).getTime() - prevState.keyDownTime) > this.props.state.holdButtonTime;
+
 			if (prevState.keyHold) {
 				if (event.key === "a") {
-					if (((new Date()).getTime() - prevState.keyDownTime) > this.props.state.holdButtonTime) {
+					if (holdButtonCondition) {
 						this.handleButtonASet();
-						return {
-							keyHold: false,
-							keyDownTime: ""
-						}
 					} else {
 						return {
 							keyHold: false,
@@ -86,12 +74,8 @@ class TextSlider extends React.Component {
 						}
 					}
 				} else if (event.key === "b") {
-					if (((new Date()).getTime() - prevState.keyDownTime) > this.props.state.holdButtonTime) {
+					if (holdButtonCondition) {
 						this.handleButtonBSelect();
-						return {
-							keyHold: false,
-							keyDownTime: ""
-						}
 					} else {
 						return {
 							keyHold: false,
@@ -100,7 +84,7 @@ class TextSlider extends React.Component {
 					}
 				} else if (event.key === "c") {
 					if (this.state.endReached) {
-						if (((new Date()).getTime() - prevState.keyDownTime) > this.props.state.holdButtonTime) {
+						if (holdButtonCondition) {
 							if (this.props.state.textIndex < this.props.state.textCount) {
 								this.props.index(this.props.state.textIndex + 1);
 								return {
@@ -127,17 +111,10 @@ class TextSlider extends React.Component {
 							}
 						}
 					} else {
-						if (((new Date()).getTime() - prevState.keyDownTime) > this.props.state.holdButtonTime) {
-							return {
-								keyHold: false,
-								keyDownTime: ""
-							}
-						} else {
-							return {
-								active: !prevState.active,
-								keyHold: false,
-								keyDownTime: ""
-							}
+						return {
+							active: !prevState.active,
+							keyHold: false,
+							keyDownTime: ""
 						}
 					}
 				}
