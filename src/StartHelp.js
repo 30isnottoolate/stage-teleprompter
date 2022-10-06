@@ -54,11 +54,7 @@ class StartHelp extends React.Component {
 			if (prevState.keyHold) {
 				if (event.key === "a") {
 					if (((new Date()).getTime() - this.state.keyDownTime) > this.props.state.holdButtonTime) {
-						this.props.mode("set");
-						return {
-							keyHold: false,
-							keyDownTime: ""
-						}
+						this.handleButtonASet();
 					} else {
 						return {
 							keyHold: false,
@@ -67,11 +63,7 @@ class StartHelp extends React.Component {
 					}
 				} else if (event.key === "b") {
 					if (((new Date()).getTime() - this.state.keyDownTime) > this.props.state.holdButtonTime) {
-						this.props.mode("select");
-						return {
-							keyHold: false,
-							keyDownTime: ""
-						}
+						this.handleButtonBSelect();
 					} else {
 						return {
 							keyHold: false,
@@ -83,11 +75,11 @@ class StartHelp extends React.Component {
 		});
 	}
 
-	handleButtonA = () => this.props.mode("set");
+	handleButtonASet = () => this.props.mode("set");
 
-	handleButtonB = () => this.props.mode("select");
+	handleButtonBSelect = () => this.props.mode("select");
 
-	handleButtonC = () => {
+	handleButtonCDown = () => {
 		this.setState((prevState) => {
 			if (this.state.helpIndex < 5) {
 				return {
@@ -160,7 +152,7 @@ class StartHelp extends React.Component {
 							color: stateColor,
 							borderColor: stateColor
 						}}
-						onClick={this.handleButtonA} >
+						onClick={this.handleButtonASet} >
 						&#8984;
 					</button>
 					<button
@@ -169,7 +161,7 @@ class StartHelp extends React.Component {
 							color: stateColor,
 							borderColor: stateColor
 						}}
-						onClick={this.handleButtonB} >
+						onClick={this.handleButtonBSelect} >
 						&#9636;
 					</button>
 					<button
@@ -178,7 +170,7 @@ class StartHelp extends React.Component {
 							color: stateColor,
 							borderColor: stateColor
 						}}
-						onClick={this.handleButtonC} >
+						onClick={this.handleButtonCDown} >
 						&#9661;
 					</button>
 				</div>
