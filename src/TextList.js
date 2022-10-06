@@ -79,78 +79,75 @@ class TextList extends React.Component {
 			respWidth = "100vh"
 		} else respWidth = "100vw";
 
-
-		if (this.props.state.mode === "start" || this.props.state.mode === "select") {
-			if (this.props.state.textCount === 0) {
-				return (
-					<div id="text-list" style={{ fontSize: this.props.state.fontSize }}>
-						<p id="head-line">HELLO!</p>
-						<p>Loading text list...</p>
-					</div>
-				)
-			} else {
-				for (const item in this.props.state.data.texts) {
-					list = list + `<li>${this.props.state.data.texts[item].title}</li>`;
-				}
-
-				return (
-					<div
-						id="text-list"
-						className={this.props.state.orientation === "vertical" ? "rotate-cw" : ""}
-						style={{
-							fontSize: this.props.state.fontSize,
-							color: stateColor,
-							lineHeight: this.props.state.lineHeight
-						}}>
-						<p
-							id="head-line"
-							className={this.props.state.textIndex === 1 ? "visible" : "hidden"}>
-							SELECT:
-						</p>
-						<ul
-							dangerouslySetInnerHTML={{ __html: list }}
-							style={{
-								top: listPos,
-								left: (this.props.state.fontSize * 0.69),
-								width: `calc(${respWidth} - ${(this.props.state.fontSize * 0.69)}px)`
-							}} />
-						<p
-							id="text-marker"
-							style={{ left: (this.props.state.fontSize * 0.19) }}>
-							&#129170;
-						</p>
-						<div id="control" style={{ width: respWidth }}>
-							<button
-								id="button-a"
-								style={{
-									color: stateColor,
-									borderColor: stateColor
-								}}
-								onClick={this.handleButtonASelectSet} >
-								&#9711; / &#8984;
-							</button>
-							<button
-								id="button-b"
-								style={{
-									color: stateColor,
-									borderColor: stateColor
-								}}
-								onClick={this.handleButtonBUp} >
-								&#9651;
-							</button>
-							<button
-								id="button-c"
-								style={{
-									color: stateColor,
-									borderColor: stateColor
-								}}
-								onClick={this.handleButtonCDown} >
-								&#9661;
-							</button>
-						</div>
-					</div>
-				)
+		if (this.props.state.textCount === 0) {
+			return (
+				<div id="text-list" style={{ fontSize: this.props.state.fontSize }}>
+					<p id="head-line">HELLO!</p>
+					<p>Loading text list...</p>
+				</div>
+			)
+		} else {
+			for (const item in this.props.state.data.texts) {
+				list = list + `<li>${this.props.state.data.texts[item].title}</li>`;
 			}
+
+			return (
+				<div
+					id="text-list"
+					className={this.props.state.orientation === "vertical" ? "rotate-cw" : ""}
+					style={{
+						fontSize: this.props.state.fontSize,
+						color: stateColor,
+						lineHeight: this.props.state.lineHeight
+					}}>
+					<p
+						id="head-line"
+						className={this.props.state.textIndex === 1 ? "visible" : "hidden"}>
+						SELECT:
+					</p>
+					<ul
+						dangerouslySetInnerHTML={{ __html: list }}
+						style={{
+							top: listPos,
+							left: (this.props.state.fontSize * 0.69),
+							width: `calc(${respWidth} - ${(this.props.state.fontSize * 0.69)}px)`
+						}} />
+					<p
+						id="text-marker"
+						style={{ left: (this.props.state.fontSize * 0.19) }}>
+						&#129170;
+					</p>
+					<div id="control" style={{ width: respWidth }}>
+						<button
+							id="button-a"
+							style={{
+								color: stateColor,
+								borderColor: stateColor
+							}}
+							onClick={this.handleButtonASelectSet} >
+							&#9711; / &#8984;
+						</button>
+						<button
+							id="button-b"
+							style={{
+								color: stateColor,
+								borderColor: stateColor
+							}}
+							onClick={this.handleButtonBUp} >
+							&#9651;
+						</button>
+						<button
+							id="button-c"
+							style={{
+								color: stateColor,
+								borderColor: stateColor
+							}}
+							onClick={this.handleButtonCDown} >
+							&#9661;
+						</button>
+					</div>
+				</div>
+			)
 		}
 	}
 }
