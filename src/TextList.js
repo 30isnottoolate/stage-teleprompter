@@ -112,7 +112,7 @@ class TextList extends React.Component {
 							style={{
 								top: listPos,
 								left: (this.props.state.fontSize * 0.69),
-								width: respWidth
+								width: `calc(${respWidth} - ${(this.props.state.fontSize * 0.69)}px)`
 							}} />
 						<p
 							id="text-marker"
