@@ -10,7 +10,6 @@ body {
 	user-select: none;
 	background-color: #05100b;
 	font-family: "Roboto", Arial, Helvetica, sans-serif;
-	line-height: 1.2;
 	overflow: hidden;
 }
 
@@ -22,14 +21,6 @@ body {
 	left: 0;
 	height: 100vw;
 	width: 100vh;
-	overflow: hidden;
-}
-
-#app {
-	width: 100vw;
-	overflow: hidden;
-	height: 100vh;
-	border: 0px;
 }
 
 #head-line {
@@ -68,7 +59,7 @@ body {
 }
 
 #slide {
-	position: relative;
+	position: absolute;
 	z-index: -1;
 	transition-duration: 0.2s;
 }
@@ -84,7 +75,6 @@ li,
 #head-line,
 #sub-line {
 	white-space: nowrap;
-	overflow: hidden;
 	text-overflow: ellipsis;
 }
 
