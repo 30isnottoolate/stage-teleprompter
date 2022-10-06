@@ -81,9 +81,12 @@ class TextList extends React.Component {
 
 		if (this.props.state.textCount === 0) {
 			return (
-				<div id="text-list" style={{ fontSize: this.props.state.fontSize }}>
-					<p id="head-line">HELLO!</p>
-					<p>Loading text list...</p>
+				<div 
+					id="text-list" 
+					style={{ 
+						fontSize: this.props.state.fontSize,
+						color: stateColor }}>
+					<p id="head-line">Loading text list...</p>
 				</div>
 			)
 		} else {
