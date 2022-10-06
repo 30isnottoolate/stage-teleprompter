@@ -1,105 +1,107 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap');
 
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
 }
 
 body {
-  user-select: none;
-  background-color: #05100b;
-  font-family: "Roboto", Arial, Helvetica, sans-serif;
-  line-height: 1.2;
-  overflow: hidden;
+	user-select: none;
+	background-color: #05100b;
+	font-family: "Roboto", Arial, Helvetica, sans-serif;
+	line-height: 1.2;
+	overflow: hidden;
 }
 
-.rotate-cw{
-  transform: rotate(90deg);
-  transform-origin: bottom left;
-  position: absolute;
-  top: -100vw;
-  left: 0;
-  height: 100vw;
-  width: 100vh;
-  overflow: hidden;
+.rotate-cw {
+	transform: rotate(90deg);
+	transform-origin: bottom left;
+	position: absolute;
+	top: -100vw;
+	left: 0;
+	height: 100vw;
+	width: 100vh;
+	overflow: hidden;
 }
 
 #app {
-  width: 100vw; 
-  overflow: hidden; 
-  height: 100vh; 
-  border: 0px;
+	width: 100vw;
+	overflow: hidden;
+	height: 100vh;
+	border: 0px;
 }
 
 #head-line {
-  text-align: center;
+	text-align: center;
 }
 
 #text-marker {
-  position: absolute;
-  transition-property: top;
-  transition-duration: 0.5s;
+	position: absolute;
+	transition-property: top;
+	transition-duration: 0.5s;
 }
 
 #control {
-  display: grid;
-  background-color: #05100b;
-  width: 100vw;
-  justify-content: space-evenly;
-  grid-template-columns: 30% 30% 30%;
-  position: fixed;
-  bottom: 0px;
-  left: 0px;
-  border: 10px solid #05100b;
-  border-bottom: none;
+	display: grid;
+	background-color: #05100b;
+	width: 100vw;
+	justify-content: space-evenly;
+	grid-template-columns: 30% 30% 30%;
+	position: fixed;
+	bottom: 0px;
+	left: 0px;
+	border: 10px solid #05100b;
+	border-bottom: none;
 }
 
-#control > button {
-  background-color: #05100b;
-  font-size: 5.5vh;
-  font-weight: bold;
-  text-align: center;
-  height: 9vh;
-  border-radius: 10px 10px 0 0;
-  border-width: 3px;
-  border-style: solid;
-  border-bottom: none;
+#control>button {
+	background-color: #05100b;
+	font-size: 5.5vh;
+	font-weight: bold;
+	text-align: center;
+	height: 9vh;
+	border-radius: 10px 10px 0 0;
+	border-width: 3px;
+	border-style: solid;
+	border-bottom: none;
 }
 
 #slide {
-  position: relative;
-  z-index: -1;
-  transition-duration: 0.2s;
+	position: relative;
+	z-index: -1;
+	transition-duration: 0.2s;
 }
 
 ul {
-  position: absolute;
-  list-style-type: none;
-  transition-property: top left;
-  transition-duration: 0.5s;
+	position: absolute;
+	list-style-type: none;
+	transition-property: top left;
+	transition-duration: 0.5s;
 }
 
-li, #head-line, #sub-line {
-  white-space: nowrap; 
-  overflow: hidden;
-  text-overflow: ellipsis;
+li,
+#head-line,
+#sub-line {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .hidden {
-  opacity: 0;
-  transition-property: opacity;
-  transition-duration: 0.6s;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.6s;
 }
 
 .transparent {
-  opacity: 0.5;
-  transition-property: opacity;
-  transition-duration: 0.6s;
+	opacity: 0.5;
+	transition-property: opacity;
+	transition-duration: 0.6s;
 }
 
 .visible {
-  opacity: 1;
-  transition-property: opacity;
-  transition-duration: 0.6s;
+	opacity: 1;
+	transition-property: opacity;
+	transition-duration: 0.6s;
 }
