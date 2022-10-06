@@ -171,7 +171,9 @@ class Settings extends React.Component {
 				</p>
 				<p
 					id="text-marker"
-					style={{ left: this.props.state.fontSize * 0.19 }} >
+					style={{ 
+						top: (this.props.state.fontSize * this.props.state.lineHeight),
+						left: this.props.state.fontSize * 0.19 }} >
 					&#129170;
 				</p>
 				<ul style={{ top: listPosTop, left: listPosLeftA }}>

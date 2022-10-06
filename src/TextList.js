@@ -117,7 +117,9 @@ class TextList extends React.Component {
 						}} />
 					<p
 						id="text-marker"
-						style={{ left: (this.props.state.fontSize * 0.19) }}>
+						style={{ 
+							top: (this.props.state.fontSize * this.props.state.lineHeight),
+							left: (this.props.state.fontSize * 0.19) }}>
 						&#129170;
 					</p>
 					<div id="control" style={{ width: respWidth }}>
