@@ -33,6 +33,27 @@ body {
 	transition-duration: 0.5s;
 }
 
+#slide {
+	position: absolute;
+	z-index: -1;
+	transition-duration: 0.2s;
+}
+
+ul {
+	position: absolute;
+	list-style-type: none;
+	transition-property: top left;
+	transition-duration: 0.5s;
+}
+
+li,
+#head-line,
+#sub-line {
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
 #control {
 	display: grid;
 	background-color: #05100b;
@@ -56,27 +77,6 @@ body {
 	border-width: 3px;
 	border-style: solid;
 	border-bottom: none;
-}
-
-#slide {
-	position: absolute;
-	z-index: -1;
-	transition-duration: 0.2s;
-}
-
-ul {
-	position: absolute;
-	list-style-type: none;
-	transition-property: top left;
-	transition-duration: 0.5s;
-}
-
-li,
-#head-line,
-#sub-line {
-	white-space: nowrap;
-	text-overflow: ellipsis;
-	overflow: hidden;
 }
 
 .hidden {
