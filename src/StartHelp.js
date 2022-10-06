@@ -9,12 +9,6 @@ class StartHelp extends React.Component {
 			keyHold: false,
 			keyDownTime: ""
 		};
-
-		this.handleKeyPress = this.handleKeyPress.bind(this);
-		this.handleKeyHold = this.handleKeyHold.bind(this);
-		this.handleButtonA = this.handleButtonA.bind(this);
-		this.handleButtonB = this.handleButtonB.bind(this);
-		this.handleButtonC = this.handleButtonC.bind(this);
 	}
 
 	componentDidMount() {
@@ -27,7 +21,7 @@ class StartHelp extends React.Component {
 		document.removeEventListener("keyup", this.handleKeyHold);
 	}
 
-	handleKeyPress(event) {
+	handleKeyPress = (event) => {
 		this.setState((prevState) => {
 			if (!prevState.keyHold) {
 				if (event.key === "a") {
@@ -55,7 +49,7 @@ class StartHelp extends React.Component {
 		});
 	}
 
-	handleKeyHold(event) {
+	handleKeyHold = (event) => {
 		this.setState((prevState) => {
 			if (prevState.keyHold) {
 				if (event.key === "a") {
@@ -89,15 +83,11 @@ class StartHelp extends React.Component {
 		});
 	}
 
-	handleButtonA() {
-		this.props.mode("set");
-	}
+	handleButtonA = () => this.props.mode("set");
 
-	handleButtonB() {
-		this.props.mode("select");
-	}
+	handleButtonB = () => this.props.mode("select");
 
-	handleButtonC() {
+	handleButtonC = () => {
 		this.setState((prevState) => {
 			if (this.state.helpIndex < 5) {
 				return {
