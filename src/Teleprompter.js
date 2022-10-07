@@ -46,7 +46,7 @@ class Teleprompter extends React.Component {
 						localStorage["textSpeed"] && localStorage["holdButtonTime"] && localStorage["orientation"]) {
 						return {
 							data: data,
-							textCount: data.textCount,
+							textCount: Object.keys(data.texts).length,
 							fontSize: parseInt(localStorage.getItem("fontSize")),
 							lineHeight: parseFloat(localStorage.getItem("lineHeight")),
 							colorIndex: parseInt(localStorage.getItem("colorIndex")),
