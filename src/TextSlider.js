@@ -20,10 +20,21 @@ class TextSlider extends React.Component {
 	}
 
 	componentDidMount() {
-		this.setState({
-			position: this.props.state.fontSize * this.props.state.lineHeight,
-			currentText: this.props.state.data.texts["text_" + this.props.state.textIndex].text
-		});
+		fetch(this.props.state.data.texts["text_" + this.props.state.textIndex].url, {
+			headers: {
+				'Content-Type': 'application/json',
+				'Accept': 'application/json'
+			}
+		})
+			.then(response => response.text())
+			.then(data1 => {
+				this.setState({
+					position: this.props.state.fontSize * this.props.state.lineHeight,
+					currentText: data1
+				});
+			})
+			.catch(() => console.log("Text missing."));
+
 
 		document.addEventListener("keydown", this.handleKeyPress);
 		document.addEventListener("keyup", this.handleKeyHold);
@@ -62,7 +73,7 @@ class TextSlider extends React.Component {
 	handleKeyHold = (event) => {
 		this.setState((prevState) => {
 			let holdButtonCondition = ((new Date()).getTime() - prevState.keyDownTime) > this.props.state.holdButtonTime;
-			let holdButtonReset = {keyHold: false,keyDownTime: ""};
+			let holdButtonReset = { keyHold: false, keyDownTime: "" };
 
 			if (prevState.keyHold) {
 				if (event.key === "a") {
