@@ -38,7 +38,12 @@ class Teleprompter extends React.Component {
 	}
 
 	componentDidMount() {
-		fetch("https://raw.githubusercontent.com/30isnottoolate/misc/main/liber.json")
+		fetch('librarian.json', {
+			headers: {
+				'Content-Type': 'application/json',
+				'Accept': 'application/json'
+			}
+		})
 			.then(response => response.json())
 			.then(data => {
 				this.setState(() => {
