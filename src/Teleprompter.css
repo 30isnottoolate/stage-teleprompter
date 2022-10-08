@@ -39,6 +39,10 @@ body {
 	transition-duration: 0.2s;
 }
 
+#text {
+	white-space: pre-wrap;
+}
+
 ul {
 	position: absolute;
 	list-style-type: none;
