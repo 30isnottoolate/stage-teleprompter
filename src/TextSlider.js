@@ -27,10 +27,10 @@ class TextSlider extends React.Component {
 			}
 		})
 			.then(response => response.text())
-			.then(data1 => {
+			.then(data => {
 				this.setState({
 					position: this.props.state.fontSize * this.props.state.lineHeight,
-					currentText: data1
+					currentText: data
 				});
 			})
 			.catch(() => console.log("Text missing."));
@@ -55,6 +55,26 @@ class TextSlider extends React.Component {
 		clearInterval(this.state.timer);
 		document.removeEventListener("keydown", this.handleKeyPress);
 		document.removeEventListener("keyup", this.handleKeyHold);
+	}
+
+	fetchText = (index) => {
+		fetch(this.props.state.data.texts["text_" + index].url, {
+			headers: {
+				'Content-Type': 'application/json',
+				'Accept': 'application/json'
+			}
+		})
+			.then(response => response.text())
+			.then(data => {
+				this.setState({
+					position: this.props.state.fontSize * this.props.state.lineHeight,
+					currentText: data,
+					endReached: false,
+					keyHold: false,
+					keyDownTime: ""
+				});
+			})
+			.catch(() => console.log("Text missing."));
 	}
 
 	handleKeyPress = (event) => {
