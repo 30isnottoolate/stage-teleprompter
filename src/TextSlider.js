@@ -20,21 +20,7 @@ class TextSlider extends React.Component {
 	}
 
 	componentDidMount() {
-		fetch(this.props.state.data.texts["text_" + this.props.state.textIndex].url, {
-			headers: {
-				'Content-Type': 'application/json',
-				'Accept': 'application/json'
-			}
-		})
-			.then(response => response.text())
-			.then(data => {
-				this.setState({
-					position: this.props.state.fontSize * this.props.state.lineHeight,
-					currentText: data
-				});
-			})
-			.catch(() => console.log("Text missing."));
-
+		this.fetchText(this.props.state.textIndex);
 
 		document.addEventListener("keydown", this.handleKeyPress);
 		document.addEventListener("keyup", this.handleKeyHold);
@@ -91,7 +77,7 @@ class TextSlider extends React.Component {
 	}
 
 	handleKeyHold = (event) => {
-		this.setState((prevState) => {
+		this.setState((prevState, prevProps) => {
 			let holdButtonCondition = ((new Date()).getTime() - prevState.keyDownTime) > this.props.state.holdButtonTime;
 			let holdButtonReset = { keyHold: false, keyDownTime: "" };
 
@@ -113,23 +99,11 @@ class TextSlider extends React.Component {
 					if (this.state.endReached) {
 						if (holdButtonCondition) {
 							if (this.props.state.textIndex < this.props.state.textCount) {
-								this.props.index(this.props.state.textIndex + 1);
-								return {
-									position: this.props.state.fontSize * this.props.state.lineHeight,
-									currentText: this.props.state.data.texts["text_" + (this.props.state.textIndex + 1)].text,
-									endReached: false,
-									keyHold: false,
-									keyDownTime: ""
-								}
+								this.fetchText(prevProps.state.textIndex + 1);
+								this.props.index(prevProps.state.textIndex + 1);
 							} else {
+								this.fetchText(1);
 								this.props.index(1);
-								return {
-									position: this.props.state.fontSize * this.props.state.lineHeight,
-									currentText: this.props.state.data.texts["text_" + 1].text,
-									endReached: false,
-									keyHold: false,
-									keyDownTime: ""
-								}
 							}
 						} else {
 							return holdButtonReset;
