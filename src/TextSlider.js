@@ -31,6 +31,8 @@ class TextSlider extends React.Component {
 			let intervalValue = (this.state.currentText.length / (this.slideRef.current.offsetHeight * READ_SPEED_COEF)) * (100 / this.props.state.textSpeed);
 			let intervalID = setInterval(() => { this.moveSlide(); }, intervalValue);
 
+			clearInterval(this.state.timer);
+
 			this.setState({
 				timer: intervalID
 			});
