@@ -135,7 +135,37 @@ class Settings extends React.Component {
 	}
 
 	handleButtonBUpDecrease = () => {
-
+		if (this.state.inChangeMode) {
+			if (this.state.settingsIndex === 1 && this.props.state.fontSize > 80) {
+				this.props.settings("fontSize", this.props.state.fontSize - 1);
+			} else if (this.state.settingsIndex === 2 && this.props.state.lineHeight > 1) {
+				this.props.settings("lineHeight", this.props.state.lineHeight - 0.01);
+			} else if (this.state.settingsIndex === 3 && this.props.state.colorIndex > 1) {
+				this.props.settings("colorIndex", this.props.state.colorIndex - 1);
+			} else if (this.state.settingsIndex === 4 && this.props.state.textSpeed > 20) {
+				this.props.settings("textSpeed", this.props.state.textSpeed - 1);
+			} else if (this.state.settingsIndex === 5 && this.props.state.holdButtonTime > 1000) {
+				this.props.settings("holdButtonTime", this.props.state.holdButtonTime - 10);
+			} else if (this.state.settingsIndex === 6) {
+				if (this.props.state.orientation === "horizontal") {
+					this.props.settings("orientation", "vertical");
+				} else {
+					this.props.settings("orientation", "horizontal");
+				}
+			}
+		} else {
+			this.setState((prevState) => {
+				if (this.state.settingsIndex > 1) {
+					return {
+						settingsIndex: prevState.settingsIndex - 1
+					}
+				} else {
+					return {
+						settingsIndex: 8
+					}
+				}
+			});
+		}
 	}
 
 	handleButtonCDownIncrease = () => {
@@ -205,11 +235,11 @@ class Settings extends React.Component {
 				<div id="control" style={{ width: respWidth }}>
 					<button
 						id="button-a"
-						onClick={this.handleButtonAOptionList}
 						style={{
 							color: stateColor,
 							borderColor: stateColor
-						}}>
+						}}
+						onClick={this.handleButtonAOptionList} >
 						&#9711; / &#9636;
 					</button>
 					<button
@@ -217,7 +247,8 @@ class Settings extends React.Component {
 						style={{
 							color: stateColor,
 							borderColor: stateColor
-						}}>
+						}}
+						onClick={this.handleButtonBUpDecrease} >
 						{this.state.inChangeMode ? String.fromCharCode(9665) : String.fromCharCode(9651)}
 					</button>
 					<button
