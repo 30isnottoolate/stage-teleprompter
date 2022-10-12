@@ -34,7 +34,7 @@ class StartHelp extends React.Component {
 						keyHold: true,
 						keyDownTime: (new Date()).getTime()
 					}
-				} else if (event.key === "c") {
+				} else if (event.key === "c" && !event.repeat) {
 					if (this.state.helpIndex < 5) {
 						return {
 							helpIndex: prevState.helpIndex + 1
