@@ -57,12 +57,6 @@ class Settings extends React.Component {
 					}
 				} else {
 					if (event.key === "a") {
-						localStorage.setItem("fontSize", this.props.state.fontSize);
-						localStorage.setItem("lineHeight", this.props.state.lineHeight);
-						localStorage.setItem("colorIndex", this.props.state.colorIndex);
-						localStorage.setItem("textSpeed", this.props.state.textSpeed);
-						localStorage.setItem("holdButtonTime", this.props.state.holdButtonTime);
-						localStorage.setItem("orientation", this.props.state.orientation);
 						return {
 							inChangeMode: false
 						}
