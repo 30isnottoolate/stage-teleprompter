@@ -111,11 +111,7 @@ class Settings extends React.Component {
 					}
 					break;
 				case 6:
-					if (this.props.state.orientation === "horizontal") {
-						this.props.settings("orientation", "vertical");
-					} else {
-						this.props.settings("orientation", "horizontal");
-					}
+					this.props.changeOrientation();
 					break;
 				default:
 					console.log("This should have never happened.");
@@ -164,11 +160,7 @@ class Settings extends React.Component {
 					}
 					break;
 				case 6:
-					if (this.props.state.orientation === "horizontal") {
-						this.props.settings("orientation", "vertical");
-					} else {
-						this.props.settings("orientation", "horizontal");
-					}
+					this.props.changeOrientation();
 					break;
 				default:
 					console.log("This should have never happened.");
