@@ -90,6 +90,7 @@ class Teleprompter extends React.Component {
 	}
 
 	changeSettings = (setting, value) => {
+		localStorage.setItem(setting, value);
 		this.setState(() => {
 			return {
 				[setting]: value
