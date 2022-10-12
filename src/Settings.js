@@ -169,7 +169,37 @@ class Settings extends React.Component {
 	}
 
 	handleButtonCDownIncrease = () => {
-
+		if (this.state.inChangeMode) {
+			if (this.state.settingsIndex === 1 && this.props.state.fontSize < 150) {
+				this.props.settings("fontSize", this.props.state.fontSize + 1);
+			} else if (this.state.settingsIndex === 2 && this.props.state.lineHeight < 1.5) {
+				this.props.settings("lineHeight", this.props.state.lineHeight + 0.01);
+			} else if (this.state.settingsIndex === 3 && this.props.state.colorIndex < 5) {
+				this.props.settings("colorIndex", this.props.state.colorIndex + 1);
+			} else if (this.state.settingsIndex === 4 && this.props.state.textSpeed < 200) {
+				this.props.settings("textSpeed", this.props.state.textSpeed + 1);
+			} else if (this.state.settingsIndex === 5 && this.props.state.holdButtonTime < 5000) {
+				this.props.settings("holdButtonTime", this.props.state.holdButtonTime + 10);
+			} else if (this.state.settingsIndex === 6) {
+				if (this.props.state.orientation === "horizontal") {
+					this.props.settings("orientation", "vertical");
+				} else {
+					this.props.settings("orientation", "horizontal");
+				}
+			}
+		} else {
+			this.setState((prevState) => {
+				if (this.state.settingsIndex < 8) {
+					return {
+						settingsIndex: prevState.settingsIndex + 1
+					}
+				} else {
+					return {
+						settingsIndex: 1
+					}
+				}
+			});
+		}
 	}
 
 	render() {
@@ -256,7 +286,8 @@ class Settings extends React.Component {
 						style={{
 							color: stateColor,
 							borderColor: stateColor
-						}}>
+						}}
+						onClick={this.handleButtonCDownIncrease} >
 						{this.state.inChangeMode ? String.fromCharCode(9655) : String.fromCharCode(9661)}
 					</button>
 				</div>
