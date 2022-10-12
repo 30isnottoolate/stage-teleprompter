@@ -34,7 +34,7 @@ class Settings extends React.Component {
 							keyHold: true,
 							keyDownTime: (new Date()).getTime()
 						}
-					} else if (event.key === "b") {
+					} else if (event.key === "b" && !event.repeat) {
 						if (this.state.settingsIndex > 1) {
 							return {
 								settingsIndex: prevState.settingsIndex - 1
@@ -44,7 +44,7 @@ class Settings extends React.Component {
 								settingsIndex: 8
 							}
 						}
-					} else if (event.key === "c") {
+					} else if (event.key === "c" && !event.repeat) {
 						if (this.state.settingsIndex < 8) {
 							return {
 								settingsIndex: prevState.settingsIndex + 1
