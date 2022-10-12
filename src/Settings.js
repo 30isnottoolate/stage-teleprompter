@@ -26,80 +26,28 @@ class Settings extends React.Component {
 	}
 
 	handleKeyPress(event) {
-		this.setState((prevState) => {
-			if (!this.state.keyHold) {
+		if (!this.state.keyHold && event.key === "a") {
+			this.setState(() => {
 				if (!this.state.inChangeMode) {
-					if (event.key === "a") {
-						return {
-							keyHold: true,
-							keyDownTime: (new Date()).getTime()
-						}
-					} else if (event.key === "b" && !event.repeat) {
-						if (this.state.settingsIndex > 1) {
-							return {
-								settingsIndex: prevState.settingsIndex - 1
-							}
-						} else {
-							return {
-								settingsIndex: 8
-							}
-						}
-					} else if (event.key === "c" && !event.repeat) {
-						if (this.state.settingsIndex < 8) {
-							return {
-								settingsIndex: prevState.settingsIndex + 1
-							}
-						} else {
-							return {
-								settingsIndex: 1
-							}
-						}
+					return {
+						keyHold: true,
+						keyDownTime: (new Date()).getTime()
 					}
 				} else {
-					if (event.key === "a") {
-						return {
-							inChangeMode: false
-						}
-					} else if (event.key === "b") {
-						if (prevState.settingsIndex === 1 && this.props.state.fontSize > 80) {
-							this.props.settings("fontSize", this.props.state.fontSize - 1);
-						} else if (prevState.settingsIndex === 2 && this.props.state.lineHeight > 1) {
-							this.props.settings("lineHeight", this.props.state.lineHeight - 0.01);
-						} else if (prevState.settingsIndex === 3 && this.props.state.colorIndex > 1) {
-							this.props.settings("colorIndex", this.props.state.colorIndex - 1);
-						} else if (prevState.settingsIndex === 4 && this.props.state.textSpeed > 20) {
-							this.props.settings("textSpeed", this.props.state.textSpeed - 1);
-						} else if (prevState.settingsIndex === 5 && this.props.state.holdButtonTime > 1000) {
-							this.props.settings("holdButtonTime", this.props.state.holdButtonTime - 10);
-						} else if (prevState.settingsIndex === 6) {
-							if (this.props.state.orientation === "horizontal") {
-								this.props.settings("orientation", "vertical");
-							} else {
-								this.props.settings("orientation", "horizontal");
-							}
-						}
-					} else if (event.key === "c") {
-						if (prevState.settingsIndex === 1 && this.props.state.fontSize < 150) {
-							this.props.settings("fontSize", this.props.state.fontSize + 1);
-						} else if (prevState.settingsIndex === 2 && this.props.state.lineHeight < 1.5) {
-							this.props.settings("lineHeight", this.props.state.lineHeight + 0.01);
-						} else if (prevState.settingsIndex === 3 && this.props.state.colorIndex < 5) {
-							this.props.settings("colorIndex", this.props.state.colorIndex + 1);
-						} else if (prevState.settingsIndex === 4 && this.props.state.textSpeed < 200) {
-							this.props.settings("textSpeed", this.props.state.textSpeed + 1);
-						} else if (prevState.settingsIndex === 5 && this.props.state.holdButtonTime < 5000) {
-							this.props.settings("holdButtonTime", this.props.state.holdButtonTime + 10);
-						} else if (prevState.settingsIndex === 6) {
-							if (this.props.state.orientation === "horizontal") {
-								this.props.settings("orientation", "vertical");
-							} else {
-								this.props.settings("orientation", "horizontal");
-							}
-						}
+					return {
+						inChangeMode: false
 					}
 				}
+			});
+		} else {
+			if ((!this.state.inChangeMode && !event.repeat) || this.state.inChangeMode) {
+				if (event.key === "b") {
+					this.handleButtonBUpDecrease();
+				} else if (event.key === "c") {
+					this.handleButtonCDownIncrease();
+				}
 			}
-		});
+		}
 	}
 
 	handleKeyHold(event) {
