@@ -130,6 +130,34 @@ class Settings extends React.Component {
 		});
 	}
 
+	handleButtonAOptionList = () => {
+		this.setState((prevState) => {
+			if (this.state.settingsIndex === 7) {
+				this.props.default();
+				return {
+					keyHold: false,
+					keyDownTime: ""
+				}
+			} else if (this.state.settingsIndex === 8) {
+				this.props.mode("start");
+			} else {
+				return {
+					keyHold: false,
+					keyDownTime: "",
+					inChangeMode: !prevState.inChangeMode
+				}
+			}
+		});
+	}
+
+	handleButtonBUpDecrease = () => {
+
+	}
+
+	handleButtonCDownIncrease = () => {
+
+	}
+
 	render() {
 		let listPosTop = (2 - this.state.settingsIndex) * this.props.state.fontSize * this.props.state.lineHeight;
 		let listPosLeftA;
@@ -165,9 +193,10 @@ class Settings extends React.Component {
 				</p>
 				<p
 					id="text-marker"
-					style={{ 
+					style={{
 						top: (this.props.state.fontSize * this.props.state.lineHeight),
-						left: this.props.state.fontSize * 0.19 }} >
+						left: this.props.state.fontSize * 0.19
+					}} >
 					&#129170;
 				</p>
 				<ul style={{ top: listPosTop, left: listPosLeftA }}>
@@ -192,6 +221,7 @@ class Settings extends React.Component {
 				<div id="control" style={{ width: respWidth }}>
 					<button
 						id="button-a"
+						onClick={this.handleButtonAOptionList}
 						style={{
 							color: stateColor,
 							borderColor: stateColor
