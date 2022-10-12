@@ -98,6 +98,20 @@ class Teleprompter extends React.Component {
 		});
 	}
 
+	changeOrientation = () => {
+		this.setState((prevState) => {
+			if (prevState.orientation == "horizontal") {
+				return {
+					orientation: "vertical"
+				}
+			} else {
+				return {
+					orientation: "horizontal"
+				}
+			}
+		});
+	}
+
 	defaultLocalStorage = () => {
 		localStorage.setItem("fontSize", FONT_SIZE_DEFAULT);
 		localStorage.setItem("lineHeight", LINE_HEIGHT_DEFAULT);
@@ -151,6 +165,7 @@ class Teleprompter extends React.Component {
 					state={this.state}
 					mode={this.changeMode}
 					settings={this.changeSettings}
+					changeOrientation={this.changeOrientation}
 					colors={colors}
 					default={this.defaultSettings} />
 			)
