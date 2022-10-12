@@ -28,9 +28,9 @@ class TextList extends React.Component {
 						keyHold: true,
 						keyDownTime: (new Date()).getTime()
 					}
-				} else if (event.key === "b") {
+				} else if (event.key === "b" && !event.repeat) {
 					this.handleButtonBUp();
-				} else if (event.key === "c") {
+				} else if (event.key === "c" && !event.repeat) {
 					this.handleButtonCDown();
 				}
 			}
