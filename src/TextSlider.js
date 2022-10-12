@@ -28,7 +28,8 @@ class TextSlider extends React.Component {
 
 	componentDidUpdate(prevProps, prevState) {
 		if (this.state.currentText !== prevState.currentText) {
-			let intervalValue = (this.state.currentText.length / (this.slideRef.current.offsetHeight * READ_SPEED_COEF)) * (100 / this.props.state.textSpeed);
+			let noEmptyLinesTextHeight = this.slideRef.current.offsetHeight - this.props.state.fontSize * this.props.state.lineHeight * this.countEmptyLines(this.state.currentText);
+			let intervalValue = (this.state.currentText.length / (noEmptyLinesTextHeight * READ_SPEED_COEF)) * (100 / this.props.state.textSpeed);
 			let intervalID = setInterval(() => { this.moveSlide(); }, intervalValue);
 
 			clearInterval(this.state.timer);
@@ -43,6 +44,10 @@ class TextSlider extends React.Component {
 		clearInterval(this.state.timer);
 		document.removeEventListener("keydown", this.handleKeyPress);
 		document.removeEventListener("keyup", this.handleKeyHold);
+	}
+
+	countEmptyLines = (input) => {
+		return (input.match(/^[ ]*$/gm) || []).length;
 	}
 
 	fetchText = (index) => {
