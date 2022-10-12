@@ -84,22 +84,41 @@ class Settings extends React.Component {
 
 	handleButtonBUpDecrease = () => {
 		if (this.state.inChangeMode) {
-			if (this.state.settingsIndex === 1 && this.props.state.fontSize > 80) {
-				this.props.settings("fontSize", this.props.state.fontSize - 1);
-			} else if (this.state.settingsIndex === 2 && this.props.state.lineHeight > 1) {
-				this.props.settings("lineHeight", this.props.state.lineHeight - 0.01);
-			} else if (this.state.settingsIndex === 3 && this.props.state.colorIndex > 1) {
-				this.props.settings("colorIndex", this.props.state.colorIndex - 1);
-			} else if (this.state.settingsIndex === 4 && this.props.state.textSpeed > 20) {
-				this.props.settings("textSpeed", this.props.state.textSpeed - 1);
-			} else if (this.state.settingsIndex === 5 && this.props.state.holdButtonTime > 1000) {
-				this.props.settings("holdButtonTime", this.props.state.holdButtonTime - 10);
-			} else if (this.state.settingsIndex === 6) {
-				if (this.props.state.orientation === "horizontal") {
-					this.props.settings("orientation", "vertical");
-				} else {
-					this.props.settings("orientation", "horizontal");
-				}
+			switch (this.state.settingsIndex) {
+				case 1:
+					if (this.props.state.fontSize > 80) {
+						this.props.settings("fontSize", this.props.state.fontSize - 1);
+					}
+					break;
+				case 2:
+					if (this.props.state.lineHeight > 1) {
+						this.props.settings("lineHeight", this.props.state.lineHeight - 0.01);
+					}
+					break;
+				case 3:
+					if (this.props.state.colorIndex > 1) {
+						this.props.settings("colorIndex", this.props.state.colorIndex - 1);
+					}
+					break;
+				case 4:
+					if (this.props.state.textSpeed > 20) {
+						this.props.settings("textSpeed", this.props.state.textSpeed - 1);
+					}
+					break;
+				case 5:
+					if (this.props.state.holdButtonTime > 1000) {
+						this.props.settings("holdButtonTime", this.props.state.holdButtonTime - 10);
+					}
+					break;
+				case 6:
+					if (this.props.state.orientation === "horizontal") {
+						this.props.settings("orientation", "vertical");
+					} else {
+						this.props.settings("orientation", "horizontal");
+					}
+					break;
+				default:
+				console.log("This should have never happened.");
 			}
 		} else {
 			this.setState((prevState) => {
