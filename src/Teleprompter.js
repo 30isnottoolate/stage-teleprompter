@@ -100,7 +100,7 @@ class Teleprompter extends React.Component {
 
 	changeOrientation = () => {
 		this.setState((prevState) => {
-			if (prevState.orientation == "horizontal") {
+			if (prevState.orientation === "horizontal") {
 				return {
 					orientation: "vertical"
 				}
