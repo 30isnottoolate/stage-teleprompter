@@ -2,15 +2,15 @@
     "texts": {
         "text_1": {
             "title": "Space Oddity",
-            "url": "stage-teleprompter/library/space_oddity.html"
+            "url": "library/space_oddity.html"
         },
         "text_2": {
             "title": "The Man Who Sold The World",
-            "url": "stage-teleprompter/library/the_man_who_sold_the_world.html"
+            "url": "library/the_man_who_sold_the_world.html"
         },
         "text_3": {
             "title": "Changes",
-            "url": "stage-teleprompter/library/changes.html"
+            "url": "library/changes.html"
         },
         "text_4": {
             "title": "Suffragette City",
