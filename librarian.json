@@ -2,7 +2,7 @@
     "texts": {
         "text_1": {
             "title": "Space Oddity",
-            "url": "../library/space_oddity.html"
+            "url": "./library/space_oddity.html"
         },
         "text_2": {
             "title": "The Man Who Sold The World",
