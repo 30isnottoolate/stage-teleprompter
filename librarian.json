@@ -2,43 +2,43 @@
     "texts": {
         "text_1": {
             "title": "Space Oddity",
-            "url": "portfolio/library/space_oddity.html"
+            "url": "stage-teleprompter/library/space_oddity.html"
         },
         "text_2": {
             "title": "The Man Who Sold The World",
-            "url": "portfolio/library/the_man_who_sold_the_world.html"
+            "url": "stage-teleprompter/library/the_man_who_sold_the_world.html"
         },
         "text_3": {
             "title": "Changes",
-            "url": "portfolio/library/changes.html"
+            "url": "stage-teleprompter/library/changes.html"
         },
         "text_4": {
             "title": "Suffragette City",
-            "url": "portfolio/library/suffragette_city.html"
+            "url": "stage-teleprompter/library/suffragette_city.html"
         },
         "text_5": {
             "title": "Starman",
-            "url": "portfolio/library/starman.html"
+            "url": "stage-teleprompter/library/starman.html"
         },
         "text_6": {
             "title": "Heroes",
-            "url": "portfolio/library/heroes.html"
+            "url": "stage-teleprompter/library/heroes.html"
         },
         "text_7": {
             "title": "Let's Dance",
-            "url": "portfolio/library/lets_dance.html"
+            "url": "stage-teleprompter/library/lets_dance.html"
         },
         "text_8": {
             "title": "Blackstar",
-            "url": "portfolio/library/blackstar.html"
+            "url": "stage-teleprompter/library/blackstar.html"
         },
         "text_9": {
             "title": "Lazarus",
-            "url": "portfolio/library/lazarus.html"
+            "url": "stage-teleprompter/library/lazarus.html"
         },
         "text_10": {
             "title": "I Can't Give Everything Away",
-            "url": "portfolio/library/i_cant_give_everything_away.html"
+            "url": "stage-teleprompter/library/i_cant_give_everything_away.html"
         }
     }
 }
