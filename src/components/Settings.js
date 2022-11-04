@@ -1,5 +1,5 @@
 import React from 'react';
-import './Teleprompter.css';
+import '../Teleprompter.css';
 
 class Settings extends React.Component {
 	constructor(props) {

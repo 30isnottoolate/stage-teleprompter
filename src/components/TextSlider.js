@@ -1,5 +1,5 @@
 import React from 'react';
-import './Teleprompter.css';
+import '../Teleprompter.css';
 
 const READ_SPEED_COEF = 0.0151; // char/ms
 
