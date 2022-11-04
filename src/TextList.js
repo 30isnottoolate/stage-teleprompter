@@ -90,8 +90,10 @@ class TextList extends React.Component {
 				</div>
 			)
 		} else {
+			let i = 0;
 			for (const item in this.props.state.data.texts) {
-				list = list + `<li>${this.props.state.data.texts[item].title}</li>`;
+				list = list + `<li key=${i}>${this.props.state.data.texts[item].title}</li>`;
+				i++;
 			}
 
 			return (
