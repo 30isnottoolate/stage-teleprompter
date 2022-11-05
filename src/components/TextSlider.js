@@ -1,5 +1,6 @@
 import React from 'react';
 import '../Teleprompter.css';
+import Marker from './Marker';
 import ControlButton from './ControlButton';
 
 const READ_SPEED_COEF = 0.0151; // char/ms
@@ -190,13 +191,13 @@ class TextSlider extends React.Component {
 					color: stateColor,
 					lineHeight: this.props.state.lineHeight
 				}}>
-				<p
-					id="text-marker"
-					style={{
-						top: (this.props.state.fontSize * this.props.state.lineHeight),
-						left: (this.props.state.fontSize * 0.19)
-					}}>&#129170;
-				</p>
+				<Marker
+					top={this.props.state.fontSize * this.props.state.lineHeight}
+					left={this.props.state.fontSize * 0.19}
+					fontSize={this.props.state.fontSize}
+					lineHeight={this.props.state.lineHeight}
+					stateColor={stateColor}
+				/>
 				<div
 					id="slide"
 					ref={this.slideRef}
