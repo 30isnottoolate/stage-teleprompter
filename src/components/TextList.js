@@ -1,5 +1,6 @@
 import React from 'react';
 import '../Teleprompter.css';
+import Marker from './Marker';
 import ControlButton from './ControlButton';
 
 class TextList extends React.Component {
@@ -119,14 +120,13 @@ class TextList extends React.Component {
 							left: (this.props.state.fontSize * 0.69),
 							width: `calc(${respWidth} - ${(this.props.state.fontSize * 0.69)}px)`
 						}} />
-					<p
-						id="text-marker"
-						style={{
-							top: (this.props.state.fontSize * this.props.state.lineHeight),
-							left: (this.props.state.fontSize * 0.19)
-						}}>
-						&#129170;
-					</p>
+					<Marker
+						top={this.props.state.fontSize * this.props.state.lineHeight}
+						left={this.props.state.fontSize * 0.19}
+						fontSize={this.props.state.fontSize}
+						lineHeight={this.props.state.lineHeight}
+						stateColor={stateColor}
+					/>
 					<div id="control" style={{ width: respWidth }}>
 						<ControlButton
 							fontSize={this.props.state.fontSize}
