@@ -71,7 +71,7 @@ li,
 	border-bottom: none;
 }
 
-#control>button {
+button {
 	background-color: #05100b;
 	font-size: 5.5vh;
 	font-weight: bold;
