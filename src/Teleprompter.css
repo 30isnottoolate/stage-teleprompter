@@ -27,7 +27,7 @@ body {
 	text-align: center;
 }
 
-#text-marker {
+.text-marker {
 	position: absolute;
 	transition-property: top;
 	transition-duration: 0.5s;

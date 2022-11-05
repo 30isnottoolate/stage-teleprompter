@@ -4,7 +4,7 @@ class Marker extends React.Component {
     render() {
         return (
             <svg
-                id="text-marker"
+                className="text-marker"
                 height={this.props.fontSize}
                 fill={this.props.stateColor}
                 style={{boxSizing: "content-box", top: this.props.top, left: this.props.left, padding: `${this.props.fontSize * (this.props.lineHeight - 1) / 2} 0`}}
