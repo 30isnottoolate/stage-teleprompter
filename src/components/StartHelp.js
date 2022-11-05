@@ -1,7 +1,7 @@
 import React from 'react';
 import '../Teleprompter.css';
-import ControlButton from './ControlButton';
 import Marker from './Marker';
+import ControlButton from './ControlButton';
 
 class StartHelp extends React.Component {
 	constructor(props) {
