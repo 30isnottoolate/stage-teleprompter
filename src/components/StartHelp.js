@@ -1,6 +1,7 @@
 import React from 'react';
 import '../Teleprompter.css';
 import ControlButton from './ControlButton';
+import Marker from './Marker';
 
 class StartHelp extends React.Component {
 	constructor(props) {
@@ -126,14 +127,13 @@ class StartHelp extends React.Component {
 					}}>
 					Control symbols:
 				</p>
-				<p
-					id="text-marker"
-					style={{
-						top: (2 * this.props.state.fontSize * this.props.state.lineHeight),
-						left: (this.props.state.fontSize * 0.19)
-					}}>
-					&#129170;
-				</p>
+				<Marker
+					top={2 * this.props.state.fontSize * this.props.state.lineHeight}
+					left={this.props.state.fontSize * 0.19}
+					fontSize={this.props.state.fontSize}
+					lineHeight={this.props.state.lineHeight}
+					stateColor={stateColor}
+				/>
 				<ul
 					style={{
 						top: listPos,
