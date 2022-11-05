@@ -1,5 +1,6 @@
 import React from 'react';
 import '../Teleprompter.css';
+import ControlButton from './ControlButton';
 
 class Settings extends React.Component {
 	constructor(props) {
@@ -241,33 +242,24 @@ class Settings extends React.Component {
 					<li></li>
 				</ul>
 				<div id="control" style={{ width: respWidth }}>
-					<button
-						id="button-a"
-						style={{
-							color: stateColor,
-							borderColor: stateColor
-						}}
-						onClick={this.handleButtonAOptionList} >
-						&#9711; / &#9636;
-					</button>
-					<button
-						id="button-b"
-						style={{
-							color: stateColor,
-							borderColor: stateColor
-						}}
-						onClick={this.handleButtonBUpDecrease} >
-						{this.state.inChangeMode ? String.fromCharCode(9665) : String.fromCharCode(9651)}
-					</button>
-					<button
-						id="button-c"
-						style={{
-							color: stateColor,
-							borderColor: stateColor
-						}}
-						onClick={this.handleButtonCDownIncrease} >
-						{this.state.inChangeMode ? String.fromCharCode(9655) : String.fromCharCode(9661)}
-					</button>
+					<ControlButton
+						fontSize={this.props.state.fontSize}
+						stateColor={stateColor}
+						clickHandler={this.handleButtonAOptionList}
+						icon="selectList"
+					/>
+					<ControlButton
+						fontSize={this.props.state.fontSize}
+						stateColor={stateColor}
+						clickHandler={this.handleButtonBUpDecrease}
+						icon={this.state.inChangeMode ? "left" : "up"}
+					/>
+					<ControlButton
+						fontSize={this.props.state.fontSize}
+						stateColor={stateColor}
+						clickHandler={this.handleButtonCDownIncrease}
+						icon={this.state.inChangeMode ? "right" : "down"}
+					/>
 				</div>
 			</div>
 		)
