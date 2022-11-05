@@ -17,12 +17,14 @@ const icons = {
 class ControlButton extends React.Component {
     render() {
         return (
-            <button>
+            <button
+                style={{borderColor: this.props.stateColor}} 
+                onClick={this.props.clickHandler}>
                 <svg
-                    width={this.props.state.fontSize * 2.25}
-                    height={this.props.state.fontSize}
+                    width={(this.props.icon === "selectSettings" || this.props.icon === "selectList") ? 60 * 2.25 : 60}
+                    height={80}
                     fill={this.props.stateColor}
-                    viewBox="0 0 36 16"
+                    viewBox={`0 0 ${(this.props.icon === "selectSettings" || this.props.icon === "selectList") ? 36 : 16} 16`}
                     dangerouslySetInnerHTML={{__html: icons[this.props.icon]}}>
                 </svg>
             </button>
