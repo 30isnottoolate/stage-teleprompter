@@ -21,7 +21,7 @@ class ControlButton extends React.Component {
                 style={{borderColor: this.props.stateColor}} 
                 onClick={this.props.clickHandler}>
                 <svg
-                    width={(this.props.icon === "selectSettings" || this.props.icon === "selectList") ? 60 * 2.25 : 60}
+                    width={(this.props.icon === "selectSettings" || this.props.icon === "selectList") ? 70 * 2.25 : 70}
                     height={80}
                     fill={this.props.stateColor}
                     viewBox={`0 0 ${(this.props.icon === "selectSettings" || this.props.icon === "selectList") ? 36 : 16} 16`}
