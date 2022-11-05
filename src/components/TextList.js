@@ -1,5 +1,6 @@
 import React from 'react';
 import '../Teleprompter.css';
+import ControlButton from './ControlButton';
 
 class TextList extends React.Component {
 	constructor(props) {
@@ -81,11 +82,12 @@ class TextList extends React.Component {
 
 		if (this.props.state.textCount === 0) {
 			return (
-				<div 
-					id="text-list" 
-					style={{ 
+				<div
+					id="text-list"
+					style={{
 						fontSize: this.props.state.fontSize,
-						color: stateColor }}>
+						color: stateColor
+					}}>
 					<p id="head-line">Loading text list...</p>
 				</div>
 			)
@@ -119,39 +121,31 @@ class TextList extends React.Component {
 						}} />
 					<p
 						id="text-marker"
-						style={{ 
+						style={{
 							top: (this.props.state.fontSize * this.props.state.lineHeight),
-							left: (this.props.state.fontSize * 0.19) }}>
+							left: (this.props.state.fontSize * 0.19)
+						}}>
 						&#129170;
 					</p>
 					<div id="control" style={{ width: respWidth }}>
-						<button
-							id="button-a"
-							style={{
-								color: stateColor,
-								borderColor: stateColor
-							}}
-							onClick={this.handleButtonASelectSet} >
-							&#9711; / &#8984;
-						</button>
-						<button
-							id="button-b"
-							style={{
-								color: stateColor,
-								borderColor: stateColor
-							}}
-							onClick={this.handleButtonBUp} >
-							&#9651;
-						</button>
-						<button
-							id="button-c"
-							style={{
-								color: stateColor,
-								borderColor: stateColor
-							}}
-							onClick={this.handleButtonCDown} >
-							&#9661;
-						</button>
+						<ControlButton
+							fontSize={this.props.state.fontSize}
+							stateColor={stateColor}
+							clickHandler={this.handleButtonASelectSet}
+							icon="selectSettings"
+						/>
+						<ControlButton
+							fontSize={this.props.state.fontSize}
+							stateColor={stateColor}
+							clickHandler={this.handleButtonBUp}
+							icon="up"
+						/>
+						<ControlButton
+							fontSize={this.props.state.fontSize}
+							stateColor={stateColor}
+							clickHandler={this.handleButtonCDown}
+							icon="down"
+						/>
 					</div>
 				</div>
 			)
