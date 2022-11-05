@@ -64,7 +64,7 @@ class StartHelp extends React.Component {
 					}
 				} else if (event.key === "b") {
 					if (((new Date()).getTime() - this.state.keyDownTime) > this.props.state.holdButtonTime) {
-						this.handleButtonBSelect();
+						this.handleButtonBList();
 					} else {
 						return {
 							keyHold: false,
@@ -78,7 +78,7 @@ class StartHelp extends React.Component {
 
 	handleButtonASet = () => this.props.mode("set");
 
-	handleButtonBSelect = () => this.props.mode("select");
+	handleButtonBList = () => this.props.mode("select");
 
 	handleButtonCDown = () => {
 		this.setState((prevState) => {
@@ -147,33 +147,24 @@ class StartHelp extends React.Component {
 					<li>&#8984; - Settings</li>
 				</ul>
 				<div id="control" style={{ width: respWidth }}>
-					<button
-						id="button-a"
-						style={{
-							color: stateColor,
-							borderColor: stateColor
-						}}
-						onClick={this.handleButtonASet} >
-						&#8984;
-					</button>
-					<button
-						id="button-b"
-						style={{
-							color: stateColor,
-							borderColor: stateColor
-						}}
-						onClick={this.handleButtonBSelect} >
-						&#9636;
-					</button>
-					<button
-						id="button-c"
-						style={{
-							color: stateColor,
-							borderColor: stateColor
-						}}
-						onClick={this.handleButtonCDown} >
-						&#9661;
-					</button>
+					<ControlButton
+						fontSize={this.props.state.fontSize}
+						stateColor={stateColor}
+						clickHandler={this.handleButtonASet}
+						icon="settings"
+					/>
+					<ControlButton
+						fontSize={this.props.state.fontSize}
+						stateColor={stateColor}
+						clickHandler={this.handleButtonBList}
+						icon="list"
+					/>
+					<ControlButton
+						fontSize={this.props.state.fontSize}
+						stateColor={stateColor}
+						clickHandler={this.handleButtonCDown}
+						icon="down"
+					/>
 				</div>
 			</div>
 		)
