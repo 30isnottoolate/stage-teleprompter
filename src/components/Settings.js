@@ -1,5 +1,6 @@
 import React from 'react';
 import '../Teleprompter.css';
+import Marker from './Marker';
 import ControlButton from './ControlButton';
 
 class Settings extends React.Component {
@@ -214,14 +215,13 @@ class Settings extends React.Component {
 					className={this.state.settingsIndex === 1 ? "visible" : "hidden"}>
 					SETTINGS:
 				</p>
-				<p
-					id="text-marker"
-					style={{
-						top: (this.props.state.fontSize * this.props.state.lineHeight),
-						left: this.props.state.fontSize * 0.19
-					}} >
-					&#129170;
-				</p>
+				<Marker
+					top={this.props.state.fontSize * this.props.state.lineHeight}
+					left={this.props.state.fontSize * 0.19}
+					fontSize={this.props.state.fontSize}
+					lineHeight={this.props.state.lineHeight}
+					stateColor={stateColor}
+				/>
 				<ul style={{ top: listPosTop, left: listPosLeftA }}>
 					<li>Font size:</li>
 					<li>Line height:</li>
