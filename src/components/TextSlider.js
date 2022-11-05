@@ -1,5 +1,6 @@
 import React from 'react';
 import '../Teleprompter.css';
+import ControlButton from './ControlButton';
 
 const READ_SPEED_COEF = 0.0151; // char/ms
 
@@ -97,7 +98,7 @@ class TextSlider extends React.Component {
 					}
 				} else if (event.key === "b") {
 					if (holdButtonCondition) {
-						this.handleButtonBSelect();
+						this.handleButtonBList();
 					}
 					else {
 						return holdButtonReset;
@@ -149,7 +150,7 @@ class TextSlider extends React.Component {
 
 	handleButtonASet = () => this.props.mode("set");
 
-	handleButtonBSelect = () => this.props.mode("select");
+	handleButtonBList = () => this.props.mode("select");
 
 	handleButtonCStartStop = () => {
 		this.setState((prevState) => ({
@@ -172,11 +173,11 @@ class TextSlider extends React.Component {
 
 		const buttonCLabel = () => {
 			if (this.state.endReached) {
-				return String.fromCharCode(9661);
+				return "next";
 			} else {
 				if (this.state.active) {
-					return String.fromCharCode(9634);
-				} else return String.fromCharCode(9655);
+					return "pause";
+				} else return "play";
 			}
 		}
 
@@ -214,33 +215,24 @@ class TextSlider extends React.Component {
 					id="control"
 					className={this.state.active ? "transparent" : "visible"}
 					style={{ width: respWidth }}>
-					<button
-						id="button-a"
-						style={{
-							color: stateColor,
-							borderColor: stateColor
-						}}
-						onClick={this.handleButtonASet}>
-						&#8984;
-					</button>
-					<button
-						id="button-b"
-						style={{
-							color: stateColor,
-							borderColor: stateColor
-						}}
-						onClick={this.handleButtonBSelect}>
-						&#9636;
-					</button>
-					<button
-						id="button-c"
-						style={{
-							color: stateColor,
-							borderColor: stateColor
-						}}
-						onClick={this.handleButtonCStartStop}>
-						{buttonCLabel()}
-					</button>
+					<ControlButton
+						fontSize={this.props.state.fontSize}
+						stateColor={stateColor}
+						clickHandler={this.handleButtonASet}
+						icon="settings"
+					/>
+					<ControlButton
+						fontSize={this.props.state.fontSize}
+						stateColor={stateColor}
+						clickHandler={this.handleButtonBList}
+						icon="list"
+					/>
+					<ControlButton
+						fontSize={this.props.state.fontSize}
+						stateColor={stateColor}
+						clickHandler={this.handleButtonCStartStop}
+						icon={buttonCLabel()}
+					/>
 				</div>
 			</div>
 		)
