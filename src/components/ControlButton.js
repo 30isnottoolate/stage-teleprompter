@@ -5,14 +5,17 @@ class ControlButton extends React.Component {
     render() {
         return (
             <button
-                style={{borderColor: this.props.stateColor}} 
-                onClick={this.props.clickHandler}>
+                style={{ borderColor: this.props.stateColor }}
+                onClick={this.props.clickHandler}
+                onMouseDown={this.props.mouseDownHandler}
+                onMouseUp={this.props.mouseUpHandler}
+            >
                 <svg
                     width={(this.props.icon === "selectSettings" || this.props.icon === "selectList") ? 70 * 2.25 : 70}
                     height={80}
                     fill={this.props.stateColor}
                     viewBox={`0 0 ${(this.props.icon === "selectSettings" || this.props.icon === "selectList") ? 36 : 16} 16`}
-                    dangerouslySetInnerHTML={{__html: icons[this.props.icon]}}>
+                    dangerouslySetInnerHTML={{ __html: icons[this.props.icon] }}>
                 </svg>
             </button>
         );
