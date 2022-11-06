@@ -23,37 +23,41 @@ class TextList extends React.Component {
 	}
 
 	handleKeyPress = (event) => {
-		this.setState((prevState) => {
-			if (!prevState.keyHold) {
-				if (event.key === "a") {
-					return {
-						keyHold: true,
-						keyDownTime: (new Date()).getTime()
-					}
-				} else if (event.key === "b" && !event.repeat) {
-					this.handleButtonBUp();
-				} else if (event.key === "c" && !event.repeat) {
-					this.handleButtonCDown();
-				}
-			}
-		});
+		if (event.key === "a") {
+			this.handleButtonAPushDown();
+		} else if (event.key === "b" && !event.repeat) {
+			this.handleButtonBUp();
+		} else if (event.key === "c" && !event.repeat) {
+			this.handleButtonCDown();
+		}
 	}
 
 	handleKeyHold = (event) => {
-		this.setState((prevState) => {
-			if (prevState.keyHold) {
-				if (event.key === "a") {
-					if (((new Date()).getTime() - this.state.keyDownTime) > this.props.state.holdButtonTime) {
-						this.props.mode("set");
-					} else {
-						this.handleButtonASelectSet();
-					}
-				}
-			}
-		});
+		if (event.key === "a") {
+			this.handleButtonAPushUp();
+		}
 	}
 
-	handleButtonASelectSet = () => this.props.mode("read");
+	handleButtonAPushDown = () => {
+		if (!this.state.keyHold) {
+			this.setState(() => {
+				return {
+					keyHold: true,
+					keyDownTime: (new Date()).getTime()
+				}
+			});
+		}
+	}
+
+	handleButtonAPushUp = () => {
+		if (this.state.keyHold) {
+			if (((new Date()).getTime() - this.state.keyDownTime) > this.props.state.holdButtonTime) {
+				this.props.mode("set");
+			} else {
+				this.props.mode("read");
+			}
+		}
+	}
 
 	handleButtonBUp = () => {
 		if (this.props.state.textIndex > 1) {
@@ -131,7 +135,8 @@ class TextList extends React.Component {
 						<ControlButton
 							fontSize={this.props.state.fontSize}
 							stateColor={stateColor}
-							clickHandler={this.handleButtonASelectSet}
+							mouseDownHandler={this.handleButtonADown}
+							mouseUpHandler={this.handleButtonAUp}
 							icon="selectSettings"
 						/>
 						<ControlButton
