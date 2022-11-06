@@ -29,7 +29,7 @@ class Settings extends React.Component {
 
 	handleKeyPress(event) {
 		if (event.key === "a") {
-			this.handleButtonADown();
+			this.handleButtonAPushDown();
 		} else {
 			if ((!this.state.inChangeMode && !event.repeat) || this.state.inChangeMode) {
 				if (event.key === "b") {
@@ -43,11 +43,11 @@ class Settings extends React.Component {
 
 	handleKeyHold(event) {
 		if (event.key === "a") {
-			this.handleButtonAUp();
+			this.handleButtonAPushUp();
 		}
 	}
 
-	handleButtonADown = () => {
+	handleButtonAPushDown = () => {
 		if (!this.state.keyHold) {
 			this.setState(() => {
 				if (!this.state.inChangeMode) {
@@ -64,7 +64,7 @@ class Settings extends React.Component {
 		}
 	}
 
-	handleButtonAUp = () => {
+	handleButtonAPushUp = () => {
 		if (this.state.keyHold) {
 			if (((new Date()).getTime() - this.state.keyDownTime) > this.props.state.holdButtonTime) {
 				this.props.mode("select");
@@ -251,20 +251,20 @@ class Settings extends React.Component {
 					<ControlButton
 						fontSize={this.props.state.fontSize}
 						stateColor={stateColor}
-						mouseDownHandler={this.handleButtonADown}
-						mouseUpHandler={this.handleButtonAUp}
+						mouseDownHandler={this.handleButtonAPushDown}
+						mouseUpHandler={this.handleButtonAPushUp}
 						icon="selectList"
 					/>
 					<ControlButton
 						fontSize={this.props.state.fontSize}
 						stateColor={stateColor}
-						clickHandler={this.handleButtonBUpDecrease}
+						mouseDownHandler={this.handleButtonBUpDecrease}
 						icon={this.state.inChangeMode ? "left" : "up"}
 					/>
 					<ControlButton
 						fontSize={this.props.state.fontSize}
 						stateColor={stateColor}
-						clickHandler={this.handleButtonCDownIncrease}
+						mouseDownHandler={this.handleButtonCDownIncrease}
 						icon={this.state.inChangeMode ? "right" : "down"}
 					/>
 				</div>
