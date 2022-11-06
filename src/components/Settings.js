@@ -84,6 +84,33 @@ class Settings extends React.Component {
 		});
 	}
 
+	handleButtonADown = () => {
+		if (!this.state.keyHold) {
+			this.setState(() => {
+				if (!this.state.inChangeMode) {
+					return {
+						keyHold: true,
+						keyDownTime: (new Date()).getTime()
+					}
+				} else {
+					return {
+						inChangeMode: false
+					}
+				}
+			});
+		}
+	}
+
+	handleButtonAUp = () => {
+		if (this.state.keyHold) {
+			if (((new Date()).getTime() - this.state.keyDownTime) > this.props.state.holdButtonTime) {
+				this.props.mode("select");
+			} else {
+				this.handleButtonAOptionList();
+			}
+		}
+	}
+
 	handleButtonBUpDecrease = () => {
 		if (this.state.inChangeMode) {
 			switch (this.state.settingsIndex) {
@@ -245,7 +272,8 @@ class Settings extends React.Component {
 					<ControlButton
 						fontSize={this.props.state.fontSize}
 						stateColor={stateColor}
-						clickHandler={this.handleButtonAOptionList}
+						mouseDownHandler={this.handleButtonADown}
+						mouseUpHandler={this.handleButtonAUp}
 						icon="selectList"
 					/>
 					<ControlButton
