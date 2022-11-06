@@ -135,8 +135,8 @@ class TextList extends React.Component {
 						<ControlButton
 							fontSize={this.props.state.fontSize}
 							stateColor={stateColor}
-							mouseDownHandler={this.handleButtonADown}
-							mouseUpHandler={this.handleButtonAUp}
+							mouseDownHandler={this.handleButtonAPushDown}
+							mouseUpHandler={this.handleButtonAPushUp}
 							icon="selectSettings"
 						/>
 						<ControlButton
