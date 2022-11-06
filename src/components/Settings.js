@@ -28,19 +28,8 @@ class Settings extends React.Component {
 	}
 
 	handleKeyPress(event) {
-		if (!this.state.keyHold && event.key === "a") {
-			this.setState(() => {
-				if (!this.state.inChangeMode) {
-					return {
-						keyHold: true,
-						keyDownTime: (new Date()).getTime()
-					}
-				} else {
-					return {
-						inChangeMode: false
-					}
-				}
-			});
+		if (event.key === "a") {
+			this.handleButtonADown();
 		} else {
 			if ((!this.state.inChangeMode && !event.repeat) || this.state.inChangeMode) {
 				if (event.key === "b") {
@@ -53,35 +42,9 @@ class Settings extends React.Component {
 	}
 
 	handleKeyHold(event) {
-		if (this.state.keyHold) {
-			if (event.key === "a") {
-				if (((new Date()).getTime() - this.state.keyDownTime) > this.props.state.holdButtonTime) {
-					this.props.mode("select");
-				} else {
-					this.handleButtonAOptionList();
-				}
-			}
+		if (event.key === "a") {
+			this.handleButtonAUp();
 		}
-	}
-
-	handleButtonAOptionList = () => {
-		this.setState((prevState) => {
-			if (this.state.settingsIndex === 7) {
-				this.props.default();
-				return {
-					keyHold: false,
-					keyDownTime: ""
-				}
-			} else if (this.state.settingsIndex === 8) {
-				this.props.mode("start");
-			} else {
-				return {
-					keyHold: false,
-					keyDownTime: "",
-					inChangeMode: !prevState.inChangeMode
-				}
-			}
-		});
 	}
 
 	handleButtonADown = () => {
@@ -106,7 +69,23 @@ class Settings extends React.Component {
 			if (((new Date()).getTime() - this.state.keyDownTime) > this.props.state.holdButtonTime) {
 				this.props.mode("select");
 			} else {
-				this.handleButtonAOptionList();
+				this.setState((prevState) => {
+					if (this.state.settingsIndex === 7) {
+						this.props.default();
+						return {
+							keyHold: false,
+							keyDownTime: ""
+						}
+					} else if (this.state.settingsIndex === 8) {
+						this.props.mode("start");
+					} else {
+						return {
+							keyHold: false,
+							keyDownTime: "",
+							inChangeMode: !prevState.inChangeMode
+						}
+					}
+				});
 			}
 		}
 	}
