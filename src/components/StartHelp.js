@@ -150,19 +150,19 @@ class StartHelp extends React.Component {
 					<ControlButton
 						fontSize={this.props.state.fontSize}
 						stateColor={stateColor}
-						clickHandler={this.handleButtonASet}
+						mouseDownHandler={this.handleButtonASet}
 						icon="settings"
 					/>
 					<ControlButton
 						fontSize={this.props.state.fontSize}
 						stateColor={stateColor}
-						clickHandler={this.handleButtonBList}
+						mouseDownHandler={this.handleButtonBList}
 						icon="list"
 					/>
 					<ControlButton
 						fontSize={this.props.state.fontSize}
 						stateColor={stateColor}
-						clickHandler={this.handleButtonCDown}
+						mouseDownHandler={this.handleButtonCDown}
 						icon="down"
 					/>
 				</div>
