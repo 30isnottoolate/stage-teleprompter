@@ -154,9 +154,21 @@ class TextSlider extends React.Component {
 	handleButtonBList = () => this.props.mode("select");
 
 	handleButtonCStartStop = () => {
-		this.setState((prevState) => ({
-			active: !prevState.active
-		}));
+		this.setState((prevState, prevProps) => {
+			if (this.state.endReached) {
+				if (this.props.state.textIndex < this.props.state.textCount) {
+					this.fetchText(prevProps.state.textIndex + 1);
+					this.props.index(prevProps.state.textIndex + 1);
+				} else {
+					this.fetchText(1);
+					this.props.index(1);
+				}
+			} else {
+				return {
+					active: !prevState.active
+				}
+			}
+		});
 	}
 
 	render() {
