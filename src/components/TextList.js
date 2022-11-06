@@ -142,13 +142,13 @@ class TextList extends React.Component {
 						<ControlButton
 							fontSize={this.props.state.fontSize}
 							stateColor={stateColor}
-							clickHandler={this.handleButtonBUp}
+							mouseDownHandler={this.handleButtonBUp}
 							icon="up"
 						/>
 						<ControlButton
 							fontSize={this.props.state.fontSize}
 							stateColor={stateColor}
-							clickHandler={this.handleButtonCDown}
+							mouseDownHandler={this.handleButtonCDown}
 							icon="down"
 						/>
 					</div>
