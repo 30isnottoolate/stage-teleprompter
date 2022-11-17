@@ -79,7 +79,7 @@ class TextList extends React.Component {
 		let listPos = (2 - this.props.state.textIndex) * this.props.state.fontSize * this.props.state.lineHeight;
 		let stateColor = this.props.colors[this.props.state.colorIndex].code;
 		let respWidth;
-		let list = "";
+		let list = [];
 
 		if (this.props.state.orientation === "vertical") {
 			respWidth = "100vh"
@@ -99,7 +99,7 @@ class TextList extends React.Component {
 		} else {
 			let i = 0;
 			for (const item in this.props.state.data.texts) {
-				list = list + `<li key=${i}>${this.props.state.data.texts[item].title}</li>`;
+				list.push(<li key={i}>{this.props.state.data.texts[item].title}</li>);
 				i++;
 			}
 
@@ -118,12 +118,14 @@ class TextList extends React.Component {
 						SELECT:
 					</p>
 					<ul
-						dangerouslySetInnerHTML={{ __html: list }}
 						style={{
 							top: listPos,
 							left: (this.props.state.fontSize * 0.69),
 							width: `calc(${respWidth} - ${(this.props.state.fontSize * 0.69)}px)`
-						}} />
+						}}
+					>
+					{list.map(item => item)}	
+					</ul>
 					<Marker
 						top={this.props.state.fontSize * this.props.state.lineHeight}
 						left={this.props.state.fontSize * 0.19}
