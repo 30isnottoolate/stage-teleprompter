@@ -83,6 +83,10 @@ button {
 	border-bottom: none;
 }
 
+button > svg {
+	vertical-align: middle
+}
+
 .hidden {
 	opacity: 0;
 	transition-property: opacity;
