@@ -175,16 +175,6 @@ class TextSlider extends React.Component {
 		let stateColor = this.props.colors[this.props.state.colorIndex].code;
 		let responsiveWidth = this.props.state.orientation === "vertical" ? "100vh" : "100vw";
 
-		const buttonCLabel = () => {
-			if (this.state.endReached) {
-				return "next";
-			} else {
-				if (this.state.active) {
-					return "pause";
-				} else return "play";
-			}
-		}
-
 		return (
 			<div
 				id="text-slide"
@@ -235,7 +225,7 @@ class TextSlider extends React.Component {
 						fontSize={this.props.state.fontSize}
 						stateColor={stateColor}
 						mouseDownHandler={this.handleButtonCStartStop}
-						icon={buttonCLabel()}
+						icon={this.state.endReached ? "next" : this.state.active ? "pause" : "play"}
 					/>
 				</div>
 			</div>
