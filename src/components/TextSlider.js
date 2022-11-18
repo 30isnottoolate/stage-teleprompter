@@ -201,9 +201,9 @@ class TextSlider extends React.Component {
 						left: (this.props.state.fontSize * 0.69),
 						transitionProperty: this.props.state.textSpeed < 50 ? "top" : "none"
 					}} >
-					<p
-						id="text"
-						dangerouslySetInnerHTML={{ __html: this.state.currentText }} />
+					<p id="text">
+						{this.state.currentText}
+					</p>
 				</div>
 				<div
 					id="control"
