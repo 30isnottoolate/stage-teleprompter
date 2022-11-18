@@ -215,7 +215,7 @@ class TextSlider extends React.Component {
 					ref={this.slideRef}
 					style={{
 						top: this.state.position,
-						width: `calc(${respWidth} - ${(this.props.state.fontSize * 0.69)}px)`,
+						width: `calc(${respWidth} - ${(1.5 * this.props.state.fontSize * 0.69)}px)`,
 						fontSize: this.props.state.fontSize,
 						left: (this.props.state.fontSize * 0.69),
 						transitionProperty: slideStyle
