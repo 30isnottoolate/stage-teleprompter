@@ -173,7 +173,7 @@ class TextSlider extends React.Component {
 
 	render() {
 		let stateColor = this.props.colors[this.props.state.colorIndex].code;
-		let respWidth = this.props.state.orientation === "vertical" ? "100vh" : "100vw";
+		let responsiveWidth = this.props.state.orientation === "vertical" ? "100vh" : "100vw";
 
 		const buttonCLabel = () => {
 			if (this.state.endReached) {
@@ -206,7 +206,7 @@ class TextSlider extends React.Component {
 					ref={this.slideRef}
 					style={{
 						top: this.state.position,
-						width: `calc(${respWidth} - ${(1.5 * this.props.state.fontSize * 0.69)}px)`,
+						width: `calc(${responsiveWidth} - ${(1.5 * this.props.state.fontSize * 0.69)}px)`,
 						fontSize: this.props.state.fontSize,
 						left: (this.props.state.fontSize * 0.69),
 						transitionProperty: this.props.state.textSpeed < 50 ? "top" : "none"
@@ -218,7 +218,7 @@ class TextSlider extends React.Component {
 				<div
 					id="control"
 					className={this.state.active ? "transparent" : "visible"}
-					style={{ width: respWidth }}>
+					style={{ width: responsiveWidth }}>
 					<ControlButton
 						fontSize={this.props.state.fontSize}
 						stateColor={stateColor}
