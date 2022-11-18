@@ -173,11 +173,7 @@ class TextSlider extends React.Component {
 
 	render() {
 		let stateColor = this.props.colors[this.props.state.colorIndex].code;
-		let respWidth;
-
-		if (this.props.state.orientation === "vertical") {
-			respWidth = "100vh";
-		} else respWidth = "100vw";
+		let respWidth = this.props.state.orientation === "vertical" ? "100vh" : "100vw";
 
 		const buttonCLabel = () => {
 			if (this.state.endReached) {
