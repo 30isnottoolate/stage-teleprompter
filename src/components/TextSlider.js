@@ -174,15 +174,10 @@ class TextSlider extends React.Component {
 	render() {
 		let stateColor = this.props.colors[this.props.state.colorIndex].code;
 		let respWidth;
-		let slideStyle;
 
 		if (this.props.state.orientation === "vertical") {
 			respWidth = "100vh";
 		} else respWidth = "100vw";
-
-		if (this.props.state.textSpeed < 50) {
-			slideStyle = "top";
-		} else slideStyle = "none";
 
 		const buttonCLabel = () => {
 			if (this.state.endReached) {
@@ -218,7 +213,7 @@ class TextSlider extends React.Component {
 						width: `calc(${respWidth} - ${(1.5 * this.props.state.fontSize * 0.69)}px)`,
 						fontSize: this.props.state.fontSize,
 						left: (this.props.state.fontSize * 0.69),
-						transitionProperty: slideStyle
+						transitionProperty: this.props.state.textSpeed < 50 ? "top" : "none"
 					}} >
 					<p
 						id="text"
