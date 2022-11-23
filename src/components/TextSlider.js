@@ -44,12 +44,9 @@ class TextSlider extends React.Component {
 
 	componentWillUnmount() {
 		clearInterval(this.state.timer);
+		
 		document.removeEventListener("keydown", this.handleKeyPress);
 		document.removeEventListener("keyup", this.handleKeyHold);
-	}
-
-	countEmptyLines = (input) => {
-		return (input.match(/^[ ]*$/gm) || []).length;
 	}
 
 	fetchText = (index) => {
@@ -70,6 +67,10 @@ class TextSlider extends React.Component {
 				});
 			})
 			.catch(() => console.log("Text missing."));
+	}
+
+	countEmptyLines = (input) => {
+		return (input.match(/^[ ]*$/gm) || []).length;
 	}
 
 	handleKeyPress = (event) => {
@@ -229,7 +230,7 @@ class TextSlider extends React.Component {
 					/>
 				</div>
 			</div>
-		)
+		);
 	}
 }
 
