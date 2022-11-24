@@ -15,7 +15,7 @@ class TextSlider extends React.Component {
 			currentText: "Loading...",
 			endReached: false,
 			keyHold: false,
-			keyDownTime: ""
+			keyDownTime: 0
 		};
 
 		this.slideRef = React.createRef();
@@ -75,7 +75,7 @@ class TextSlider extends React.Component {
 					currentText: data,
 					endReached: false,
 					keyHold: false,
-					keyDownTime: ""
+					keyDownTime: 0
 				});
 			})
 			.catch(() => console.log("Text missing."));
@@ -101,7 +101,7 @@ class TextSlider extends React.Component {
 	handleKeyHold = (event) => {
 		this.setState((prevState, prevProps) => {
 			let holdButtonCondition = ((new Date()).getTime() - prevState.keyDownTime) > this.props.state.holdButtonTime;
-			let holdButtonReset = { keyHold: false, keyDownTime: "" };
+			let holdButtonReset = { keyHold: false, keyDownTime: 0 };
 
 			if (prevState.keyHold) {
 				if (event.key === "a") {
@@ -134,7 +134,7 @@ class TextSlider extends React.Component {
 						return {
 							active: !prevState.active,
 							keyHold: false,
-							keyDownTime: ""
+							keyDownTime: 0
 						}
 					}
 				}

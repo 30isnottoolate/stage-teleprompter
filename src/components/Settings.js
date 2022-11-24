@@ -10,7 +10,7 @@ class Settings extends React.Component {
 			settingsIndex: 1,
 			inChangeMode: false,
 			keyHold: false,
-			keyDownTime: ""
+			keyDownTime: 0
 		};
 
 		this.handleKeyPress = this.handleKeyPress.bind(this);
@@ -74,14 +74,14 @@ class Settings extends React.Component {
 						this.props.default();
 						return {
 							keyHold: false,
-							keyDownTime: ""
+							keyDownTime: 0
 						}
 					} else if (this.state.settingsIndex === 8) {
 						this.props.mode("start");
 					} else {
 						return {
 							keyHold: false,
-							keyDownTime: "",
+							keyDownTime: 0,
 							inChangeMode: !prevState.inChangeMode
 						}
 					}

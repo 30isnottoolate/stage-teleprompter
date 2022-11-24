@@ -8,7 +8,7 @@ class TextList extends React.Component {
 		super(props);
 		this.state = {
 			keyHold: false,
-			keyDownTime: ""
+			keyDownTime: 0
 		};
 	}
 

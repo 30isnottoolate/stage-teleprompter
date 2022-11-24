@@ -9,7 +9,7 @@ class StartHelp extends React.Component {
 		this.state = {
 			helpIndex: 1,
 			keyHold: false,
-			keyDownTime: ""
+			keyDownTime: 0
 		};
 	}
 
@@ -60,7 +60,7 @@ class StartHelp extends React.Component {
 					} else {
 						return {
 							keyHold: false,
-							keyDownTime: ""
+							keyDownTime: 0
 						}
 					}
 				} else if (event.key === "b") {
@@ -69,7 +69,7 @@ class StartHelp extends React.Component {
 					} else {
 						return {
 							keyHold: false,
-							keyDownTime: ""
+							keyDownTime: 0
 						}
 					}
 				}
