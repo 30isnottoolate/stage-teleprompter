@@ -98,11 +98,11 @@ class StartHelp extends React.Component {
 	render() {
 		let listPos = (3 - this.state.helpIndex) * this.props.state.fontSize * this.props.state.lineHeight;
 		let stateColor = this.props.colors[this.props.state.colorIndex].code;
-		let respWidth;
+		let responsiveWidth;
 
 		if (this.props.state.orientation === "vertical") {
-			respWidth = "100vh";
-		} else respWidth = "100vw";
+			responsiveWidth = "100vh";
+		} else responsiveWidth = "100vw";
 
 		return (
 			<div
@@ -138,7 +138,7 @@ class StartHelp extends React.Component {
 					style={{
 						top: listPos,
 						left: this.props.state.fontSize * 0.69,
-						width: respWidth
+						width: responsiveWidth
 					}}>
 					<li>&#9651;&#9661; - Previous / Next</li>
 					<li>&#9665;&#9655; - Change setting</li>
@@ -146,7 +146,7 @@ class StartHelp extends React.Component {
 					<li>&#9636; - Text List</li>
 					<li>&#8984; - Settings</li>
 				</ul>
-				<div id="control" style={{ width: respWidth }}>
+				<div id="control" style={{ width: responsiveWidth }}>
 					<ControlButton
 						fontSize={this.props.state.fontSize}
 						stateColor={stateColor}

@@ -78,12 +78,12 @@ class TextList extends React.Component {
 	render() {
 		let listPos = (2 - this.props.state.textIndex) * this.props.state.fontSize * this.props.state.lineHeight;
 		let stateColor = this.props.colors[this.props.state.colorIndex].code;
-		let respWidth;
+		let responsiveWidth;
 		let list = [];
 
 		if (this.props.state.orientation === "vertical") {
-			respWidth = "100vh"
-		} else respWidth = "100vw";
+			responsiveWidth = "100vh"
+		} else responsiveWidth = "100vw";
 
 		if (this.props.state.textCount === 0) {
 			return (
@@ -121,7 +121,7 @@ class TextList extends React.Component {
 						style={{
 							top: listPos,
 							left: (this.props.state.fontSize * 0.69),
-							width: `calc(${respWidth} - ${(this.props.state.fontSize * 0.69)}px)`
+							width: `calc(${responsiveWidth} - ${(this.props.state.fontSize * 0.69)}px)`
 						}}
 					>
 					{list.map(item => item)}	
@@ -133,7 +133,7 @@ class TextList extends React.Component {
 						lineHeight={this.props.state.lineHeight}
 						stateColor={stateColor}
 					/>
-					<div id="control" style={{ width: respWidth }}>
+					<div id="control" style={{ width: responsiveWidth }}>
 						<ControlButton
 							fontSize={this.props.state.fontSize}
 							stateColor={stateColor}

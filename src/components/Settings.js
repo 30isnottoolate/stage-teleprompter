@@ -122,7 +122,7 @@ class Settings extends React.Component {
 					this.props.changeOrientation();
 					break;
 				default:
-					console.log("This should have never happened.");
+					console.log("The impossible just happened.");
 			}
 		} else {
 			this.setState((prevState) => {
@@ -171,7 +171,7 @@ class Settings extends React.Component {
 					this.props.changeOrientation();
 					break;
 				default:
-					console.log("This should have never happened.");
+					console.log("The impossible just happened.");
 			}
 		} else {
 			this.setState((prevState) => {
@@ -193,11 +193,11 @@ class Settings extends React.Component {
 		let listPosLeftA;
 		let listPosLeftB;
 		let stateColor = this.props.colors[this.props.state.colorIndex].code;
-		let respWidth;
+		let responsiveWidth;
 
 		if (this.props.state.orientation === "vertical") {
-			respWidth = "100vh";
-		} else respWidth = "100vw";
+			responsiveWidth = "100vh";
+		} else responsiveWidth = "100vw";
 
 		if (this.state.inChangeMode) {
 			listPosLeftA = this.props.state.fontSize * 0.69 - this.props.state.fontSize * 8.02;
@@ -247,7 +247,7 @@ class Settings extends React.Component {
 					<li>{this.props.state.orientation}</li>
 					<li></li>
 				</ul>
-				<div id="control" style={{ width: respWidth }}>
+				<div id="control" style={{ width: responsiveWidth }}>
 					<ControlButton
 						fontSize={this.props.state.fontSize}
 						stateColor={stateColor}
