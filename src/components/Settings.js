@@ -190,22 +190,10 @@ class Settings extends React.Component {
 
 	render() {
 		let listPosTop = (2 - this.state.settingsIndex) * this.props.state.fontSize * this.props.state.lineHeight;
-		let listPosLeftA;
-		let listPosLeftB;
+		let listPosLeftA = (inChangeMode) ? this.props.state.fontSize * 0.69 - this.props.state.fontSize * 8.02 : this.props.state.fontSize * 0.69;
+		let listPosLeftB = (inChangeMode) ? this.props.state.fontSize * 0.69 : this.props.state.fontSize * 8.02;
 		let stateColor = this.props.colors[this.props.state.colorIndex].code;
-		let responsiveWidth;
-
-		if (this.props.state.orientation === "vertical") {
-			responsiveWidth = "100vh";
-		} else responsiveWidth = "100vw";
-
-		if (this.state.inChangeMode) {
-			listPosLeftA = this.props.state.fontSize * 0.69 - this.props.state.fontSize * 8.02;
-			listPosLeftB = this.props.state.fontSize * 0.69;
-		} else {
-			listPosLeftA = this.props.state.fontSize * 0.69;
-			listPosLeftB = this.props.state.fontSize * 8.02;
-		}
+		let responsiveWidth = (this.props.state.orientation === "vertical") ? "100vh" : "100vw";
 
 		return (
 			<div
