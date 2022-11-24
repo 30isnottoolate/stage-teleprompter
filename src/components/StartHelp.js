@@ -98,11 +98,7 @@ class StartHelp extends React.Component {
 	render() {
 		let listPos = (3 - this.state.helpIndex) * this.props.state.fontSize * this.props.state.lineHeight;
 		let stateColor = this.props.colors[this.props.state.colorIndex].code;
-		let responsiveWidth;
-
-		if (this.props.state.orientation === "vertical") {
-			responsiveWidth = "100vh";
-		} else responsiveWidth = "100vw";
+		let responsiveWidth = (this.props.state.orientation === "vertical") ? "100vh" : "100vw";
 
 		return (
 			<div
