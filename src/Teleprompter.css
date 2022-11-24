@@ -73,10 +73,7 @@ li,
 
 button {
 	background-color: #05100b;
-	font-size: 5.5vh;
-	font-weight: bold;
-	text-align: center;
-	height: 9vh;
+	padding: 3px 0 6px 0;
 	border-radius: 10px 10px 0 0;
 	border-width: 3px;
 	border-style: solid;
