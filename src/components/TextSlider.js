@@ -10,7 +10,7 @@ class TextSlider extends React.Component {
 		super(props);
 		this.state = {
 			active: false,
-			timer: "",
+			timer: () => {},
 			position: 0,
 			currentText: "Loading...",
 			endReached: false,
@@ -29,22 +29,34 @@ class TextSlider extends React.Component {
 	}
 
 	componentDidUpdate(prevProps, prevState) {
-		if (this.state.currentText !== prevState.currentText) {
-			let noEmptyLinesTextHeight = this.slideRef.current.offsetHeight - this.props.state.fontSize * this.props.state.lineHeight * this.countEmptyLines(this.state.currentText);
+		if ((this.state.currentText !== prevState.currentText) || (this.state.active !== prevState.active)) {
+			let noEmptyLinesTextHeight = this.slideRef.current.offsetHeight - this.props.state.fontSize * 
+				this.props.state.lineHeight * this.countEmptyLines(this.state.currentText);
 			let intervalValue = (this.state.currentText.length / (noEmptyLinesTextHeight * READ_SPEED_COEF)) * (100 / this.props.state.textSpeed);
-			let intervalID = setInterval(() => { this.moveSlide(); }, intervalValue);
 
 			clearInterval(this.state.timer);
 
-			this.setState({
-				timer: intervalID
+			if (this.state.active) {
+				this.setState({
+					timer: setInterval(() => this.setState((prevState) => ({position: prevState.position - 1})), intervalValue)
+				});
+			}
+		} else if (this.state.position !== prevState.position) {
+			this.setState((prevState) => {
+				if (!(this.slideRef.current.offsetHeight > ((-1) * prevState.position + (this.props.state.fontSize * this.props.state.lineHeight * 2)) 
+				&& (prevState.position) <= (this.props.state.fontSize * this.props.state.lineHeight))) {
+					return {
+						active: false,
+						endReached: true
+					}
+				}
 			});
 		}
 	}
 
 	componentWillUnmount() {
 		clearInterval(this.state.timer);
-		
+
 		document.removeEventListener("keydown", this.handleKeyPress);
 		document.removeEventListener("keyup", this.handleKeyHold);
 	}
@@ -124,26 +136,6 @@ class TextSlider extends React.Component {
 							keyHold: false,
 							keyDownTime: ""
 						}
-					}
-				}
-			}
-		});
-	}
-
-	moveSlide = () => {
-		this.setState((prevState) => {
-			if (prevState.active) {
-				if (this.slideRef.current.offsetHeight > (prevState.position * (-1) +
-					(this.props.state.fontSize * this.props.state.lineHeight * 2)) &&
-					(prevState.position) <= (this.props.state.fontSize * this.props.state.lineHeight)) {
-					return {
-						position: prevState.position - 1
-					}
-				} else {
-					return {
-						active: false,
-						position: prevState.position + 1,
-						endReached: true
 					}
 				}
 			}
