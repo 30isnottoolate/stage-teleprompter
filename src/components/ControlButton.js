@@ -3,6 +3,8 @@ import icons from '../utilities/icons';
 
 class ControlButton extends React.Component {
     render() {
+        let svgSize = 50 + this.props.fontSize * 0.25;
+        
         return (
             <button
                 style={{ borderColor: this.props.stateColor }}
@@ -11,8 +13,8 @@ class ControlButton extends React.Component {
                 onMouseUp={this.props.mouseUpHandler}
             >
                 <svg
-                    width={(this.props.icon === "selectSettings" || this.props.icon === "selectList") ? 70 * 2.25 : 70}
-                    height={80}
+                    width={(this.props.icon === "selectSettings" || this.props.icon === "selectList") ? svgSize * 2.25 : svgSize}
+                    height={svgSize}
                     fill={this.props.stateColor}
                     viewBox={`0 0 ${(this.props.icon === "selectSettings" || this.props.icon === "selectList") ? 36 : 16} 16`}
                 >
