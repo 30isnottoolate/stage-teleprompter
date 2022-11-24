@@ -71,7 +71,7 @@ class Settings extends React.Component {
 			} else {
 				this.setState((prevState) => {
 					if (this.state.settingsIndex === 7) {
-						this.props.default();
+						this.props.defaultSettings();
 						return {
 							keyHold: false,
 							keyDownTime: 0
@@ -95,27 +95,27 @@ class Settings extends React.Component {
 			switch (this.state.settingsIndex) {
 				case 1:
 					if (this.props.state.fontSize > 80) {
-						this.props.settings("fontSize", this.props.state.fontSize - 1);
+						this.props.changeSettings("fontSize", this.props.state.fontSize - 1);
 					}
 					break;
 				case 2:
 					if (this.props.state.lineHeight > 1) {
-						this.props.settings("lineHeight", this.props.state.lineHeight - 0.01);
+						this.props.changeSettings("lineHeight", this.props.state.lineHeight - 0.01);
 					}
 					break;
 				case 3:
 					if (this.props.state.colorIndex > 1) {
-						this.props.settings("colorIndex", this.props.state.colorIndex - 1);
+						this.props.changeSettings("colorIndex", this.props.state.colorIndex - 1);
 					}
 					break;
 				case 4:
 					if (this.props.state.textSpeed > 20) {
-						this.props.settings("textSpeed", this.props.state.textSpeed - 1);
+						this.props.changeSettings("textSpeed", this.props.state.textSpeed - 1);
 					}
 					break;
 				case 5:
 					if (this.props.state.holdButtonTime > 1000) {
-						this.props.settings("holdButtonTime", this.props.state.holdButtonTime - 10);
+						this.props.changeSettings("holdButtonTime", this.props.state.holdButtonTime - 10);
 					}
 					break;
 				case 6:
@@ -144,27 +144,27 @@ class Settings extends React.Component {
 			switch (this.state.settingsIndex) {
 				case 1:
 					if (this.props.state.fontSize < 150) {
-						this.props.settings("fontSize", this.props.state.fontSize + 1);
+						this.props.changeSettings("fontSize", this.props.state.fontSize + 1);
 					}
 					break;
 				case 2:
 					if (this.props.state.lineHeight < 1.5) {
-						this.props.settings("lineHeight", this.props.state.lineHeight + 0.01);
+						this.props.changeSettings("lineHeight", this.props.state.lineHeight + 0.01);
 					}
 					break;
 				case 3:
 					if (this.props.state.colorIndex < 5) {
-						this.props.settings("colorIndex", this.props.state.colorIndex + 1);
+						this.props.changeSettings("colorIndex", this.props.state.colorIndex + 1);
 					}
 					break;
 				case 4:
 					if (this.props.state.textSpeed < 200) {
-						this.props.settings("textSpeed", this.props.state.textSpeed + 1);
+						this.props.changeSettings("textSpeed", this.props.state.textSpeed + 1);
 					}
 					break;
 				case 5:
 					if (this.props.state.holdButtonTime < 5000) {
-						this.props.settings("holdButtonTime", this.props.state.holdButtonTime + 10);
+						this.props.changeSettings("holdButtonTime", this.props.state.holdButtonTime + 10);
 					}
 					break;
 				case 6:

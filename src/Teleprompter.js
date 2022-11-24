@@ -164,10 +164,10 @@ class Teleprompter extends React.Component {
 				<Settings
 					state={this.state}
 					mode={this.changeMode}
-					settings={this.changeSettings}
+					changeSettings={this.changeSettings}
 					changeOrientation={this.changeOrientation}
 					colors={colors}
-					default={this.defaultSettings} />
+					defaultSettings={this.defaultSettings} />
 			)
 		}
 	}
