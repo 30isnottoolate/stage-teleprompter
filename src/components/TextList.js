@@ -52,9 +52,9 @@ class TextList extends React.Component {
 	handleButtonAPushUp = () => {
 		if (this.state.keyHold) {
 			if (((new Date()).getTime() - this.state.keyDownTime) > this.props.state.holdButtonTime) {
-				this.props.mode("set");
+				this.props.changeMode("set");
 			} else {
-				this.props.mode("read");
+				this.props.changeMode("read");
 			}
 		}
 	}

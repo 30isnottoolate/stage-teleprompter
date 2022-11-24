@@ -67,7 +67,7 @@ class Settings extends React.Component {
 	handleButtonAPushUp = () => {
 		if (this.state.keyHold) {
 			if (((new Date()).getTime() - this.state.keyDownTime) > this.props.state.holdButtonTime) {
-				this.props.mode("select");
+				this.props.changeMode("select");
 			} else {
 				this.setState((prevState) => {
 					if (this.state.settingsIndex === 7) {
@@ -77,7 +77,7 @@ class Settings extends React.Component {
 							keyDownTime: 0
 						}
 					} else if (this.state.settingsIndex === 8) {
-						this.props.mode("start");
+						this.props.changeMode("start");
 					} else {
 						return {
 							keyHold: false,

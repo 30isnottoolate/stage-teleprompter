@@ -140,14 +140,14 @@ class Teleprompter extends React.Component {
 			return (
 				<StartHelp
 					settings={this.state}
-					mode={this.changeMode}
+					changeMode={this.changeMode}
 					colors={colors} />
 			)
 		} else if (this.state.mode === "select") {
 			return (
 				<TextList
 					state={this.state}
-					mode={this.changeMode}
+					changeMode={this.changeMode}
 					index={this.changeIndex}
 					colors={colors} />
 			)
@@ -155,7 +155,7 @@ class Teleprompter extends React.Component {
 			return (
 				<TextSlider
 					state={this.state}
-					mode={this.changeMode}
+					changeMode={this.changeMode}
 					index={this.changeIndex}
 					colors={colors} />
 			)
@@ -163,7 +163,7 @@ class Teleprompter extends React.Component {
 			return (
 				<Settings
 					state={this.state}
-					mode={this.changeMode}
+					changeMode={this.changeMode}
 					changeSettings={this.changeSettings}
 					changeOrientation={this.changeOrientation}
 					colors={colors}
