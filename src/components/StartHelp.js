@@ -55,7 +55,7 @@ class StartHelp extends React.Component {
 		this.setState((prevState) => {
 			if (prevState.keyHold) {
 				if (event.key === "a") {
-					if (((new Date()).getTime() - this.state.keyDownTime) > this.props.state.holdButtonTime) {
+					if (((new Date()).getTime() - this.state.keyDownTime) > this.props.settings.holdButtonTime) {
 						this.handleButtonASet();
 					} else {
 						return {
@@ -64,7 +64,7 @@ class StartHelp extends React.Component {
 						}
 					}
 				} else if (event.key === "b") {
-					if (((new Date()).getTime() - this.state.keyDownTime) > this.props.state.holdButtonTime) {
+					if (((new Date()).getTime() - this.state.keyDownTime) > this.props.settings.holdButtonTime) {
 						this.handleButtonBList();
 					} else {
 						return {
@@ -96,44 +96,47 @@ class StartHelp extends React.Component {
 	}
 
 	render() {
-		let listPos = (3 - this.state.helpIndex) * this.props.state.fontSize * this.props.state.lineHeight;
-		let stateColor = this.props.colors[this.props.state.colorIndex].code;
-		let responsiveWidth = (this.props.state.orientation === "vertical") ? "100vh" : "100vw";
+		const {helpIndex} = this.state;
+		const {settings, colors} = this.props;
+
+		let listPos = (3 - helpIndex) * settings.fontSize * settings.lineHeight;
+		let stateColor = colors[settings.colorIndex].code;
+		let responsiveWidth = (settings.orientation === "vertical") ? "100vh" : "100vw";
 
 		return (
 			<div
 				id="text-list"
-				className={this.props.state.orientation === "vertical" ? "rotate-cw" : ""}
+				className={settings.orientation === "vertical" ? "rotate-cw" : ""}
 				style={{
-					fontSize: this.props.state.fontSize,
+					fontSize: settings.fontSize,
 					color: stateColor,
-					lineHeight: this.props.state.lineHeight
+					lineHeight: settings.lineHeight
 				}}>
 				<p
 					id="head-line"
-					className={this.state.helpIndex <= 2 ? "visible" : "hidden"}>
+					className={helpIndex <= 2 ? "visible" : "hidden"}>
 					KV Teleprompter
 				</p>
 				<p
 					id="sub-line"
-					className={this.state.helpIndex === 1 ? "visible" : "hidden"}
+					className={helpIndex === 1 ? "visible" : "hidden"}
 					style={{
 						position: "absolute",
-						left: (this.props.state.fontSize * 0.69)
+						left: (settings.fontSize * 0.69)
 					}}>
 					Control symbols:
 				</p>
 				<Marker
-					top={2 * this.props.state.fontSize * this.props.state.lineHeight}
-					left={this.props.state.fontSize * 0.19}
-					fontSize={this.props.state.fontSize}
-					lineHeight={this.props.state.lineHeight}
+					top={2 * settings.fontSize * settings.lineHeight}
+					left={settings.fontSize * 0.19}
+					fontSize={settings.fontSize}
+					lineHeight={settings.lineHeight}
 					stateColor={stateColor}
 				/>
 				<ul
 					style={{
 						top: listPos,
-						left: this.props.state.fontSize * 0.69,
+						left: settings.fontSize * 0.69,
 						width: responsiveWidth
 					}}>
 					<li>&#9651;&#9661; - Previous / Next</li>
@@ -144,19 +147,19 @@ class StartHelp extends React.Component {
 				</ul>
 				<div id="control" style={{ width: responsiveWidth }}>
 					<ControlButton
-						fontSize={this.props.state.fontSize}
+						fontSize={settings.fontSize}
 						stateColor={stateColor}
 						mouseDownHandler={this.handleButtonASet}
 						icon="settings"
 					/>
 					<ControlButton
-						fontSize={this.props.state.fontSize}
+						fontSize={settings.fontSize}
 						stateColor={stateColor}
 						mouseDownHandler={this.handleButtonBList}
 						icon="list"
 					/>
 					<ControlButton
-						fontSize={this.props.state.fontSize}
+						fontSize={settings.fontSize}
 						stateColor={stateColor}
 						mouseDownHandler={this.handleButtonCDown}
 						icon="down"

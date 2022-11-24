@@ -139,7 +139,7 @@ class Teleprompter extends React.Component {
 		if (this.state.mode === "start") {
 			return (
 				<StartHelp
-					state={this.state}
+					settings={this.state}
 					mode={this.changeMode}
 					colors={colors} />
 			)
