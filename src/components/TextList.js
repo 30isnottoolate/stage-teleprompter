@@ -51,7 +51,7 @@ class TextList extends React.Component {
 
 	handleButtonAPushUp = () => {
 		if (this.state.keyHold) {
-			if (((new Date()).getTime() - this.state.keyDownTime) > this.props.state.holdButtonTime) {
+			if (((new Date()).getTime() - this.state.keyDownTime) > this.props.settings.holdButtonTime) {
 				this.props.changeMode("set");
 			} else {
 				this.props.changeMode("read");
@@ -60,33 +60,35 @@ class TextList extends React.Component {
 	}
 
 	handleButtonBUp = () => {
-		if (this.props.state.textIndex > 1) {
-			this.props.index(this.props.state.textIndex - 1);
+		if (this.props.textIndex > 1) {
+			this.props.changeTextIndex(this.props.textIndex - 1);
 		} else {
-			this.props.index(this.props.state.textCount);
+			this.props.changeTextIndex(Object.keys(this.props.data.texts).length);
 		}
 	}
 
 	handleButtonCDown = () => {
-		if (this.props.state.textIndex < this.props.state.textCount) {
-			this.props.index(this.props.state.textIndex + 1);
+		if (this.props.textIndex < Object.keys(this.props.data.texts).length) {
+			this.props.changeTextIndex(this.props.textIndex + 1);
 		} else {
-			this.props.index(1);
+			this.props.changeTextIndex(1);
 		}
 	}
 
 	render() {
-		let listPos = (2 - this.props.state.textIndex) * this.props.state.fontSize * this.props.state.lineHeight;
-		let stateColor = this.props.colors[this.props.state.colorIndex].code;
-		let responsiveWidth = (this.props.state.orientation === "vertical") ? "100vh" : "100vw";
+		const {settings, data, textIndex, colors} = this.props;
+
+		let listPos = (2 - textIndex) * settings.fontSize * settings.lineHeight;
+		let stateColor = colors[settings.colorIndex].code;
+		let responsiveWidth = (settings.orientation === "vertical") ? "100vh" : "100vw";
 		let list = [];
 
-		if (this.props.state.textCount === 0) {
+		if (Object.keys(data.texts).length === 0) { 
 			return (
 				<div
 					id="text-list"
 					style={{
-						fontSize: this.props.state.fontSize,
+						fontSize: settings.fontSize,
 						color: stateColor
 					}}>
 					<p id="head-line">Loading text list...</p>
@@ -94,57 +96,57 @@ class TextList extends React.Component {
 			)
 		} else {
 			let i = 0;
-			for (const item in this.props.state.data.texts) {
-				list.push(<li key={i}>{this.props.state.data.texts[item].title}</li>);
+			for (const item in data.texts) {
+				list.push(<li key={i}>{data.texts[item].title}</li>);
 				i++;
 			}
 
 			return (
 				<div
 					id="text-list"
-					className={this.props.state.orientation === "vertical" ? "rotate-cw" : ""}
+					className={settings.orientation === "vertical" ? "rotate-cw" : ""}
 					style={{
-						fontSize: this.props.state.fontSize,
+						fontSize: settings.fontSize,
 						color: stateColor,
-						lineHeight: this.props.state.lineHeight
+						lineHeight: settings.lineHeight
 					}}>
 					<p
 						id="head-line"
-						className={this.props.state.textIndex === 1 ? "visible" : "hidden"}>
+						className={textIndex === 1 ? "visible" : "hidden"}>
 						SELECT:
 					</p>
 					<ul
 						style={{
 							top: listPos,
-							left: (this.props.state.fontSize * 0.69),
-							width: `calc(${responsiveWidth} - ${(this.props.state.fontSize * 0.69)}px)`
+							left: (settings.fontSize * 0.69),
+							width: `calc(${responsiveWidth} - ${(settings.fontSize * 0.69)}px)`
 						}}
 					>
 					{list.map(item => item)}	
 					</ul>
 					<Marker
-						top={this.props.state.fontSize * this.props.state.lineHeight}
-						left={this.props.state.fontSize * 0.19}
-						fontSize={this.props.state.fontSize}
-						lineHeight={this.props.state.lineHeight}
+						top={settings.fontSize * settings.lineHeight}
+						left={settings.fontSize * 0.19}
+						fontSize={settings.fontSize}
+						lineHeight={settings.lineHeight}
 						stateColor={stateColor}
 					/>
 					<div id="control" style={{ width: responsiveWidth }}>
 						<ControlButton
-							fontSize={this.props.state.fontSize}
+							fontSize={settings.fontSize}
 							stateColor={stateColor}
 							mouseDownHandler={this.handleButtonAPushDown}
 							mouseUpHandler={this.handleButtonAPushUp}
 							icon="selectSettings"
 						/>
 						<ControlButton
-							fontSize={this.props.state.fontSize}
+							fontSize={settings.fontSize}
 							stateColor={stateColor}
 							mouseDownHandler={this.handleButtonBUp}
 							icon="up"
 						/>
 						<ControlButton
-							fontSize={this.props.state.fontSize}
+							fontSize={settings.fontSize}
 							stateColor={stateColor}
 							mouseDownHandler={this.handleButtonCDown}
 							icon="down"
