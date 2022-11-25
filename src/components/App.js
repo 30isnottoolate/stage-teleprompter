@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.css';
-import TextSlider from './components/TextSlider.js';
-import TextList from './components/TextList.js';
-import Settings from './components/Settings.js';
-import StartHelp from './components/StartHelp.js';
+import TextSlider from './TextSlider.js';
+import TextList from './TextList.js';
+import Settings from './Settings.js';
+import StartHelp from './StartHelp.js';
 
 const FONT_SIZE_DEFAULT = 100;
 const LINE_HEIGHT_DEFAULT = 1.2;
