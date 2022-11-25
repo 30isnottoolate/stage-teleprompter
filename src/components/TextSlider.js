@@ -22,7 +22,7 @@ class TextSlider extends React.Component {
 	}
 
 	componentDidMount() {
-		this.fetchText(this.props.state.textIndex);
+		this.fetchText(this.props.textIndex);
 
 		document.addEventListener("keydown", this.handleKeyPress);
 		document.addEventListener("keyup", this.handleKeyHold);
@@ -30,9 +30,9 @@ class TextSlider extends React.Component {
 
 	componentDidUpdate(prevProps, prevState) {
 		if ((this.state.currentText !== prevState.currentText) || (this.state.active !== prevState.active)) {
-			let noEmptyLinesTextHeight = this.slideRef.current.offsetHeight - this.props.state.fontSize * 
-				this.props.state.lineHeight * this.countEmptyLines(this.state.currentText);
-			let intervalValue = (this.state.currentText.length / (noEmptyLinesTextHeight * READ_SPEED_COEF)) * (100 / this.props.state.textSpeed);
+			let noEmptyLinesTextHeight = this.slideRef.current.offsetHeight - this.props.settings.fontSize * 
+				this.props.settings.lineHeight * this.countEmptyLines(this.state.currentText);
+			let intervalValue = (this.state.currentText.length / (noEmptyLinesTextHeight * READ_SPEED_COEF)) * (100 / this.props.settings.textSpeed);
 
 			clearInterval(this.state.timer);
 
@@ -43,8 +43,8 @@ class TextSlider extends React.Component {
 			}
 		} else if (this.state.position !== prevState.position) {
 			this.setState((prevState) => {
-				if (!(this.slideRef.current.offsetHeight > ((-1) * prevState.position + (this.props.state.fontSize * this.props.state.lineHeight * 2)) 
-				&& (prevState.position) <= (this.props.state.fontSize * this.props.state.lineHeight))) {
+				if (!(this.slideRef.current.offsetHeight > ((-1) * prevState.position + (this.props.settings.fontSize * this.props.settings.lineHeight * 2)) 
+				&& (prevState.position) <= (this.props.settings.fontSize * this.props.settings.lineHeight))) {
 					return {
 						active: false,
 						endReached: true
@@ -62,17 +62,17 @@ class TextSlider extends React.Component {
 	}
 
 	fetchText = (index) => {
-		fetch(this.props.state.data.texts["text_" + index].url, {
+		fetch(this.props.data.texts["text_" + index].url, {
 			headers: {
 				'Content-Type': 'application/json',
 				'Accept': 'application/json'
 			}
 		})
 			.then(response => response.text())
-			.then(data => {
+			.then(text => {
 				this.setState({
-					position: this.props.state.fontSize * this.props.state.lineHeight,
-					currentText: data,
+					position: this.props.settings.fontSize * this.props.settings.lineHeight,
+					currentText: text,
 					endReached: false,
 					keyHold: false,
 					keyDownTime: 0
@@ -100,7 +100,7 @@ class TextSlider extends React.Component {
 
 	handleKeyHold = (event) => {
 		this.setState((prevState, prevProps) => {
-			let holdButtonCondition = ((new Date()).getTime() - prevState.keyDownTime) > this.props.state.holdButtonTime;
+			let holdButtonCondition = ((new Date()).getTime() - prevState.keyDownTime) > this.props.settings.holdButtonTime;
 			let holdButtonReset = { keyHold: false, keyDownTime: 0 };
 
 			if (prevState.keyHold) {
@@ -120,12 +120,12 @@ class TextSlider extends React.Component {
 				} else if (event.key === "c") {
 					if (this.state.endReached) {
 						if (holdButtonCondition) {
-							if (this.props.state.textIndex < this.props.state.textCount) {
-								this.fetchText(prevProps.state.textIndex + 1);
-								this.props.index(prevProps.state.textIndex + 1);
+							if (prevProps.textIndex < Object.keys(this.props.data.texts).length) {
+								this.fetchText(prevProps.textIndex + 1);
+								this.props.changeTextIndex(prevProps.textIndex + 1);
 							} else {
 								this.fetchText(1);
-								this.props.index(1);
+								this.props.changeTextIndex(1);
 							}
 						} else {
 							return holdButtonReset;
@@ -149,12 +149,12 @@ class TextSlider extends React.Component {
 	handleButtonCStartStop = () => {
 		this.setState((prevState, prevProps) => {
 			if (this.state.endReached) {
-				if (this.props.state.textIndex < this.props.state.textCount) {
-					this.fetchText(prevProps.state.textIndex + 1);
-					this.props.index(prevProps.state.textIndex + 1);
+				if (prevProps.textIndex < Object.keys(this.props.data.texts).length) {
+					this.fetchText(prevProps.textIndex + 1);
+					this.props.changeTextIndex(prevProps.textIndex + 1);
 				} else {
 					this.fetchText(1);
-					this.props.index(1);
+					this.props.changeTextIndex(1);
 				}
 			} else {
 				return {
@@ -165,60 +165,63 @@ class TextSlider extends React.Component {
 	}
 
 	render() {
-		let stateColor = this.props.colors[this.props.state.colorIndex].code;
-		let responsiveWidth = this.props.state.orientation === "vertical" ? "100vh" : "100vw";
+		const {active, position, currentText, endReached} = this.state;
+		const {settings, colors} = this.props;
+
+		let stateColor = colors[settings.colorIndex].code;
+		let responsiveWidth = settings.orientation === "vertical" ? "100vh" : "100vw";
 
 		return (
 			<div
 				id="text-slide"
-				className={this.props.state.orientation === "vertical" ? "rotate-cw" : ""}
+				className={settings.orientation === "vertical" ? "rotate-cw" : ""}
 				style={{
-					fontSize: this.props.state.fontSize,
+					fontSize: settings.fontSize,
 					color: stateColor,
-					lineHeight: this.props.state.lineHeight
+					lineHeight: settings.lineHeight
 				}}>
 				<Marker
-					top={this.props.state.fontSize * this.props.state.lineHeight}
-					left={this.props.state.fontSize * 0.19}
-					fontSize={this.props.state.fontSize}
-					lineHeight={this.props.state.lineHeight}
+					top={settings.fontSize * settings.lineHeight}
+					left={settings.fontSize * 0.19}
+					fontSize={settings.fontSize}
+					lineHeight={settings.lineHeight}
 					stateColor={stateColor}
 				/>
 				<div
 					id="slide"
 					ref={this.slideRef}
 					style={{
-						top: this.state.position,
-						width: `calc(${responsiveWidth} - ${(1.5 * this.props.state.fontSize * 0.69)}px)`,
-						fontSize: this.props.state.fontSize,
-						left: (this.props.state.fontSize * 0.69),
-						transitionProperty: this.props.state.textSpeed < 50 ? "top" : "none"
+						top: position,
+						width: `calc(${responsiveWidth} - ${(1.5 * settings.fontSize * 0.69)}px)`,
+						fontSize: settings.fontSize,
+						left: (settings.fontSize * 0.69),
+						transitionProperty: settings.textSpeed < 50 ? "top" : "none"
 					}} >
 					<p id="text">
-						{this.state.currentText}
+						{currentText}
 					</p>
 				</div>
 				<div
 					id="control"
-					className={this.state.active ? "transparent" : "visible"}
+					className={active ? "transparent" : "visible"}
 					style={{ width: responsiveWidth }}>
 					<ControlButton
-						fontSize={this.props.state.fontSize}
+						fontSize={settings.fontSize}
 						stateColor={stateColor}
 						mouseDownHandler={this.handleButtonASet}
 						icon="settings"
 					/>
 					<ControlButton
-						fontSize={this.props.state.fontSize}
+						fontSize={settings.fontSize}
 						stateColor={stateColor}
 						mouseDownHandler={this.handleButtonBList}
 						icon="list"
 					/>
 					<ControlButton
-						fontSize={this.props.state.fontSize}
+						fontSize={settings.fontSize}
 						stateColor={stateColor}
 						mouseDownHandler={this.handleButtonCStartStop}
-						icon={this.state.endReached ? "next" : this.state.active ? "pause" : "play"}
+						icon={endReached ? "next" : active ? "pause" : "play"}
 					/>
 				</div>
 			</div>
