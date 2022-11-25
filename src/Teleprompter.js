@@ -141,7 +141,8 @@ class Teleprompter extends React.Component {
 				<StartHelp
 					settings={this.state}
 					changeMode={this.changeMode}
-					colors={colors} />
+					colors={colors}
+				/>
 			)
 		} else if (this.state.mode === "select") {
 			return (
@@ -151,7 +152,8 @@ class Teleprompter extends React.Component {
 					changeMode={this.changeMode}
 					textIndex={this.state.textIndex}
 					changeTextIndex={this.changeIndex}
-					colors={colors} />
+					colors={colors}
+				/>
 			)
 		} else if (this.state.mode === "read") {
 			return (
@@ -161,17 +163,19 @@ class Teleprompter extends React.Component {
 					changeMode={this.changeMode}
 					textIndex={this.state.textIndex}
 					changeTextIndex={this.changeIndex}
-					colors={colors} />
+					colors={colors}
+				/>
 			)
 		} else if (this.state.mode === "set") {
 			return (
 				<Settings
-					state={this.state}
-					changeMode={this.changeMode}
+					settings={this.state}
 					changeSettings={this.changeSettings}
 					changeOrientation={this.changeOrientation}
+					defaultSettings={this.defaultSettings}
+					changeMode={this.changeMode}
 					colors={colors}
-					defaultSettings={this.defaultSettings} />
+				/>
 			)
 		}
 	}
