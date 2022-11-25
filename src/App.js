@@ -20,7 +20,7 @@ const colors = {
 	5: { "name": "yellow", "code": "#fff4ad" },
 }
 
-class Teleprompter extends React.Component {
+class App extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -178,4 +178,4 @@ class Teleprompter extends React.Component {
 	}
 }
 
-export default Teleprompter;
+export default App;

@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import Teleprompter from './Teleprompter';
+import App from './App';
 
 const container = ReactDOM.createRoot(document.getElementById('app-container'));
 container.render(
 	<React.StrictMode>
-		<Teleprompter />
+		<App />
 	</React.StrictMode>
 );
