@@ -26,7 +26,6 @@ class Teleprompter extends React.Component {
 		this.state = {
 			mode: "start", //start, select, read, set
 			data: "",
-			textCount: 0,
 			textIndex: 1,
 			fontSize: FONT_SIZE_DEFAULT,
 			lineHeight: LINE_HEIGHT_DEFAULT,
@@ -51,7 +50,6 @@ class Teleprompter extends React.Component {
 						localStorage["textSpeed"] && localStorage["holdButtonTime"] && localStorage["orientation"]) {
 						return {
 							data: data,
-							textCount: Object.keys(data.texts).length,
 							fontSize: parseInt(localStorage.getItem("fontSize")),
 							lineHeight: parseFloat(localStorage.getItem("lineHeight")),
 							colorIndex: parseInt(localStorage.getItem("colorIndex")),
@@ -63,7 +61,6 @@ class Teleprompter extends React.Component {
 						this.defaultLocalStorage();
 						return {
 							data: data,
-							textCount: data.textCount,
 							fontSize: FONT_SIZE_DEFAULT,
 							lineHeight: LINE_HEIGHT_DEFAULT,
 							colorIndex: COLOR_INDEX_DEFAULT,
