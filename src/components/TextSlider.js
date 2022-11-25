@@ -61,6 +61,10 @@ class TextSlider extends React.Component {
 		document.removeEventListener("keyup", this.handleKeyHold);
 	}
 
+	countEmptyLines = (input) => {
+		return (input.match(/^[ ]*$/gm) || []).length;
+	}
+
 	fetchText = (index) => {
 		fetch(this.props.data.texts["text_" + index].url, {
 			headers: {
@@ -81,8 +85,14 @@ class TextSlider extends React.Component {
 			.catch(() => console.log("Text missing."));
 	}
 
-	countEmptyLines = (input) => {
-		return (input.match(/^[ ]*$/gm) || []).length;
+	nextText = () => {
+		if (this.props.textIndex < Object.keys(this.props.data.texts).length) {
+			this.fetchText(this.props.textIndex + 1);
+			this.props.changeTextIndex(this.props.textIndex + 1);
+		} else {
+			this.fetchText(1);
+			this.props.changeTextIndex(1);
+		}
 	}
 
 	handleKeyPress = (event) => {
@@ -120,13 +130,7 @@ class TextSlider extends React.Component {
 				} else if (event.key === "c") {
 					if (this.state.endReached) {
 						if (holdButtonCondition) {
-							if (prevProps.textIndex < Object.keys(this.props.data.texts).length) {
-								this.fetchText(prevProps.textIndex + 1);
-								this.props.changeTextIndex(prevProps.textIndex + 1);
-							} else {
-								this.fetchText(1);
-								this.props.changeTextIndex(1);
-							}
+							this.nextText();
 						} else {
 							return holdButtonReset;
 						}
@@ -149,13 +153,7 @@ class TextSlider extends React.Component {
 	handleButtonCStartStop = () => {
 		this.setState((prevState, prevProps) => {
 			if (this.state.endReached) {
-				if (prevProps.textIndex < Object.keys(this.props.data.texts).length) {
-					this.fetchText(prevProps.textIndex + 1);
-					this.props.changeTextIndex(prevProps.textIndex + 1);
-				} else {
-					this.fetchText(1);
-					this.props.changeTextIndex(1);
-				}
+				this.nextText();
 			} else {
 				return {
 					active: !prevState.active
