@@ -1,5 +1,4 @@
 import React from 'react';
-import '../App.css';
 import Marker from './Marker';
 import ControlButton from './ControlButton';
 
