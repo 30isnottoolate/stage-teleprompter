@@ -1,5 +1,5 @@
 import React from 'react';
-import './Teleprompter.css';
+import './App.css';
 import TextSlider from './components/TextSlider.js';
 import TextList from './components/TextList.js';
 import Settings from './components/Settings.js';
