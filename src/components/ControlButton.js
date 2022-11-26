@@ -3,13 +3,12 @@ import icons from '../utilities/icons';
 
 class ControlButton extends React.Component {
     render() {
-        const {fontSize, stateColor, clickHandler, mouseDownHandler, mouseUpHandler, icon} = this.props;
+        const {fontSize, stateColor, mouseDownHandler, mouseUpHandler, icon} = this.props;
         let svgSize = 50 + fontSize * 0.25;
 
         return (
             <button
                 style={{ borderColor: stateColor }}
-                onClick={clickHandler}
                 onMouseDown={mouseDownHandler}
                 onMouseUp={mouseUpHandler}
             >
