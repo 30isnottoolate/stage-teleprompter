@@ -106,7 +106,7 @@ class Settings extends React.Component {
 				case 3:
 					if (this.props.settings.colorIndex > 1) {
 						this.props.changeSettings("colorIndex", this.props.settings.colorIndex - 1);
-					}
+					} else this.props.changeSettings("colorIndex", 5);
 					break;
 				case 4:
 					if (this.props.settings.textSpeed > 20) {
@@ -155,7 +155,7 @@ class Settings extends React.Component {
 				case 3:
 					if (this.props.settings.colorIndex < 5) {
 						this.props.changeSettings("colorIndex", this.props.settings.colorIndex + 1);
-					}
+					} else this.props.changeSettings("colorIndex", 1);
 					break;
 				case 4:
 					if (this.props.settings.textSpeed < 200) {
