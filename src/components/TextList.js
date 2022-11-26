@@ -1,4 +1,5 @@
 import React from 'react';
+import colors from '../utilities/colors';
 import Marker from './Marker';
 import ControlButton from './ControlButton';
 
@@ -75,7 +76,7 @@ class TextList extends React.Component {
 	}
 
 	render() {
-		const {settings, data, textIndex, colors} = this.props;
+		const {settings, data, textIndex} = this.props;
 
 		let listPos = (2 - textIndex) * settings.fontSize * settings.lineHeight;
 		let stateColor = colors[settings.colorIndex].code;

@@ -138,7 +138,6 @@ class App extends React.Component {
 				<StartHelp
 					settings={this.state}
 					changeMode={this.changeMode}
-					colors={colors}
 				/>
 			)
 		} else if (this.state.mode === "select") {
@@ -146,10 +145,8 @@ class App extends React.Component {
 				<TextList
 					settings={this.state}
 					data={this.state.data}
+					textIndex={this.state.textIndex} changeTextIndex={this.changeIndex}
 					changeMode={this.changeMode}
-					textIndex={this.state.textIndex}
-					changeTextIndex={this.changeIndex}
-					colors={colors}
 				/>
 			)
 		} else if (this.state.mode === "read") {
@@ -157,10 +154,8 @@ class App extends React.Component {
 				<TextSlider
 					settings={this.state}
 					data={this.state.data}
+					textIndex={this.state.textIndex} changeTextIndex={this.changeIndex}
 					changeMode={this.changeMode}
-					textIndex={this.state.textIndex}
-					changeTextIndex={this.changeIndex}
-					colors={colors}
 				/>
 			)
 		} else if (this.state.mode === "set") {
@@ -171,7 +166,6 @@ class App extends React.Component {
 					changeOrientation={this.changeOrientation}
 					defaultSettings={this.defaultSettings}
 					changeMode={this.changeMode}
-					colors={colors}
 				/>
 			)
 		}

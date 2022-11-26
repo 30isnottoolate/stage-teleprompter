@@ -1,4 +1,5 @@
 import React from 'react';
+import colors from '../utilities/colors';
 import Marker from './Marker';
 import ControlButton from './ControlButton';
 
@@ -189,7 +190,7 @@ class Settings extends React.Component {
 
 	render() {
 		const {settingsIndex, inChangeMode} = this.state;
-		const {settings, colors} = this.props;
+		const {settings} = this.props;
 
 		let listPosTop = (2 - settingsIndex) * settings.fontSize * settings.lineHeight;
 		let listPosLeftA = (inChangeMode) ? settings.fontSize * 0.69 - settings.fontSize * 8.02 : settings.fontSize * 0.69;

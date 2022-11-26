@@ -1,4 +1,5 @@
 import React from 'react';
+import colors from '../utilities/colors';
 import Marker from './Marker';
 import ControlButton from './ControlButton';
 
@@ -163,7 +164,7 @@ class TextSlider extends React.Component {
 
 	render() {
 		const {active, position, currentText, endReached} = this.state;
-		const {settings, colors} = this.props;
+		const {settings} = this.props;
 
 		let stateColor = colors[settings.colorIndex].code;
 		let responsiveWidth = settings.orientation === "vertical" ? "100vh" : "100vw";

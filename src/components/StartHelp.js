@@ -1,4 +1,5 @@
 import React from 'react';
+import colors from '../utilities/colors';
 import Marker from './Marker';
 import ControlButton from './ControlButton';
 
@@ -96,7 +97,7 @@ class StartHelp extends React.Component {
 
 	render() {
 		const {helpIndex} = this.state;
-		const {settings, colors} = this.props;
+		const {settings} = this.props;
 
 		let listPos = (3 - helpIndex) * settings.fontSize * settings.lineHeight;
 		let stateColor = colors[settings.colorIndex].code;
