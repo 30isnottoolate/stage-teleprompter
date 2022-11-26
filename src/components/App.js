@@ -12,14 +12,6 @@ const TEXT_SPEED_DEFAULT = 100;
 const HOLD_TIME_DEFAULT = 2000;
 const ORIENTATION_DEFAULT = "horizontal"; // horizontal / vertical
 
-const colors = {
-	1: { "name": "red", "code": "#ffd6d9" },
-	2: { "name": "green", "code": "#b4f8ff" },
-	3: { "name": "blue", "code": "#99d3ff" },
-	4: { "name": "white", "code": "#ffffff" },
-	5: { "name": "yellow", "code": "#fff4ad" },
-}
-
 class App extends React.Component {
 	constructor(props) {
 		super(props);
