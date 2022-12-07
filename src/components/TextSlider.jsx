@@ -1,4 +1,5 @@
 import React from 'react';
+import DOMPurify from 'dompurify';
 import colors from '../utilities/colors';
 import Marker from './Marker';
 import ControlButton from './ControlButton';
@@ -181,7 +182,7 @@ class TextSlider extends React.Component {
 					}} >
 					<p id="text" dangerouslySetInnerHTML={{
 						__html:
-							library.texts[textIndex].content ? library.texts[textIndex].content : "Loading..."
+							DOMPurify.sanitize(library.texts[textIndex].content ? library.texts[textIndex].content : "Loading...")
 					}} />
 				</div>
 				<div
