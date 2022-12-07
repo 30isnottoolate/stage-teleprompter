@@ -17,7 +17,7 @@ class App extends React.Component {
 		super(props);
 		this.state = {
 			mode: "start", //start, select, read, set
-			data: "",
+			library: { texts: [{ title: "", content: "" }] },
 			textIndex: 1,
 			fontSize: FONT_SIZE_DEFAULT,
 			lineHeight: LINE_HEIGHT_DEFAULT,
@@ -41,7 +41,7 @@ class App extends React.Component {
 					if (localStorage["fontSize"] && localStorage["lineHeight"] && localStorage["colorIndex"] &&
 						localStorage["textSpeed"] && localStorage["holdButtonTime"] && localStorage["orientation"]) {
 						return {
-							data: data,
+							library: data,
 							fontSize: parseInt(localStorage.getItem("fontSize")),
 							lineHeight: parseFloat(localStorage.getItem("lineHeight")),
 							colorIndex: parseInt(localStorage.getItem("colorIndex")),
@@ -52,7 +52,7 @@ class App extends React.Component {
 					} else {
 						this.defaultLocalStorage();
 						return {
-							data: data,
+							library: data,
 							fontSize: FONT_SIZE_DEFAULT,
 							lineHeight: LINE_HEIGHT_DEFAULT,
 							colorIndex: COLOR_INDEX_DEFAULT,
@@ -136,7 +136,7 @@ class App extends React.Component {
 			return (
 				<TextList
 					settings={this.state}
-					data={this.state.data}
+					library={this.state.library}
 					textIndex={this.state.textIndex} changeTextIndex={this.changeIndex}
 					changeMode={this.changeMode}
 				/>
@@ -145,7 +145,7 @@ class App extends React.Component {
 			return (
 				<TextSlider
 					settings={this.state}
-					data={this.state.data}
+					library={this.state.library}
 					textIndex={this.state.textIndex} changeTextIndex={this.changeIndex}
 					changeMode={this.changeMode}
 				/>
