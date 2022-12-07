@@ -63,12 +63,12 @@ class TextList extends React.Component {
 		if (this.props.textIndex > 1) {
 			this.props.changeTextIndex(this.props.textIndex - 1);
 		} else {
-			this.props.changeTextIndex(Object.keys(this.props.data.texts).length);
+			this.props.changeTextIndex(this.props.library.texts.length);
 		}
 	}
 
 	handleButtonCDown = () => {
-		if (this.props.textIndex < Object.keys(this.props.data.texts).length) {
+		if (this.props.textIndex < this.props.library.texts.length) {
 			this.props.changeTextIndex(this.props.textIndex + 1);
 		} else {
 			this.props.changeTextIndex(1);
@@ -76,14 +76,14 @@ class TextList extends React.Component {
 	}
 
 	render() {
-		const {settings, data, textIndex} = this.props;
+		const { settings, library, textIndex } = this.props;
 
 		let listPos = (2 - textIndex) * settings.fontSize * settings.lineHeight;
 		let stateColor = colors[settings.colorIndex].code;
 		let responsiveWidth = (settings.orientation === "vertical") ? "100vh" : "100vw";
 		let list = [];
 
-		if (Object.keys(data.texts).length === 0) { 
+		if (library.texts.length < 1) {
 			return (
 				<div
 					id="text-list"
@@ -95,12 +95,6 @@ class TextList extends React.Component {
 				</div>
 			)
 		} else {
-			let i = 0;
-			for (const item in data.texts) {
-				list.push(<li key={i}>{data.texts[item].title}</li>);
-				i++;
-			}
-
 			return (
 				<div
 					id="text-list"
@@ -122,7 +116,7 @@ class TextList extends React.Component {
 							width: `calc(${responsiveWidth} - ${(settings.fontSize * 0.69)}px)`
 						}}
 					>
-					{list.map(item => item)}	
+						{library.texts.map((item, index) => <li key={index}>{item.title}</li>)}
 					</ul>
 					<Marker
 						top={settings.fontSize * settings.lineHeight}
