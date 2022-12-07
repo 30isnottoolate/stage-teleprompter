@@ -30,29 +30,15 @@ class TextSlider extends React.Component {
 
 	componentDidUpdate(prevProps, prevState) {
 		if (this.state.active !== prevState.active) {
-			let currentText = this.props.library.texts[this.props.textIndex].content;
+			this.handleActivityChange();
+		}
 
-			let noEmptyLinesTextHeight = this.slideRef.current.offsetHeight - this.props.settings.fontSize *
-				this.props.settings.lineHeight * this.countEmptyLines(currentText);
-			let intervalValue = (currentText.length / (noEmptyLinesTextHeight * READ_SPEED_COEF)) * (100 / this.props.settings.textSpeed);
+		if (this.state.position !== prevState.position) {
+			this.handlePositionChange();
+		}
 
-			clearInterval(this.state.timer);
-
-			if (this.state.active) {
-				this.setState({
-					timer: setInterval(() => this.setState((prevState) => ({ position: prevState.position - 1 })), intervalValue)
-				});
-			}
-		} else if (this.state.position !== prevState.position) {
-			this.setState((prevState) => {
-				if (!(this.slideRef.current.offsetHeight > ((-1) * prevState.position + (this.props.settings.fontSize * this.props.settings.lineHeight * 2))
-					&& (prevState.position) <= (this.props.settings.fontSize * this.props.settings.lineHeight))) {
-					return {
-						active: false,
-						endReached: true
-					}
-				}
-			});
+		if (this.props.textIndex !== prevProps.textIndex) {
+			this.handeTextIndexChange();
 		}
 	}
 
@@ -63,6 +49,44 @@ class TextSlider extends React.Component {
 		document.removeEventListener("keyup", this.handleKeyHold);
 	}
 
+	handleActivityChange() {
+		let currentText = this.props.library.texts[this.props.textIndex].content;
+
+		let noEmptyLinesTextHeight = this.slideRef.current.offsetHeight - this.props.settings.fontSize *
+			this.props.settings.lineHeight * this.countEmptyLines(currentText);
+			
+		let intervalValue = (currentText.length / (noEmptyLinesTextHeight * READ_SPEED_COEF)) * (100 / this.props.settings.textSpeed);
+
+		clearInterval(this.state.timer);
+
+		if (this.state.active) {
+			this.setState({
+				timer: setInterval(() => this.setState((prevState) => ({ position: prevState.position - 1 })), intervalValue)
+			});
+		}
+	}
+
+	handlePositionChange() {
+		this.setState((prevState) => {
+			if (!(this.slideRef.current.offsetHeight > ((-1) * prevState.position + (this.props.settings.fontSize * this.props.settings.lineHeight * 2))
+				&& (prevState.position) <= (this.props.settings.fontSize * this.props.settings.lineHeight))) {
+				return {
+					active: false,
+					endReached: true
+				}
+			}
+		});
+	}
+
+	handeTextIndexChange() {
+		this.setState({
+			position: this.props.settings.fontSize * this.props.settings.lineHeight,
+			endReached: false,
+			keyHold: false,
+			keyDownTime: 0
+		});
+	}
+
 	countEmptyLines = (input) => {
 		return (input.match(/^[ ]*$/gm) || []).length;
 	}
@@ -71,13 +95,6 @@ class TextSlider extends React.Component {
 		if (this.props.textIndex < this.props.library.texts.length - 1) {
 			this.props.changeTextIndex(this.props.textIndex + 1);
 		} else this.props.changeTextIndex(0);
-
-		this.setState({
-			position: this.props.settings.fontSize * this.props.settings.lineHeight,
-			endReached: false,
-			keyHold: false,
-			keyDownTime: 0
-		});
 	}
 
 	handleKeyPress = (event) => {
@@ -136,15 +153,9 @@ class TextSlider extends React.Component {
 	handleButtonBList = () => this.props.changeMode("select");
 
 	handleButtonCStartStop = () => {
-		this.setState((prevState) => {
-			if (this.state.endReached) {
-				this.nextText();
-			} else {
-				return {
-					active: !prevState.active
-				}
-			}
-		});
+		if (this.state.endReached) {
+			this.nextText();
+		} else this.setState(prevState => ({ active: !prevState.active }));
 	}
 
 	render() {
