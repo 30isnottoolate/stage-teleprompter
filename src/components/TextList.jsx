@@ -60,25 +60,25 @@ class TextList extends React.Component {
 	}
 
 	handleButtonBUp = () => {
-		if (this.props.textIndex > 1) {
+		if (this.props.textIndex > 0) {
 			this.props.changeTextIndex(this.props.textIndex - 1);
 		} else {
-			this.props.changeTextIndex(this.props.library.texts.length);
+			this.props.changeTextIndex(this.props.library.texts.length - 1);
 		}
 	}
 
 	handleButtonCDown = () => {
-		if (this.props.textIndex < this.props.library.texts.length) {
+		if (this.props.textIndex < this.props.library.texts.length - 1) {
 			this.props.changeTextIndex(this.props.textIndex + 1);
 		} else {
-			this.props.changeTextIndex(1);
+			this.props.changeTextIndex(0);
 		}
 	}
 
 	render() {
 		const { settings, library, textIndex } = this.props;
 
-		let listPos = (2 - textIndex) * settings.fontSize * settings.lineHeight;
+		let listPos = (1 - textIndex) * settings.fontSize * settings.lineHeight;
 		let stateColor = colors[settings.colorIndex].code;
 		let responsiveWidth = (settings.orientation === "vertical") ? "100vh" : "100vw";
 		let list = [];
@@ -106,7 +106,7 @@ class TextList extends React.Component {
 					}}>
 					<p
 						id="head-line"
-						className={textIndex === 1 ? "visible" : "hidden"}>
+						className={textIndex === 0 ? "visible" : "hidden"}>
 						SELECT:
 					</p>
 					<ul

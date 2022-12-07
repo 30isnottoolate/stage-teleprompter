@@ -18,7 +18,7 @@ class App extends React.Component {
 		this.state = {
 			mode: "start", //start, select, read, set
 			library: { texts: [{ title: "", content: "" }] },
-			textIndex: 1,
+			textIndex: 0,
 			fontSize: FONT_SIZE_DEFAULT,
 			lineHeight: LINE_HEIGHT_DEFAULT,
 			colorIndex: COLOR_INDEX_DEFAULT,
