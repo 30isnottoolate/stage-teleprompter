@@ -29,7 +29,7 @@ class App extends React.Component {
 	}
 
 	componentDidMount() {
-		fetch('librarian.json', {
+		fetch('library.json', {
 			headers: {
 				'Content-Type': 'application/json',
 				'Accept': 'application/json'
