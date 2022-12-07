@@ -16,7 +16,6 @@ class App extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			mode: "start", //start, select, read, set
 			library: { texts: [{ title: "", content: "" }] },
 			textIndex: 0,
 			fontSize: FONT_SIZE_DEFAULT,
@@ -24,7 +23,8 @@ class App extends React.Component {
 			colorIndex: COLOR_INDEX_DEFAULT,
 			textSpeed: TEXT_SPEED_DEFAULT,
 			holdButtonTime: HOLD_TIME_DEFAULT,
-			orientation: ORIENTATION_DEFAULT
+			orientation: ORIENTATION_DEFAULT,
+			mode: "start", //start, select, read, set
 		};
 	}
 

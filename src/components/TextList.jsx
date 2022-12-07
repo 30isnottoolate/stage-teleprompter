@@ -81,7 +81,6 @@ class TextList extends React.Component {
 		let listPos = (1 - textIndex) * settings.fontSize * settings.lineHeight;
 		let stateColor = colors[settings.colorIndex].code;
 		let responsiveWidth = (settings.orientation === "vertical") ? "100vh" : "100vw";
-		let list = [];
 
 		if (library.texts.length < 1) {
 			return (
