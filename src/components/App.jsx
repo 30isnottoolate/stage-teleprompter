@@ -21,6 +21,15 @@ const DEFAULT_STATES = {
 	orientation: ORIENTATION_DEFAULT
 }
 
+const localStorageStates = {
+	fontSize: parseInt(localStorage.getItem("fontSize")),
+	lineHeight: parseFloat(localStorage.getItem("lineHeight")),
+	colorIndex: parseInt(localStorage.getItem("colorIndex")),
+	textSpeed: parseInt(localStorage.getItem("textSpeed")),
+	holdButtonTime: parseInt(localStorage.getItem("holdButtonTime")),
+	orientation: localStorage.getItem("orientation")
+}
+
 class App extends React.Component {
 	constructor(props) {
 		super(props);
@@ -44,28 +53,33 @@ class App extends React.Component {
 				this.setState(() => {
 					if (localStorage["fontSize"] && localStorage["lineHeight"] && localStorage["colorIndex"] &&
 						localStorage["textSpeed"] && localStorage["holdButtonTime"] && localStorage["orientation"]) {
-						return {
-							fontSize: parseInt(localStorage.getItem("fontSize")),
-							lineHeight: parseFloat(localStorage.getItem("lineHeight")),
-							colorIndex: parseInt(localStorage.getItem("colorIndex")),
-							textSpeed: parseInt(localStorage.getItem("textSpeed")),
-							holdButtonTime: parseInt(localStorage.getItem("holdButtonTime")),
-							orientation: localStorage.getItem("orientation")
+						if (data.librarian === this.validateLibrary(data.texts)) {
+							return {
+								...localStorageStates,
+								library: data
+							}
+						} else {
+							console.log("invalid");
+							return {
+								...localStorageStates
+							}
 						}
 					} else {
 						this.defaultLocalStorage();
-						return {
-							...DEFAULT_STATES
+						if (data.librarian === this.validateLibrary(data.texts)) {
+							return {
+								...DEFAULT_STATES,
+								library: data
+							}
+						} else {
+							console.log("invalid");
+							return {
+								...DEFAULT_STATES
+							}
 						}
+
 					}
 				});
-				this.setState(() => {
-					if (data.librarian === this.validateLibrary(data.texts)) {
-						return {
-							library: data
-						}
-					} else console.log("invalid");
-				})
 			})
 			.catch(() => console.log("Database missing."));
 	}
