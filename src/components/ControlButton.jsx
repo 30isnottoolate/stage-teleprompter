@@ -3,7 +3,7 @@ import icons from '../utilities/icons';
 
 class ControlButton extends React.Component {
     render() {
-        const {fontSize, stateColor, mouseDownHandler, mouseUpHandler, icon} = this.props;
+        const {fontSize, stateColor, mouseDownHandler, mouseUpHandler, icon, disabled} = this.props;
         let svgSize = 50 + fontSize * 0.25;
 
         return (
@@ -11,6 +11,7 @@ class ControlButton extends React.Component {
                 style={{ borderColor: stateColor }}
                 onMouseDown={mouseDownHandler}
                 onMouseUp={mouseUpHandler}
+                disabled={disabled ? disabled : false}
             >
                 <svg
                     width={(icon === "selectSettings" || icon === "selectList") ? svgSize * 2.25 : svgSize}
