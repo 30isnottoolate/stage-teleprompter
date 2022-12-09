@@ -12,18 +12,22 @@ const TEXT_SPEED_DEFAULT = 100;
 const HOLD_TIME_DEFAULT = 2000;
 const ORIENTATION_DEFAULT = "horizontal"; // horizontal / vertical
 
+const DEFAULT_STATES = {
+	fontSize: FONT_SIZE_DEFAULT,
+	lineHeight: LINE_HEIGHT_DEFAULT,
+	colorIndex: COLOR_INDEX_DEFAULT,
+	textSpeed: TEXT_SPEED_DEFAULT,
+	holdButtonTime: HOLD_TIME_DEFAULT,
+	orientation: ORIENTATION_DEFAULT
+}
+
 class App extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			library: { texts: [{ title: "", content: "" }] },
 			textIndex: 0,
-			fontSize: FONT_SIZE_DEFAULT,
-			lineHeight: LINE_HEIGHT_DEFAULT,
-			colorIndex: COLOR_INDEX_DEFAULT,
-			textSpeed: TEXT_SPEED_DEFAULT,
-			holdButtonTime: HOLD_TIME_DEFAULT,
-			orientation: ORIENTATION_DEFAULT,
+			...DEFAULT_STATES,
 			mode: "start", //start, select, read, set
 		};
 	}
@@ -51,12 +55,7 @@ class App extends React.Component {
 					} else {
 						this.defaultLocalStorage();
 						return {
-							fontSize: FONT_SIZE_DEFAULT,
-							lineHeight: LINE_HEIGHT_DEFAULT,
-							colorIndex: COLOR_INDEX_DEFAULT,
-							textSpeed: TEXT_SPEED_DEFAULT,
-							holdButtonTime: HOLD_TIME_DEFAULT,
-							orientation: ORIENTATION_DEFAULT
+							...DEFAULT_STATES
 						}
 					}
 				});
@@ -129,12 +128,7 @@ class App extends React.Component {
 		this.setState(() => {
 			this.defaultLocalStorage();
 			return {
-				fontSize: FONT_SIZE_DEFAULT,
-				lineHeight: LINE_HEIGHT_DEFAULT,
-				colorIndex: COLOR_INDEX_DEFAULT,
-				textSpeed: TEXT_SPEED_DEFAULT,
-				holdButtonTime: HOLD_TIME_DEFAULT,
-				orientation: ORIENTATION_DEFAULT
+				...DEFAULT_STATES
 			}
 		})
 	}
