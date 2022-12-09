@@ -38,6 +38,7 @@ class App extends React.Component {
 			textIndex: 0,
 			...DEFAULT_STATES,
 			mode: "start", //start, select, read, set
+			libraryStatus: "checking" //checking, missing, invalid, valid
 		};
 	}
 
@@ -56,12 +57,14 @@ class App extends React.Component {
 						if (data.librarian === this.validateLibrary(data.texts)) {
 							return {
 								...localStorageStates,
-								library: data
+								library: data,
+								libraryStatus: "valid"
 							}
 						} else {
 							console.log("invalid");
 							return {
-								...localStorageStates
+								...localStorageStates,
+								libraryStatus: "invalid"
 							}
 						}
 					} else {
@@ -69,19 +72,24 @@ class App extends React.Component {
 						if (data.librarian === this.validateLibrary(data.texts)) {
 							return {
 								...DEFAULT_STATES,
-								library: data
+								library: data,
+								libraryStatus: "valid"
 							}
 						} else {
 							console.log("invalid");
 							return {
-								...DEFAULT_STATES
+								...DEFAULT_STATES,
+								libraryStatus: "invalid"
 							}
 						}
 
 					}
 				});
 			})
-			.catch(() => console.log("Database missing."));
+			.catch(() => {
+				this.setState({ libraryStatus: "missing" });
+				console.log("Database missing.");
+			});
 	}
 
 	validateLibrary(texts) {
