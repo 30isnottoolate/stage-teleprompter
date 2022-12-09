@@ -35,10 +35,10 @@ class App extends React.Component {
 		super(props);
 		this.state = {
 			library: { texts: [{ title: "", content: "" }] },
+			libraryStatus: "checking", //checking, missing, invalid, valid
 			textIndex: 0,
 			...DEFAULT_STATES,
-			mode: "start", //start, select, read, set
-			libraryStatus: "checking" //checking, missing, invalid, valid
+			mode: "start" //start, select, read, set
 		};
 	}
 
