@@ -41,7 +41,6 @@ class App extends React.Component {
 					if (localStorage["fontSize"] && localStorage["lineHeight"] && localStorage["colorIndex"] &&
 						localStorage["textSpeed"] && localStorage["holdButtonTime"] && localStorage["orientation"]) {
 						return {
-							library: data,
 							fontSize: parseInt(localStorage.getItem("fontSize")),
 							lineHeight: parseFloat(localStorage.getItem("lineHeight")),
 							colorIndex: parseInt(localStorage.getItem("colorIndex")),
@@ -52,7 +51,6 @@ class App extends React.Component {
 					} else {
 						this.defaultLocalStorage();
 						return {
-							library: data,
 							fontSize: FONT_SIZE_DEFAULT,
 							lineHeight: LINE_HEIGHT_DEFAULT,
 							colorIndex: COLOR_INDEX_DEFAULT,
@@ -62,8 +60,25 @@ class App extends React.Component {
 						}
 					}
 				});
+				this.setState(() => {
+					if (data.librarian === this.validateLibrary(data.texts)) {
+						return {
+							library: data
+						}
+					} else console.log("invalid");
+				})
 			})
 			.catch(() => console.log("Database missing."));
+	}
+
+	validateLibrary(texts) {
+		let validationCode = "11";
+
+		texts.forEach((item) => {
+			validationCode += (item.title.length.toString(16) + item.content.length.toString(16));
+		});
+
+		return validationCode += "22";
 	}
 
 	changeIndex = (index) => {
