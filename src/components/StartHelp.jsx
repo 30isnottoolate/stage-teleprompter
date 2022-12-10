@@ -80,9 +80,9 @@ class StartHelp extends React.Component {
 	handleButtonASet = () => this.props.changeMode("set");
 
 	handleButtonBList = () => {
-		if (this.libraryStatus === "valid") {
+		if (this.props.libraryStatus === "valid") {
 			this.props.changeMode("select");
-		} else this.fetchLibrary();
+		} else this.props.fetchLibrary();
 	}
 
 	handleButtonCDown = () => {
@@ -160,7 +160,7 @@ class StartHelp extends React.Component {
 						fontSize={settings.fontSize}
 						stateColor={stateColor}
 						mouseDownHandler={this.handleButtonBList}
-						icon={libraryStatus === "valid" ? "list" : "refresh"}
+						icon={this.props.libraryStatus === "valid" ? "list" : "refresh"}
 					/>
 					<ControlButton
 						fontSize={settings.fontSize}

@@ -148,7 +148,7 @@ class TextSlider extends React.Component {
 		});
 	}
 
-	handleButtonASet = () => this.props.changeMode("set");
+	handleButtonASet = () => this.props.changeMode("start");
 
 	handleButtonBList = () => this.props.changeMode("select");
 
@@ -204,7 +204,7 @@ class TextSlider extends React.Component {
 						fontSize={settings.fontSize}
 						stateColor={stateColor}
 						mouseDownHandler={this.handleButtonASet}
-						icon="settings"
+						icon="home"
 					/>
 					<ControlButton
 						fontSize={settings.fontSize}

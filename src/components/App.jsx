@@ -70,7 +70,7 @@ class App extends React.Component {
 		})
 			.then(response => response.json())
 			.then(data => {
-				if (data.librarian === validateLibrary(data.texts)) {
+				if (data.librarian === this.validateLibrary(data.texts)) {
 					this.setState({
 						library: data,
 						libraryStatus: "valid"
@@ -80,6 +80,7 @@ class App extends React.Component {
 				}
 			})
 			.catch(() => {
+				console.log("ping")
 				this.setState({ libraryStatus: "missing" });
 			});
 	}

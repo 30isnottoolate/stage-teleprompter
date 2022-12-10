@@ -29,7 +29,7 @@ class Settings extends React.Component {
 
 	handleKeyPress(event) {
 		if (event.key === "a") {
-			this.handleButtonAPushDown();
+			this.handleButtonAKeyDown();
 		} else {
 			if ((!this.state.inChangeMode && !event.repeat) || this.state.inChangeMode) {
 				if (event.key === "b") {
@@ -43,11 +43,11 @@ class Settings extends React.Component {
 
 	handleKeyHold(event) {
 		if (event.key === "a") {
-			this.handleButtonAPushUp();
+			this.handleButtonAKeyUp();
 		}
 	}
 
-	handleButtonAPushDown = () => {
+	handleButtonAKeyDown = () => {
 		if (!this.state.keyHold) {
 			this.setState(() => {
 				if (!this.state.inChangeMode) {
@@ -64,10 +64,10 @@ class Settings extends React.Component {
 		}
 	}
 
-	handleButtonAPushUp = () => {
+	handleButtonAKeyUp = () => {
 		if (this.state.keyHold) {
 			if (((new Date()).getTime() - this.state.keyDownTime) > this.props.settings.holdButtonTime) {
-				this.props.changeMode("select");
+				this.props.changeMode("start");
 			} else {
 				this.setState((prevState) => {
 					if (this.state.settingsIndex === 7) {
@@ -76,8 +76,6 @@ class Settings extends React.Component {
 							keyHold: false,
 							keyDownTime: 0
 						}
-					} else if (this.state.settingsIndex === 8) {
-						this.props.changeMode("start");
 					} else {
 						return {
 							keyHold: false,
@@ -132,7 +130,7 @@ class Settings extends React.Component {
 					}
 				} else {
 					return {
-						settingsIndex: 8
+						settingsIndex: 7
 					}
 				}
 			});
@@ -175,7 +173,7 @@ class Settings extends React.Component {
 			}
 		} else {
 			this.setState((prevState) => {
-				if (this.state.settingsIndex < 8) {
+				if (this.state.settingsIndex < 7) {
 					return {
 						settingsIndex: prevState.settingsIndex + 1
 					}
@@ -227,7 +225,6 @@ class Settings extends React.Component {
 					<li>Alt key time:</li>
 					<li>Orientation:</li>
 					<li>Default settings</li>
-					<li>Got to start screen</li>
 				</ul>
 				<ul style={{ top: listPosTop, left: listPosLeftB }}>
 					<li>{settings.fontSize}</li>
@@ -242,9 +239,9 @@ class Settings extends React.Component {
 					<ControlButton
 						fontSize={settings.fontSize}
 						stateColor={stateColor}
-						mouseDownHandler={this.handleButtonAPushDown}
-						mouseUpHandler={this.handleButtonAPushUp}
-						icon="selectList"
+						mouseDownHandler={this.handleButtonAKeyDown}
+						mouseUpHandler={this.handleButtonAKeyUp}
+						icon="selectHome"
 					/>
 					<ControlButton
 						fontSize={settings.fontSize}

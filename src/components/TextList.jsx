@@ -24,7 +24,7 @@ class TextList extends React.Component {
 
 	handleKeyPress = (event) => {
 		if (event.key === "a") {
-			this.handleButtonAPushDown();
+			this.handleButtonAKeyDown();
 		} else if (event.key === "b" && !event.repeat) {
 			this.handleButtonBUp();
 		} else if (event.key === "c" && !event.repeat) {
@@ -34,11 +34,11 @@ class TextList extends React.Component {
 
 	handleKeyHold = (event) => {
 		if (event.key === "a") {
-			this.handleButtonAPushUp();
+			this.handleButtonAKeyUp();
 		}
 	}
 
-	handleButtonAPushDown = () => {
+	handleButtonAKeyDown = () => {
 		if (!this.state.keyHold) {
 			this.setState(() => {
 				return {
@@ -49,10 +49,10 @@ class TextList extends React.Component {
 		}
 	}
 
-	handleButtonAPushUp = () => {
+	handleButtonAKeyUp = () => {
 		if (this.state.keyHold) {
 			if (((new Date()).getTime() - this.state.keyDownTime) > this.props.settings.holdButtonTime) {
-				this.props.changeMode("set");
+				this.props.changeMode("start");
 			} else {
 				this.props.changeMode("read");
 			}
@@ -128,9 +128,9 @@ class TextList extends React.Component {
 						<ControlButton
 							fontSize={settings.fontSize}
 							stateColor={stateColor}
-							mouseDownHandler={this.handleButtonAPushDown}
-							mouseUpHandler={this.handleButtonAPushUp}
-							icon="selectSettings"
+							mouseDownHandler={this.handleButtonAKeyDown}
+							mouseUpHandler={this.handleButtonAKeyUp}
+							icon="selectHome"
 						/>
 						<ControlButton
 							fontSize={settings.fontSize}
