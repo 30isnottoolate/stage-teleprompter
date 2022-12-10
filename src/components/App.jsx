@@ -43,6 +43,20 @@ class App extends React.Component {
 	}
 
 	componentDidMount() {
+		this.setState(() => {
+			if (localStorage["fontSize"] && localStorage["lineHeight"] && localStorage["colorIndex"] &&
+				localStorage["textSpeed"] && localStorage["holdButtonTime"] && localStorage["orientation"]) {
+				return {
+					...localStorageStates
+				}
+			} else {
+				this.defaultLocalStorage();
+				return {
+					...DEFAULT_STATES
+				}
+			}
+		});
+
 		fetch('library.json', {
 			headers: {
 				'Content-Type': 'application/json',
@@ -52,43 +66,20 @@ class App extends React.Component {
 			.then(response => response.json())
 			.then(data => {
 				this.setState(() => {
-					if (localStorage["fontSize"] && localStorage["lineHeight"] && localStorage["colorIndex"] &&
-						localStorage["textSpeed"] && localStorage["holdButtonTime"] && localStorage["orientation"]) {
-						if (data.librarian === this.validateLibrary(data.texts)) {
-							return {
-								...localStorageStates,
-								library: data,
-								libraryStatus: "valid"
-							}
-						} else {
-							console.log("invalid");
-							return {
-								...localStorageStates,
-								libraryStatus: "invalid"
-							}
+					if (data.librarian === this.validateLibrary(data.texts)) {
+						return {
+							library: data,
+							libraryStatus: "valid"
 						}
 					} else {
-						this.defaultLocalStorage();
-						if (data.librarian === this.validateLibrary(data.texts)) {
-							return {
-								...DEFAULT_STATES,
-								library: data,
-								libraryStatus: "valid"
-							}
-						} else {
-							console.log("invalid");
-							return {
-								...DEFAULT_STATES,
-								libraryStatus: "invalid"
-							}
+						return {
+							libraryStatus: "invalid"
 						}
-
 					}
 				});
 			})
 			.catch(() => {
 				this.setState({ libraryStatus: "missing" });
-				console.log("Database missing.");
 			});
 	}
 
