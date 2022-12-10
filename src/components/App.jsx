@@ -57,6 +57,11 @@ class App extends React.Component {
 			}
 		});
 
+		this.fetchLibrary();
+	}
+
+	fetchLibrary() {
+		console.log("fetching");
 		fetch('library.json', {
 			headers: {
 				'Content-Type': 'application/json',
@@ -65,18 +70,14 @@ class App extends React.Component {
 		})
 			.then(response => response.json())
 			.then(data => {
-				this.setState(() => {
-					if (data.librarian === this.validateLibrary(data.texts)) {
-						return {
-							library: data,
-							libraryStatus: "valid"
-						}
-					} else {
-						return {
-							libraryStatus: "invalid"
-						}
-					}
-				});
+				if (data.librarian === validateLibrary(data.texts)) {
+					this.setState({
+						library: data,
+						libraryStatus: "valid"
+					});
+				} else {
+					this.setState({ libraryStatus: "invalid" });
+				}
 			})
 			.catch(() => {
 				this.setState({ libraryStatus: "missing" });
