@@ -156,7 +156,7 @@ class StartHelp extends React.Component {
 						fontSize={settings.fontSize}
 						stateColor={stateColor}
 						mouseDownHandler={this.handleButtonBList}
-						icon="list"
+						icon={libraryStatus === "valid" ? "list" : "refresh"}
 					/>
 					<ControlButton
 						fontSize={settings.fontSize}
