@@ -153,6 +153,7 @@ class App extends React.Component {
 				<StartHelp
 					settings={this.state}
 					libraryStatus={this.state.libraryStatus}
+					fetchLibrary={this.fetchLibrary}
 					changeMode={this.changeMode}
 				/>
 			)
