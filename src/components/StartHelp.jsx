@@ -79,7 +79,11 @@ class StartHelp extends React.Component {
 
 	handleButtonASet = () => this.props.changeMode("set");
 
-	handleButtonBList = () => this.props.changeMode("select");
+	handleButtonBList = () => {
+		if (this.libraryStatus === "valid") {
+			this.props.changeMode("select");
+		} else this.fetchLibrary();
+	}
 
 	handleButtonCDown = () => {
 		this.setState((prevState) => {
