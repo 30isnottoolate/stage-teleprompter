@@ -22,12 +22,12 @@ const DEFAULT_STATES = {
 }
 
 const localStorageStates = {
-	fontSize: parseInt(localStorage.getItem("fontSize")),
-	lineHeight: parseFloat(localStorage.getItem("lineHeight")),
-	colorIndex: parseInt(localStorage.getItem("colorIndex")),
-	textSpeed: parseInt(localStorage.getItem("textSpeed")),
-	holdButtonTime: parseInt(localStorage.getItem("holdButtonTime")),
-	orientation: localStorage.getItem("orientation")
+	fontSize: parseInt(localStorage["fontSize"]),
+	lineHeight: parseFloat(localStorage["lineHeight"]),
+	colorIndex: parseInt(localStorage["colorIndex"]),
+	textSpeed: parseInt(localStorage["textSpeed"]),
+	holdButtonTime: parseInt(localStorage["holdButtonTime"]),
+	orientation: localStorage["orientation"]
 }
 
 class App extends React.Component {
@@ -43,24 +43,58 @@ class App extends React.Component {
 	}
 
 	componentDidMount() {
-		this.setState(() => {
-			if (localStorage["fontSize"] && localStorage["lineHeight"] && localStorage["colorIndex"] &&
-				localStorage["textSpeed"] && localStorage["holdButtonTime"] && localStorage["orientation"]) {
-				return {
-					...localStorageStates
-				}
-			} else {
-				this.defaultLocalStorage();
-				return {
-					...DEFAULT_STATES
-				}
-			}
-		});
-
+		if (this.validateLocalStorage()) {
+			this.setState({ ...localStorageStates });
+		} else {
+			this.setState({ ...DEFAULT_STATES }, this.defaultLocalStorage);
+		}
+		
 		this.fetchLibrary();
 	}
 
-	fetchLibrary() {
+	validateLocalStorage = () => {
+		let storageValidity = true;
+
+		if (!localStorage["fontSize"] ||
+			isNaN(parseInt(localStorage["fontSize"])) ||
+			parseInt(localStorage["fontSize"]) < 80 ||
+			parseInt(localStorage["fontSize"]) > 150) {
+			storageValidity = false;
+		}
+		if (!localStorage["lineHeight"] ||
+			isNaN(parseFloat(localStorage["lineHeight"])) ||
+			parseFloat(localStorage["lineHeight"]) < 1 ||
+			parseFloat(localStorage["lineHeight"]) > 1.5) {
+			storageValidity = false;
+		}
+		if (!localStorage["colorIndex"] ||
+			isNaN(parseInt(localStorage["colorIndex"])) ||
+			parseInt(localStorage["colorIndex"]) < 1 ||
+			parseInt(localStorage["colorIndex"]) > 5) {
+			storageValidity = false;
+		}
+		if (!localStorage["textSpeed"] ||
+			isNaN(parseInt(localStorage["textSpeed"])) ||
+			parseInt(localStorage["textSpeed"]) < 20 ||
+			parseInt(localStorage["textSpeed"]) > 200) {
+			storageValidity = false;
+		}
+		if (!localStorage["holdButtonTime"] ||
+			isNaN(parseInt(localStorage["holdButtonTime"])) ||
+			parseInt(localStorage["holdButtonTime"]) < 1000 ||
+			parseInt(localStorage["holdButtonTime"]) > 5000) {
+			storageValidity = false;
+		}
+		if (!localStorage["orientation"] ||
+			(localStorage["orientation"] !== "horizontal" &&
+				localStorage["orientation"] !== "vertical")) {
+			storageValidity = false;
+		}
+
+		return storageValidity;
+	}
+
+	fetchLibrary = () => {
 		fetch('library.json', {
 			headers: {
 				'Content-Type': 'application/json',
@@ -83,7 +117,7 @@ class App extends React.Component {
 			});
 	}
 
-	validateLibrary(texts) {
+	validateLibrary = (texts) => {
 		let validationCode = "11";
 
 		texts.forEach((item) => {
