@@ -48,7 +48,7 @@ class App extends React.Component {
 		} else {
 			this.setState({ ...DEFAULT_STATES }, this.defaultLocalStorage);
 		}
-		
+
 		this.fetchLibrary();
 	}
 
@@ -128,24 +128,15 @@ class App extends React.Component {
 	}
 
 	changeIndex = (index) => {
-		this.setState({
-			textIndex: index
-		});
+		this.setState({ textIndex: index });
 	}
 
 	changeMode = (mode) => {
-		this.setState({
-			mode: mode
-		});
+		this.setState({ mode: mode });
 	}
 
 	changeSettings = (setting, value) => {
-		localStorage.setItem(setting, value);
-		this.setState(() => {
-			return {
-				[setting]: value
-			}
-		});
+		this.setState({ [setting]: value }, localStorage.setItem(setting, value));
 	}
 
 	changeOrientation = () => {
@@ -172,12 +163,7 @@ class App extends React.Component {
 	}
 
 	defaultSettings = () => {
-		this.setState(() => {
-			this.defaultLocalStorage();
-			return {
-				...DEFAULT_STATES
-			}
-		})
+		this.setState({ ...DEFAULT_STATES }, this.defaultLocalStorage);
 	}
 
 	render() {
