@@ -61,7 +61,6 @@ class App extends React.Component {
 	}
 
 	fetchLibrary() {
-		console.log("fetching");
 		fetch('library.json', {
 			headers: {
 				'Content-Type': 'application/json',
@@ -80,7 +79,6 @@ class App extends React.Component {
 				}
 			})
 			.catch(() => {
-				console.log("ping")
 				this.setState({ libraryStatus: "missing" });
 			});
 	}
