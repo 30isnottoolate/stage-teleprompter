@@ -75,9 +75,8 @@ button {
 	background-color: #05100b;
 	padding: 3px 0 6px 0;
 	border-radius: 10px 10px 0 0;
-	border-width: 3px;
+	border-width: 3px 3px 0 3px;
 	border-style: solid;
-	border-bottom: none;
 }
 
 button > svg {
