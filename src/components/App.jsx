@@ -103,7 +103,7 @@ class App extends React.Component {
 		})
 			.then(response => response.json())
 			.then(data => {
-				if (data.librarian === this.validateLibrary(data.texts)) {
+				if (data.librarian && data.librarian === this.validateLibrary(data.texts)) {
 					this.setState({
 						library: data,
 						libraryStatus: "valid"
