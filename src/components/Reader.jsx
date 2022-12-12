@@ -150,7 +150,7 @@ class Reader extends React.Component {
 
 	handleButtonASet = () => this.props.changeMode("home");
 
-	handleButtonBList = () => this.props.changeMode("select");
+	handleButtonBList = () => this.props.changeMode("list");
 
 	handleButtonCStartStop = () => {
 		if (this.state.endReached) {

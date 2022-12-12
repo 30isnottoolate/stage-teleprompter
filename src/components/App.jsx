@@ -38,7 +38,7 @@ class App extends React.Component {
 			libraryStatus: "checking", // checking, missing, invalid, valid
 			textIndex: 0,
 			...DEFAULT_STATES,
-			mode: "home" // home, select, read, set
+			mode: "home" // home, list, read, set
 		};
 	}
 
@@ -176,7 +176,7 @@ class App extends React.Component {
 					changeMode={this.changeMode}
 				/>
 			)
-		} else if (this.state.mode === "select") {
+		} else if (this.state.mode === "list") {
 			return (
 				<TextList
 					settings={this.state}

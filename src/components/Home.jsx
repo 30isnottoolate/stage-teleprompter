@@ -81,7 +81,7 @@ class Home extends React.Component {
 
 	handleButtonBList = () => {
 		if (this.props.libraryStatus === "valid") {
-			this.props.changeMode("select");
+			this.props.changeMode("list");
 		} else this.props.fetchLibrary();
 	}
 
