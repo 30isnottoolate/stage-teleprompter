@@ -38,7 +38,7 @@ class App extends React.Component {
 			libraryStatus: "checking", // checking, missing, invalid, valid
 			textIndex: 0,
 			...DEFAULT_STATES,
-			mode: "start" // start, select, read, set
+			mode: "home" // home, select, read, set
 		};
 	}
 
@@ -167,7 +167,7 @@ class App extends React.Component {
 	}
 
 	render() {
-		if (this.state.mode === "start") {
+		if (this.state.mode === "home") {
 			return (
 				<Home
 					settings={this.state}

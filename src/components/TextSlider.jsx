@@ -148,7 +148,7 @@ class TextSlider extends React.Component {
 		});
 	}
 
-	handleButtonASet = () => this.props.changeMode("start");
+	handleButtonASet = () => this.props.changeMode("home");
 
 	handleButtonBList = () => this.props.changeMode("select");
 
