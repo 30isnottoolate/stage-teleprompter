@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.css';
-import TextSlider from './TextSlider.jsx';
-import TextList from './TextList.jsx';
-import Settings from './Settings.jsx';
 import Home from './Home.jsx';
+import TextList from './TextList.jsx';
+import Reader from './Reader.jsx';
+import Settings from './Settings.jsx';
 
 const FONT_SIZE_DEFAULT = 100;
 const LINE_HEIGHT_DEFAULT = 1.2;
@@ -187,7 +187,7 @@ class App extends React.Component {
 			)
 		} else if (this.state.mode === "read") {
 			return (
-				<TextSlider
+				<Reader
 					settings={this.state}
 					library={this.state.library}
 					textIndex={this.state.textIndex} changeTextIndex={this.changeIndex}

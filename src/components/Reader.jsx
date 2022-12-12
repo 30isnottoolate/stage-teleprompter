@@ -6,7 +6,7 @@ import ControlButton from './ControlButton';
 
 const READ_SPEED_COEF = 0.0151; // char/ms
 
-class TextSlider extends React.Component {
+class Reader extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -224,4 +224,4 @@ class TextSlider extends React.Component {
 	}
 }
 
-export default TextSlider;
+export default Reader;
