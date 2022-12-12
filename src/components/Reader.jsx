@@ -167,7 +167,7 @@ class Reader extends React.Component {
 
 		return (
 			<div
-				id="text-slide"
+				id="reader"
 				className={settings.orientation === "vertical" ? "rotate-cw" : ""}
 				style={{
 					fontSize: settings.fontSize,
