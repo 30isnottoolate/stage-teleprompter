@@ -3,7 +3,7 @@ import './App.css';
 import TextSlider from './TextSlider.jsx';
 import TextList from './TextList.jsx';
 import Settings from './Settings.jsx';
-import StartHelp from './StartHelp.jsx';
+import Home from './Home.jsx';
 
 const FONT_SIZE_DEFAULT = 100;
 const LINE_HEIGHT_DEFAULT = 1.2;
@@ -169,7 +169,7 @@ class App extends React.Component {
 	render() {
 		if (this.state.mode === "start") {
 			return (
-				<StartHelp
+				<Home
 					settings={this.state}
 					libraryStatus={this.state.libraryStatus}
 					fetchLibrary={this.fetchLibrary}

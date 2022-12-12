@@ -3,7 +3,7 @@ import colors from '../utilities/colors';
 import Marker from './Marker';
 import ControlButton from './ControlButton';
 
-class StartHelp extends React.Component {
+class Home extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -174,4 +174,4 @@ class StartHelp extends React.Component {
 	}
 }
 
-export default StartHelp;
+export default Home;
