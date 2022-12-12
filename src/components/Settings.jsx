@@ -113,7 +113,7 @@ class Settings extends React.Component {
 					break;
 				case 5:
 					if (this.props.settings.holdButtonTime > 1000) {
-						this.props.changeSettings("holdButtonTime", this.props.settings.holdButtonTime - 10);
+						this.props.changeSettings("holdButtonTime", this.props.settings.holdButtonTime - 100);
 					}
 					break;
 				case 6:
@@ -162,7 +162,7 @@ class Settings extends React.Component {
 					break;
 				case 5:
 					if (this.props.settings.holdButtonTime < 5000) {
-						this.props.changeSettings("holdButtonTime", this.props.settings.holdButtonTime + 10);
+						this.props.changeSettings("holdButtonTime", this.props.settings.holdButtonTime + 100);
 					}
 					break;
 				case 6:
@@ -231,7 +231,7 @@ class Settings extends React.Component {
 					<li>{settings.lineHeight.toFixed(2)}</li>
 					<li>{colors[settings.colorIndex].name}</li>
 					<li>{settings.textSpeed}%</li>
-					<li>{settings.holdButtonTime} ms</li>
+					<li>{(settings.holdButtonTime / 1000).toFixed(1)} s</li>
 					<li>{settings.orientation}</li>
 					<li></li>
 				</ul>
