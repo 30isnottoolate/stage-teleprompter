@@ -81,73 +81,60 @@ class TextList extends React.Component {
 		let listPos = (1 - textIndex) * settings.fontSize * settings.lineHeight;
 		let stateColor = colors[settings.colorIndex].code;
 		let responsiveWidth = (settings.orientation === "vertical") ? "100vh" : "100vw";
-
-		if (library.texts.length < 1) {
-			return (
-				<div
-					id="text-list"
+		
+		return (
+			<div
+				id="text-list"
+				className={settings.orientation === "vertical" ? "rotate-cw" : ""}
+				style={{
+					fontSize: settings.fontSize,
+					color: stateColor,
+					lineHeight: settings.lineHeight
+				}}>
+				<p
+					id="head-line"
+					className={textIndex === 0 ? "visible" : "hidden"}>
+					LIBRARY:
+				</p>
+				<ul
 					style={{
-						fontSize: settings.fontSize,
-						color: stateColor
-					}}>
-					<p id="head-line">Loading text list...</p>
-				</div>
-			)
-		} else {
-			return (
-				<div
-					id="text-list"
-					className={settings.orientation === "vertical" ? "rotate-cw" : ""}
-					style={{
-						fontSize: settings.fontSize,
-						color: stateColor,
-						lineHeight: settings.lineHeight
-					}}>
-					<p
-						id="head-line"
-						className={textIndex === 0 ? "visible" : "hidden"}>
-						LIBRARY:
-					</p>
-					<ul
-						style={{
-							top: listPos,
-							left: (settings.fontSize * 0.69),
-							width: `calc(${responsiveWidth} - ${(settings.fontSize * 0.69)}px)`
-						}}
-					>
-						{library.texts.map((item, index) => <li key={index}>{item.title}</li>)}
-					</ul>
-					<Marker
-						top={settings.fontSize * settings.lineHeight}
-						left={settings.fontSize * 0.19}
+						top: listPos,
+						left: (settings.fontSize * 0.69),
+						width: `calc(${responsiveWidth} - ${(settings.fontSize * 0.69)}px)`
+					}}
+				>
+					{library.texts.map((item, index) => <li key={index}>{item.title}</li>)}
+				</ul>
+				<Marker
+					top={settings.fontSize * settings.lineHeight}
+					left={settings.fontSize * 0.19}
+					fontSize={settings.fontSize}
+					lineHeight={settings.lineHeight}
+					stateColor={stateColor}
+				/>
+				<div id="control" style={{ width: responsiveWidth }}>
+					<ControlButton
 						fontSize={settings.fontSize}
-						lineHeight={settings.lineHeight}
 						stateColor={stateColor}
+						mouseDownHandler={this.handleButtonAKeyDown}
+						mouseUpHandler={this.handleButtonAKeyUp}
+						icon="selectHome"
 					/>
-					<div id="control" style={{ width: responsiveWidth }}>
-						<ControlButton
-							fontSize={settings.fontSize}
-							stateColor={stateColor}
-							mouseDownHandler={this.handleButtonAKeyDown}
-							mouseUpHandler={this.handleButtonAKeyUp}
-							icon="selectHome"
-						/>
-						<ControlButton
-							fontSize={settings.fontSize}
-							stateColor={stateColor}
-							mouseDownHandler={this.handleButtonBUp}
-							icon="up"
-						/>
-						<ControlButton
-							fontSize={settings.fontSize}
-							stateColor={stateColor}
-							mouseDownHandler={this.handleButtonCDown}
-							icon="down"
-						/>
-					</div>
+					<ControlButton
+						fontSize={settings.fontSize}
+						stateColor={stateColor}
+						mouseDownHandler={this.handleButtonBUp}
+						icon="up"
+					/>
+					<ControlButton
+						fontSize={settings.fontSize}
+						stateColor={stateColor}
+						mouseDownHandler={this.handleButtonCDown}
+						icon="down"
+					/>
 				</div>
-			)
-		}
+			</div>
+		)
 	}
 }
 
