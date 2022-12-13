@@ -8,7 +8,7 @@
 
 body {
 	user-select: none;
-	background-color: #05100b;
+	background-color: #06080f;
 	font-family: "Roboto", Arial, Helvetica, sans-serif;
 	overflow: hidden;
 }
@@ -43,6 +43,10 @@ body {
 	white-space: pre-wrap;
 }
 
+span {
+	color: #ef4444;
+}
+
 ul {
 	position: absolute;
 	list-style-type: none;
@@ -60,19 +64,19 @@ li,
 
 #control {
 	display: grid;
-	background-color: #05100b;
+	background-color: #06080f;
 	width: 100vw;
 	justify-content: space-evenly;
 	grid-template-columns: 30% 30% 30%;
 	position: fixed;
 	bottom: 0px;
 	left: 0px;
-	border: 10px solid #05100b;
+	border: 10px solid #06080f;
 	border-bottom: none;
 }
 
 button {
-	background-color: #05100b;
+	background-color: #06080f;
 	padding: 3px 0 6px 0;
 	border-radius: 10px 10px 0 0;
 	border-width: 3px 3px 0 3px;
