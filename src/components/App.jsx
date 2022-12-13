@@ -3,6 +3,7 @@ import './App.css';
 import Home from './Home.jsx';
 import TextList from './TextList.jsx';
 import Reader from './Reader.jsx';
+import InfoPage from './InfoPage';
 import Settings from './Settings.jsx';
 
 const FONT_SIZE_DEFAULT = 100;
@@ -38,7 +39,7 @@ class App extends React.Component {
 			libraryStatus: "checking", // checking, missing, invalid, valid
 			textIndex: 0,
 			...DEFAULT_STATES,
-			mode: "home" // home, list, read, set
+			mode: "home" // home, list, read, info, set
 		};
 	}
 
@@ -175,7 +176,7 @@ class App extends React.Component {
 					fetchLibrary={this.fetchLibrary}
 					changeMode={this.changeMode}
 				/>
-			)
+			);
 		} else if (this.state.mode === "list") {
 			return (
 				<TextList
@@ -184,7 +185,7 @@ class App extends React.Component {
 					textIndex={this.state.textIndex} changeTextIndex={this.changeIndex}
 					changeMode={this.changeMode}
 				/>
-			)
+			);
 		} else if (this.state.mode === "read") {
 			return (
 				<Reader
@@ -193,7 +194,14 @@ class App extends React.Component {
 					textIndex={this.state.textIndex} changeTextIndex={this.changeIndex}
 					changeMode={this.changeMode}
 				/>
-			)
+			);
+		} else if (this.state.mode === "info") {
+			return (
+				<InfoPage
+					settings={this.state}
+					changeMode={this.changeMode}
+				/>
+			);
 		} else if (this.state.mode === "set") {
 			return (
 				<Settings
@@ -203,7 +211,7 @@ class App extends React.Component {
 					defaultSettings={this.defaultSettings}
 					changeMode={this.changeMode}
 				/>
-			)
+			);
 		}
 	}
 }
