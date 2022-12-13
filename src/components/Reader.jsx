@@ -22,10 +22,8 @@ class Reader extends React.Component {
 	}
 
 	componentDidMount() {
-		this.setState({ position: this.props.settings.fontSize * this.props.settings.lineHeight })
-
-		document.addEventListener("keydown", this.handleKeyPress);
-		document.addEventListener("keyup", this.handleKeyHold);
+		document.addEventListener("keydown", this.handleKeyDown);
+		document.addEventListener("keyup", this.handleKeyUp);
 	}
 
 	componentDidUpdate(prevProps, prevState) {
@@ -45,8 +43,8 @@ class Reader extends React.Component {
 	componentWillUnmount() {
 		clearInterval(this.state.timer);
 
-		document.removeEventListener("keydown", this.handleKeyPress);
-		document.removeEventListener("keyup", this.handleKeyHold);
+		document.removeEventListener("keydown", this.handleKeyDown);
+		document.removeEventListener("keyup", this.handleKeyUp);
 	}
 
 	handleActivityChange() {
@@ -54,8 +52,9 @@ class Reader extends React.Component {
 
 		let noEmptyLinesTextHeight = this.slideRef.current.offsetHeight - this.props.settings.fontSize *
 			this.props.settings.lineHeight * this.countEmptyLines(currentText);
-			
-		let intervalValue = (currentText.length / (noEmptyLinesTextHeight * READ_SPEED_COEF)) * (100 / this.props.settings.textSpeed);
+
+		let intervalValue = (currentText.length / (noEmptyLinesTextHeight * READ_SPEED_COEF)) *
+			(100 / this.props.settings.textSpeed);
 
 		clearInterval(this.state.timer);
 
@@ -68,8 +67,8 @@ class Reader extends React.Component {
 
 	handlePositionChange() {
 		this.setState((prevState) => {
-			if (!(this.slideRef.current.offsetHeight > ((-1) * prevState.position + (this.props.settings.fontSize * this.props.settings.lineHeight * 2))
-				&& (prevState.position) <= (this.props.settings.fontSize * this.props.settings.lineHeight))) {
+			if (prevState.position < 2.5 * this.props.settings.fontSize * this.props.settings.lineHeight -
+				this.slideRef.current.offsetHeight) {
 				return {
 					active: false,
 					endReached: true
@@ -80,7 +79,7 @@ class Reader extends React.Component {
 
 	handeTextIndexChange() {
 		this.setState({
-			position: this.props.settings.fontSize * this.props.settings.lineHeight,
+			position: 0,
 			endReached: false,
 			keyHold: false,
 			keyDownTime: 0
@@ -97,7 +96,7 @@ class Reader extends React.Component {
 		} else this.props.changeTextIndex(0);
 	}
 
-	handleKeyPress = (event) => {
+	handleKeyDown = (event) => {
 		this.setState((prevState) => {
 			if (!prevState.keyHold) {
 				if (event.key === "a" || event.key === "b" || event.key === "c") {
@@ -110,7 +109,7 @@ class Reader extends React.Component {
 		});
 	}
 
-	handleKeyHold = (event) => {
+	handleKeyUp = (event) => {
 		this.setState((prevState) => {
 			let holdButtonCondition = ((new Date()).getTime() - prevState.keyDownTime) > this.props.settings.holdButtonTime;
 			let holdButtonReset = { keyHold: false, keyDownTime: 0 };
@@ -158,9 +157,19 @@ class Reader extends React.Component {
 		} else this.setState(prevState => ({ active: !prevState.active }));
 	}
 
+	displayText = () => {
+		if (this.props.library.texts[this.props.textIndex]) {
+			let currentText = this.props.library.texts[this.props.textIndex];
+			return '<div id="head-line" style="padding-bottom: ' +
+				0.5 * this.props.settings.fontSize * this.props.settings.lineHeight + 'px;">' +
+				currentText.title + '</div>' +
+				currentText.content.replaceAll("{{", "<span>").replaceAll("}}", "</span>");
+		} else return "Loading...";
+	}
+
 	render() {
 		const { active, position, endReached } = this.state;
-		const { library, textIndex, settings } = this.props;
+		const { settings } = this.props;
 
 		let stateColor = colors[settings.colorIndex].code;
 		let responsiveWidth = settings.orientation === "vertical" ? "100vh" : "100vw";
@@ -175,7 +184,7 @@ class Reader extends React.Component {
 					lineHeight: settings.lineHeight
 				}}>
 				<Marker
-					top={settings.fontSize * settings.lineHeight}
+					top={1.5 * settings.fontSize * settings.lineHeight}
 					left={settings.fontSize * 0.19}
 					fontSize={settings.fontSize}
 					lineHeight={settings.lineHeight}
@@ -193,7 +202,7 @@ class Reader extends React.Component {
 					}} >
 					<p id="text" dangerouslySetInnerHTML={{
 						__html:
-							DOMPurify.sanitize(library.texts[textIndex].content ? library.texts[textIndex].content : "Loading...")
+							DOMPurify.sanitize(this.displayText())
 					}} />
 				</div>
 				<div
