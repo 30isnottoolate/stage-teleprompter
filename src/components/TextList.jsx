@@ -106,7 +106,7 @@ class TextList extends React.Component {
 					<p
 						id="head-line"
 						className={textIndex === 0 ? "visible" : "hidden"}>
-						SELECT:
+						LIBRARY:
 					</p>
 					<ul
 						style={{
