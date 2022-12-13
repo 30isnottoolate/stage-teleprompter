@@ -78,10 +78,10 @@ class TextList extends React.Component {
 	render() {
 		const { settings, library, textIndex } = this.props;
 
-		let listPos = (1 - textIndex) * settings.fontSize * settings.lineHeight;
+		let listPos = (1.5 - textIndex) * settings.fontSize * settings.lineHeight;
 		let stateColor = colors[settings.colorIndex].code;
 		let responsiveWidth = (settings.orientation === "vertical") ? "100vh" : "100vw";
-		
+
 		return (
 			<div
 				id="text-list"
@@ -106,7 +106,7 @@ class TextList extends React.Component {
 					{library.texts.map((item, index) => <li key={index}>{item.title}</li>)}
 				</ul>
 				<Marker
-					top={settings.fontSize * settings.lineHeight}
+					top={1.5 * settings.fontSize * settings.lineHeight}
 					left={settings.fontSize * 0.19}
 					fontSize={settings.fontSize}
 					lineHeight={settings.lineHeight}
@@ -134,7 +134,7 @@ class TextList extends React.Component {
 					/>
 				</div>
 			</div>
-		)
+		);
 	}
 }
 
