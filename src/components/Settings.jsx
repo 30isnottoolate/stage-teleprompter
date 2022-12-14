@@ -206,8 +206,7 @@ class Settings extends React.Component {
 					lineHeight: settings.lineHeight
 				}}>
 				<p
-					id="head-line"
-					className={settingsIndex === 1 ? "visible" : "hidden"}>
+					className={"title " + (settingsIndex === 1 ? "visible" : "hidden")}>
 					SETTINGS:
 				</p>
 				<Marker

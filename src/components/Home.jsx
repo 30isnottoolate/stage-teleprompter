@@ -48,15 +48,8 @@ class Home extends React.Component {
 					lineHeight: settings.lineHeight
 				}}>
 				<p
-					id="head-line">
+					className="title">
 					KV Stage Teleprompter
-				</p>
-				<p
-					id="sub-line"
-					style={{
-						position: "absolute",
-						left: (settings.fontSize * 0.69)
-					}}>
 				</p>
 				<div id="control" style={{ width: responsiveWidth }}>
 					<ControlButton

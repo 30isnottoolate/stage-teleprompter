@@ -23,7 +23,7 @@ body {
 	width: 100vh;
 }
 
-#head-line {
+.title {
 	text-align: center;
 }
 
@@ -55,8 +55,7 @@ ul {
 }
 
 li,
-#head-line,
-#sub-line {
+.title {
 	white-space: nowrap;
 	text-overflow: ellipsis;
 	overflow: hidden;

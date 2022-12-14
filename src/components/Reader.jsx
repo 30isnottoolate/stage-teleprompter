@@ -160,7 +160,7 @@ class Reader extends React.Component {
 	displayText = () => {
 		if (this.props.library.texts[this.props.textIndex]) {
 			let currentText = this.props.library.texts[this.props.textIndex];
-			return '<div id="head-line" style="padding-bottom: ' +
+			return '<div class="title" style="padding-bottom: ' +
 				0.5 * this.props.settings.fontSize * this.props.settings.lineHeight + 'px;">' +
 				currentText.title + '</div>' +
 				currentText.content.replaceAll("{{", "<span>").replaceAll("}}", "</span>");
