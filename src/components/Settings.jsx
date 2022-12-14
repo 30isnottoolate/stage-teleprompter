@@ -190,7 +190,7 @@ class Settings extends React.Component {
 		const {settingsIndex, inChangeMode} = this.state;
 		const {settings} = this.props;
 
-		let listPosTop = (2 - settingsIndex) * settings.fontSize * settings.lineHeight;
+		let listPosTop = (2.5 - settingsIndex) * settings.fontSize * settings.lineHeight;
 		let listPosLeftA = (inChangeMode) ? settings.fontSize * 0.69 - settings.fontSize * 8.02 : settings.fontSize * 0.69;
 		let listPosLeftB = (inChangeMode) ? settings.fontSize * 0.69 : settings.fontSize * 8.02;
 		let stateColor = colors[settings.colorIndex].code;
@@ -210,7 +210,7 @@ class Settings extends React.Component {
 					SETTINGS:
 				</p>
 				<Marker
-					top={settings.fontSize * settings.lineHeight}
+					top={1.5 * settings.fontSize * settings.lineHeight}
 					left={settings.fontSize * 0.19}
 					fontSize={settings.fontSize}
 					lineHeight={settings.lineHeight}

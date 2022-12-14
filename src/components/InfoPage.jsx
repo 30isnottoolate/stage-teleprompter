@@ -107,7 +107,7 @@ class InfoPage extends React.Component {
 		const {infoIndex} = this.state;
 		const {settings} = this.props;
 
-		let listPos = (3 - infoIndex) * settings.fontSize * settings.lineHeight;
+		let listPos = (2.5 - infoIndex) * settings.fontSize * settings.lineHeight;
 		let stateColor = colors[settings.colorIndex].code;
 		let responsiveWidth = (settings.orientation === "vertical") ? "100vh" : "100vw";
 
@@ -124,9 +124,8 @@ class InfoPage extends React.Component {
 					className={"title " + (infoIndex <= 2 ? "visible" : "hidden")}>
 					How to use?
 				</p>
-				<br/>
 				<Marker
-					top={2 * settings.fontSize * settings.lineHeight}
+					top={1.5 * settings.fontSize * settings.lineHeight}
 					left={settings.fontSize * 0.19}
 					fontSize={settings.fontSize}
 					lineHeight={settings.lineHeight}
