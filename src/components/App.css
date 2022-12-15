@@ -27,24 +27,24 @@ body {
 	text-align: center;
 }
 
+.content {
+	display: grid;
+	grid-template-rows: auto auto;
+	justify-items: center;
+    align-content: center;
+	position: absolute;
+	top: 0;
+	width: 100vw;
+	height: 100vh;
+}
+
+.status-image {
+	display: block;
+	box-sizing: content-box;
+}
+
 .text-marker {
 	position: absolute;
-	transition-property: top;
-	transition-duration: 0.5s;
-}
-
-#slide {
-	position: absolute;
-	z-index: -1;
-	transition-duration: 0.2s;
-}
-
-#text {
-	white-space: pre-wrap;
-}
-
-span {
-	color: #ef4444;
 }
 
 ul {
@@ -59,6 +59,26 @@ li,
 	white-space: nowrap;
 	text-overflow: ellipsis;
 	overflow: hidden;
+}
+
+.item-icon {
+	display: grid;
+	grid-template-columns: auto auto; 
+	justify-content: start;
+}
+
+#slide {
+	position: absolute;
+	z-index: -1;
+	transition-duration: 0.2s;
+}
+
+#text {
+	white-space: pre-wrap;
+}
+
+span {
+	color: #ef4444;
 }
 
 #control {
@@ -78,8 +98,9 @@ button {
 	background-color: #06080f;
 	padding: 3px 0 6px 0;
 	border-radius: 10px 10px 0 0;
-	border-width: 3px 3px 0 3px;
+	border-width: 3px;
 	border-style: solid;
+	border-bottom: none;
 }
 
 button > svg {
