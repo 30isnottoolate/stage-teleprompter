@@ -1,6 +1,7 @@
 import React from 'react';
 import colors from '../utilities/colors';
 import Marker from './Marker';
+import Icon from './Icon';
 import ControlButton from './ControlButton';
 
 class InfoPage extends React.Component {
@@ -14,59 +15,37 @@ class InfoPage extends React.Component {
 	}
 
 	componentDidMount() {
-		document.addEventListener("keydown", this.handleKeyPress);
-		document.addEventListener("keyup", this.handleKeyHold);
+		document.addEventListener("keydown", this.handleKeyDown);
+		document.addEventListener("keyup", this.handleKeyUp);
 	}
 
 	componentWillUnmount() {
-		document.removeEventListener("keydown", this.handleKeyPress);
-		document.removeEventListener("keyup", this.handleKeyHold);
+		document.removeEventListener("keydown", this.handleKeyDown);
+		document.removeEventListener("keyup", this.handleKeyUp);
 	}
 
-	handleKeyPress = (event) => {
+	handleKeyDown = (event) => {
+		if (event.key === "a") {
+			this.setState({
+				keyHold: true,
+				keyDownTime: (new Date()).getTime()
+			});
+		} else if (event.key === "b" && !event.repeat) {
+			this.handleButtonBUp();
+		} else if (event.key === "c" && !event.repeat) {
+			this.handleButtonCDown();
+		}
+	}
+
+	handleKeyUp = (event) => {
 		this.setState((prevState) => {
-			if (!prevState.keyHold) {
-				if (event.key === "a") {
+			if (prevState.keyHold && event.key === "a") {
+				if (((new Date()).getTime() - this.state.keyDownTime) > this.props.settings.holdButtonTime) {
+					this.handleButtonAHome();
+				} else {
 					return {
-						keyHold: true,
-						keyDownTime: (new Date()).getTime()
-					}
-				} else if (event.key === "b" && !event.repeat) {
-					if (this.state.infoIndex > 1) {
-						return {
-							infoIndex: prevState.infoIndex - 1
-						}
-					} else {
-						return {
-							infoIndex: 5
-						}
-					}
-				} else if (event.key === "c" && !event.repeat) {
-					if (this.state.infoIndex < 5) {
-						return {
-							infoIndex: prevState.infoIndex + 1
-						}
-					} else {
-						return {
-							infoIndex: 1
-						}
-					}
-				}
-			}
-		});
-	}
-
-	handleKeyHold = (event) => {
-		this.setState((prevState) => {
-			if (prevState.keyHold) {
-				if (event.key === "a") {
-					if (((new Date()).getTime() - this.state.keyDownTime) > this.props.settings.holdButtonTime) {
-						this.handleButtonAHome();
-					} else {
-						return {
-							keyHold: false,
-							keyDownTime: 0
-						}
+						keyHold: false,
+						keyDownTime: 0
 					}
 				}
 			}
@@ -83,7 +62,7 @@ class InfoPage extends React.Component {
 				}
 			} else {
 				return {
-					infoIndex: 5
+					infoIndex: 13
 				}
 			}
 		});
@@ -91,7 +70,7 @@ class InfoPage extends React.Component {
 
 	handleButtonCDown = () => {
 		this.setState((prevState) => {
-			if (prevState.infoIndex < 5) {
+			if (prevState.infoIndex < 13) {
 				return {
 					infoIndex: prevState.infoIndex + 1
 				}
@@ -104,10 +83,10 @@ class InfoPage extends React.Component {
 	}
 
 	render() {
-		const {infoIndex} = this.state;
-		const {settings} = this.props;
+		const { infoIndex } = this.state;
+		const { settings } = this.props;
 
-		let listPos = (2.5 - infoIndex) * settings.fontSize * settings.lineHeight;
+		let listPos = (2.75 - infoIndex) * settings.fontSize * settings.lineHeight;
 		let stateColor = colors[settings.colorIndex].code;
 		let responsiveWidth = (settings.orientation === "vertical") ? "100vh" : "100vw";
 
@@ -125,7 +104,7 @@ class InfoPage extends React.Component {
 					How to use?
 				</p>
 				<Marker
-					top={1.5 * settings.fontSize * settings.lineHeight}
+					top={1.75 * settings.fontSize * settings.lineHeight}
 					left={settings.fontSize * 0.19}
 					fontSize={settings.fontSize}
 					lineHeight={settings.lineHeight}
@@ -137,11 +116,97 @@ class InfoPage extends React.Component {
 						left: settings.fontSize * 0.69,
 						width: responsiveWidth
 					}}>
-					<li>&#9651;&#9661; - Previous / Next</li>
-					<li>&#9665;&#9655; - Change setting</li>
-					<li>&#9655;&#9634; - Start / Stop</li>
-					<li>&#9636; - Text List</li>
-					<li>&#8984; - Settings</li>
+					<Icon
+						icon="up"
+						fontSize={settings.fontSize}
+						lineHeight={settings.lineHeight}
+						stateColor={stateColor}
+						text="up"
+					/>
+					<Icon
+						icon="down"
+						fontSize={settings.fontSize}
+						lineHeight={settings.lineHeight}
+						stateColor={stateColor}
+						text="down"
+					/>
+					<Icon
+						icon="right"
+						fontSize={settings.fontSize}
+						lineHeight={settings.lineHeight}
+						stateColor={stateColor}
+						text="increase"
+					/>
+					<Icon
+						icon="left"
+						fontSize={settings.fontSize}
+						lineHeight={settings.lineHeight}
+						stateColor={stateColor}
+						text="decrease"
+					/>
+					<Icon
+						icon="play"
+						fontSize={settings.fontSize}
+						lineHeight={settings.lineHeight}
+						stateColor={stateColor}
+						text="play"
+					/>
+					<Icon
+						icon="pause"
+						fontSize={settings.fontSize}
+						lineHeight={settings.lineHeight}
+						stateColor={stateColor}
+						text="pause"
+					/>
+					<Icon
+						icon="next"
+						fontSize={settings.fontSize}
+						lineHeight={settings.lineHeight}
+						stateColor={stateColor}
+						text="next"
+					/>
+					<Icon
+						icon="home"
+						fontSize={settings.fontSize}
+						lineHeight={settings.lineHeight}
+						stateColor={stateColor}
+						text="home"
+					/>
+					<Icon
+						icon="list"
+						fontSize={settings.fontSize}
+						lineHeight={settings.lineHeight}
+						stateColor={stateColor}
+						text="library"
+					/>
+					<Icon
+						icon="settings"
+						fontSize={settings.fontSize}
+						lineHeight={settings.lineHeight}
+						stateColor={stateColor}
+						text="settings"
+					/>
+					<Icon
+						icon="select"
+						fontSize={settings.fontSize}
+						lineHeight={settings.lineHeight}
+						stateColor={stateColor}
+						text="select"
+					/>
+					<Icon
+						icon="refresh"
+						fontSize={settings.fontSize}
+						lineHeight={settings.lineHeight}
+						stateColor={stateColor}
+						text="refresh"
+					/>
+					<Icon
+						icon="info"
+						fontSize={settings.fontSize}
+						lineHeight={settings.lineHeight}
+						stateColor={stateColor}
+						text="info"
+					/>
 				</ul>
 				<div id="control" style={{ width: responsiveWidth }}>
 					<ControlButton
