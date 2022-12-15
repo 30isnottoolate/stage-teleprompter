@@ -12,22 +12,19 @@ class Settings extends React.Component {
 			keyHold: false,
 			keyDownTime: 0
 		};
-
-		this.handleKeyPress = this.handleKeyPress.bind(this);
-		this.handleKeyHold = this.handleKeyHold.bind(this);
 	}
 
 	componentDidMount() {
-		document.addEventListener("keydown", this.handleKeyPress);
-		document.addEventListener("keyup", this.handleKeyHold);
+		document.addEventListener("keydown", this.handleKeyDown);
+		document.addEventListener("keyup", this.handleKeyUp);
 	}
 
 	componentWillUnmount() {
-		document.removeEventListener("keydown", this.handleKeyPress);
-		document.removeEventListener("keyup", this.handleKeyHold);
+		document.removeEventListener("keydown", this.handleKeyDown);
+		document.removeEventListener("keyup", this.handleKeyUp);
 	}
 
-	handleKeyPress(event) {
+	handleKeyDown = (event) => {
 		if (event.key === "a") {
 			this.handleButtonAKeyDown();
 		} else {
@@ -41,7 +38,7 @@ class Settings extends React.Component {
 		}
 	}
 
-	handleKeyHold(event) {
+	handleKeyUp = (event) => {
 		if (event.key === "a") {
 			this.handleButtonAKeyUp();
 		}
@@ -190,7 +187,7 @@ class Settings extends React.Component {
 		const {settingsIndex, inChangeMode} = this.state;
 		const {settings} = this.props;
 
-		let listPosTop = (2.5 - settingsIndex) * settings.fontSize * settings.lineHeight;
+		let listPosTop = (2.75 - settingsIndex) * settings.fontSize * settings.lineHeight;
 		let listPosLeftA = (inChangeMode) ? settings.fontSize * 0.69 - settings.fontSize * 8.02 : settings.fontSize * 0.69;
 		let listPosLeftB = (inChangeMode) ? settings.fontSize * 0.69 : settings.fontSize * 8.02;
 		let stateColor = colors[settings.colorIndex].code;
@@ -206,11 +203,12 @@ class Settings extends React.Component {
 					lineHeight: settings.lineHeight
 				}}>
 				<p
-					className={"title " + (settingsIndex === 1 ? "visible" : "hidden")}>
+					className={"title " + (settingsIndex === 1 ? "visible" : "hidden")}
+					style={{ paddingTop: 0.25 * settings.fontSize * settings.lineHeight }} >
 					SETTINGS:
 				</p>
 				<Marker
-					top={1.5 * settings.fontSize * settings.lineHeight}
+					top={1.75 * settings.fontSize * settings.lineHeight}
 					left={settings.fontSize * 0.19}
 					fontSize={settings.fontSize}
 					lineHeight={settings.lineHeight}

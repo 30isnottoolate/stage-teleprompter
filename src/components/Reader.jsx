@@ -22,6 +22,7 @@ class Reader extends React.Component {
 	}
 
 	componentDidMount() {
+		this.setState({position: 0.25 * this.props.settings.fontSize * this.props.settings.lineHeight});
 		document.addEventListener("keydown", this.handleKeyDown);
 		document.addEventListener("keyup", this.handleKeyUp);
 	}
@@ -47,7 +48,7 @@ class Reader extends React.Component {
 		document.removeEventListener("keyup", this.handleKeyUp);
 	}
 
-	handleActivityChange() {
+	handleActivityChange = () => {
 		let currentText = this.props.library.texts[this.props.textIndex].content;
 
 		let noEmptyLinesTextHeight = this.slideRef.current.offsetHeight - this.props.settings.fontSize *
@@ -65,9 +66,9 @@ class Reader extends React.Component {
 		}
 	}
 
-	handlePositionChange() {
+	handlePositionChange = () => {
 		this.setState((prevState) => {
-			if (prevState.position < 2.5 * this.props.settings.fontSize * this.props.settings.lineHeight -
+			if (prevState.position < 2.75 * this.props.settings.fontSize * this.props.settings.lineHeight -
 				this.slideRef.current.offsetHeight) {
 				return {
 					active: false,
@@ -77,9 +78,9 @@ class Reader extends React.Component {
 		});
 	}
 
-	handeTextIndexChange() {
+	handeTextIndexChange = () => {
 		this.setState({
-			position: 0,
+			position: 0.25 * this.props.settings.fontSize * this.props.settings.lineHeight,
 			endReached: false,
 			keyHold: false,
 			keyDownTime: 0
@@ -184,7 +185,7 @@ class Reader extends React.Component {
 					lineHeight: settings.lineHeight
 				}}>
 				<Marker
-					top={1.5 * settings.fontSize * settings.lineHeight}
+					top={1.75 * settings.fontSize * settings.lineHeight}
 					left={settings.fontSize * 0.19}
 					fontSize={settings.fontSize}
 					lineHeight={settings.lineHeight}

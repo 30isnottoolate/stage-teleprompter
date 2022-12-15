@@ -13,16 +13,16 @@ class TextList extends React.Component {
 	}
 
 	componentDidMount() {
-		document.addEventListener("keydown", this.handleKeyPress);
-		document.addEventListener("keyup", this.handleKeyHold);
+		document.addEventListener("keydown", this.handleKeyDown);
+		document.addEventListener("keyup", this.handleKeyUp);
 	}
 
 	componentWillUnmount() {
-		document.removeEventListener("keydown", this.handleKeyPress);
-		document.removeEventListener("keyup", this.handleKeyHold);
+		document.removeEventListener("keydown", this.handleKeyDown);
+		document.removeEventListener("keyup", this.handleKeyUp);
 	}
 
-	handleKeyPress = (event) => {
+	handleKeyDown = (event) => {
 		if (event.key === "a") {
 			this.handleButtonAKeyDown();
 		} else if (event.key === "b" && !event.repeat) {
@@ -32,7 +32,7 @@ class TextList extends React.Component {
 		}
 	}
 
-	handleKeyHold = (event) => {
+	handleKeyUp = (event) => {
 		if (event.key === "a") {
 			this.handleButtonAKeyUp();
 		}
@@ -78,7 +78,7 @@ class TextList extends React.Component {
 	render() {
 		const { settings, library, textIndex } = this.props;
 
-		let listPos = (1.5 - textIndex) * settings.fontSize * settings.lineHeight;
+		let listPos = (1.75 - textIndex) * settings.fontSize * settings.lineHeight;
 		let stateColor = colors[settings.colorIndex].code;
 		let responsiveWidth = (settings.orientation === "vertical") ? "100vh" : "100vw";
 
@@ -92,7 +92,8 @@ class TextList extends React.Component {
 					lineHeight: settings.lineHeight
 				}}>
 				<p
-					className={"title " + (textIndex === 0 ? "visible" : "hidden")}>
+					className={"title " + (textIndex === 0 ? "visible" : "hidden")}
+					style={{ paddingTop: 0.25 * settings.fontSize * settings.lineHeight }} >
 					LIBRARY:
 				</p>
 				<ul
@@ -105,7 +106,7 @@ class TextList extends React.Component {
 					{library.texts.map((item, index) => <li key={index}>{item.title}</li>)}
 				</ul>
 				<Marker
-					top={1.5 * settings.fontSize * settings.lineHeight}
+					top={1.75 * settings.fontSize * settings.lineHeight}
 					left={settings.fontSize * 0.19}
 					fontSize={settings.fontSize}
 					lineHeight={settings.lineHeight}

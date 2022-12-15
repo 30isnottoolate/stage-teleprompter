@@ -100,7 +100,8 @@ class InfoPage extends React.Component {
 					lineHeight: settings.lineHeight
 				}}>
 				<p
-					className={"title " + (infoIndex <= 2 ? "visible" : "hidden")}>
+					className={"title " + (infoIndex <= 2 ? "visible" : "hidden")}
+					style={{ paddingTop: 0.25 * settings.fontSize * settings.lineHeight }} >
 					How to use?
 				</p>
 				<Marker
