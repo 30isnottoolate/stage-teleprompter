@@ -8,48 +8,26 @@ class InfoPage extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			infoIndex: 1,
-			keyHold: false,
-			keyDownTime: 0
+			infoIndex: 1
 		};
 	}
 
 	componentDidMount() {
 		document.addEventListener("keydown", this.handleKeyDown);
-		document.addEventListener("keyup", this.handleKeyUp);
 	}
 
 	componentWillUnmount() {
 		document.removeEventListener("keydown", this.handleKeyDown);
-		document.removeEventListener("keyup", this.handleKeyUp);
 	}
 
 	handleKeyDown = (event) => {
 		if (event.key === "a") {
-			this.setState({
-				keyHold: true,
-				keyDownTime: (new Date()).getTime()
-			});
+			this.handleButtonAHome();
 		} else if (event.key === "b" && !event.repeat) {
 			this.handleButtonBUp();
 		} else if (event.key === "c" && !event.repeat) {
 			this.handleButtonCDown();
 		}
-	}
-
-	handleKeyUp = (event) => {
-		this.setState((prevState) => {
-			if (prevState.keyHold && event.key === "a") {
-				if (((new Date()).getTime() - this.state.keyDownTime) > this.props.settings.holdButtonTime) {
-					this.handleButtonAHome();
-				} else {
-					return {
-						keyHold: false,
-						keyDownTime: 0
-					}
-				}
-			}
-		});
 	}
 
 	handleButtonAHome = () => this.props.changeMode("home");
