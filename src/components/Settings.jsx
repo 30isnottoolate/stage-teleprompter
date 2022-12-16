@@ -94,7 +94,7 @@ class Settings extends React.Component {
 					}
 					break;
 				case 2:
-					if (this.props.settings.lineHeight > 1) {
+					if (this.props.settings.lineHeight > 1.1) {
 						this.props.changeSettings("lineHeight", this.props.settings.lineHeight - 0.01);
 					}
 					break;
@@ -143,7 +143,7 @@ class Settings extends React.Component {
 					}
 					break;
 				case 2:
-					if (this.props.settings.lineHeight < 1.5) {
+					if (this.props.settings.lineHeight < 1.75) {
 						this.props.changeSettings("lineHeight", this.props.settings.lineHeight + 0.01);
 					}
 					break;
