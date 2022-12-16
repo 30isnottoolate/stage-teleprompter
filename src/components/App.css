@@ -7,20 +7,20 @@
 }
 
 body {
-	user-select: none;
 	background-color: #06080f;
 	font-family: "Roboto", Arial, Helvetica, sans-serif;
 	overflow: hidden;
+	user-select: none;
 }
 
 .rotate-cw {
+	position: absolute;
+	left: 0;
+	top: -100vw;
+	width: 100vh;
+	height: 100vw;
 	transform: rotate(90deg);
 	transform-origin: bottom left;
-	position: absolute;
-	top: -100vw;
-	left: 0;
-	height: 100vw;
-	width: 100vh;
 }
 
 .title {
@@ -56,8 +56,7 @@ ul {
 	transition-duration: 0.5s;
 }
 
-li,
-.title {
+li, .title {
 	white-space: nowrap;
 	text-overflow: ellipsis;
 	overflow: hidden;
@@ -85,24 +84,23 @@ span {
 
 #control {
 	display: grid;
-	background-color: #06080f;
-	width: 100vw;
-	justify-content: space-evenly;
 	grid-template-columns: 30% 30% 30%;
+	justify-content: space-evenly;
+	background-color: #06080f;
 	position: fixed;
-	bottom: 0px;
 	left: 0px;
+	bottom: 0px;
+	width: 100vw;
 	border: 10px solid #06080f;
-	border-bottom: none;
+	border-bottom: 0px;
 }
 
 button {
 	background-color: #06080f;
 	padding: 3px 0 6px 0;
 	border-radius: 10px 10px 0 0;
-	border-width: 3px;
-	border-style: solid;
-	border-bottom: none;
+	border: 3px solid #06080f;
+	border-bottom: 0px;
 }
 
 button > svg {
