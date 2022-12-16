@@ -27,13 +27,17 @@ class Settings extends React.Component {
 	handleKeyDown = (event) => {
 		if (event.key === "a") {
 			this.handleButtonAKeyDown();
-		} else {
-			if ((!this.state.inChangeMode && !event.repeat) || this.state.inChangeMode) {
-				if (event.key === "b") {
-					this.handleButtonBUpDecrease();
-				} else if (event.key === "c") {
-					this.handleButtonCDownIncrease();
-				}
+		} else if (event.key === "b") {
+			if (!this.state.inChangeMode && !event.repeat) {
+				this.handleButtonBUp();
+			} else if (this.state.inChangeMode) {
+				this.handleButtonBDecrease();
+			}
+		} else if (event.key === "c") {
+			if (!this.state.inChangeMode && !event.repeat) {
+				this.handleButtonCDown();
+			} else if (this.state.inChangeMode) {
+				this.handleButtonCIncrease();
 			}
 		}
 	}
@@ -58,7 +62,7 @@ class Settings extends React.Component {
 	}
 
 	handleButtonASelectHome = () => {
-		const resetHold = { keyHold: false, keyDownTime: 0 }
+		const resetHold = { keyHold: false, keyDownTime: 0 };
 
 		this.setState(() => {
 			if (((new Date()).getTime() - this.state.keyDownTime) > this.props.settings.holdButtonTime) {
@@ -89,101 +93,101 @@ class Settings extends React.Component {
 		});
 	}
 
-	handleButtonBUpDecrease = () => {
-		if (this.state.inChangeMode) {
-			switch (this.state.settingsIndex) {
-				case 1:
-					if (this.props.settings.fontSize > 80) {
-						this.props.changeSettings("fontSize", this.props.settings.fontSize - 1);
-					}
-					break;
-				case 2:
-					if (this.props.settings.lineHeight > 1.1) {
-						this.props.changeSettings("lineHeight", this.props.settings.lineHeight - 0.01);
-					}
-					break;
-				case 3:
-					if (this.props.settings.colorIndex > 1) {
-						this.props.changeSettings("colorIndex", this.props.settings.colorIndex - 1);
-					} else this.props.changeSettings("colorIndex", 5);
-					break;
-				case 4:
-					if (this.props.settings.textSpeed > 20) {
-						this.props.changeSettings("textSpeed", this.props.settings.textSpeed - 1);
-					}
-					break;
-				case 5:
-					if (this.props.settings.holdButtonTime > 1000) {
-						this.props.changeSettings("holdButtonTime", this.props.settings.holdButtonTime - 100);
-					}
-					break;
-				case 6:
-					this.props.changeOrientation();
-					break;
-				default:
-					console.log("The impossible just happened.");
-			}
-		} else {
-			this.setState((prevState) => {
-				if (this.state.settingsIndex > 1) {
-					return {
-						settingsIndex: prevState.settingsIndex - 1
-					}
-				} else {
-					return {
-						settingsIndex: 7
-					}
+	handleButtonBUp = () => {
+		this.setState((prevState) => {
+			if (this.state.settingsIndex > 1) {
+				return {
+					settingsIndex: prevState.settingsIndex - 1
 				}
-			});
+			} else {
+				return {
+					settingsIndex: 7
+				}
+			}
+		});
+	}
+
+	handleButtonBDecrease = () => {
+		switch (this.state.settingsIndex) {
+			case 1:
+				if (this.props.settings.fontSize > 80) {
+					this.props.changeSettings("fontSize", this.props.settings.fontSize - 1);
+				}
+				break;
+			case 2:
+				if (this.props.settings.lineHeight > 1.1) {
+					this.props.changeSettings("lineHeight", this.props.settings.lineHeight - 0.01);
+				}
+				break;
+			case 3:
+				if (this.props.settings.colorIndex > 1) {
+					this.props.changeSettings("colorIndex", this.props.settings.colorIndex - 1);
+				} else this.props.changeSettings("colorIndex", 5);
+				break;
+			case 4:
+				if (this.props.settings.textSpeed > 20) {
+					this.props.changeSettings("textSpeed", this.props.settings.textSpeed - 1);
+				}
+				break;
+			case 5:
+				if (this.props.settings.holdButtonTime > 1000) {
+					this.props.changeSettings("holdButtonTime", this.props.settings.holdButtonTime - 100);
+				}
+				break;
+			case 6:
+				this.props.changeOrientation();
+				break;
+			default:
+				console.log("The impossible just happened.");
 		}
 	}
 
-	handleButtonCDownIncrease = () => {
-		if (this.state.inChangeMode) {
-			switch (this.state.settingsIndex) {
-				case 1:
-					if (this.props.settings.fontSize < 150) {
-						this.props.changeSettings("fontSize", this.props.settings.fontSize + 1);
-					}
-					break;
-				case 2:
-					if (this.props.settings.lineHeight < 1.75) {
-						this.props.changeSettings("lineHeight", this.props.settings.lineHeight + 0.01);
-					}
-					break;
-				case 3:
-					if (this.props.settings.colorIndex < 5) {
-						this.props.changeSettings("colorIndex", this.props.settings.colorIndex + 1);
-					} else this.props.changeSettings("colorIndex", 1);
-					break;
-				case 4:
-					if (this.props.settings.textSpeed < 200) {
-						this.props.changeSettings("textSpeed", this.props.settings.textSpeed + 1);
-					}
-					break;
-				case 5:
-					if (this.props.settings.holdButtonTime < 5000) {
-						this.props.changeSettings("holdButtonTime", this.props.settings.holdButtonTime + 100);
-					}
-					break;
-				case 6:
-					this.props.changeOrientation();
-					break;
-				default:
-					console.log("The impossible just happened.");
-			}
-		} else {
-			this.setState((prevState) => {
-				if (this.state.settingsIndex < 7) {
-					return {
-						settingsIndex: prevState.settingsIndex + 1
-					}
-				} else {
-					return {
-						settingsIndex: 1
-					}
+	handleButtonCDown = () => {
+		this.setState((prevState) => {
+			if (this.state.settingsIndex < 7) {
+				return {
+					settingsIndex: prevState.settingsIndex + 1
 				}
-			});
+			} else {
+				return {
+					settingsIndex: 1
+				}
+			}
+		});
+	}
+
+	handleButtonCIncrease = () => {
+		switch (this.state.settingsIndex) {
+			case 1:
+				if (this.props.settings.fontSize < 150) {
+					this.props.changeSettings("fontSize", this.props.settings.fontSize + 1);
+				}
+				break;
+			case 2:
+				if (this.props.settings.lineHeight < 1.75) {
+					this.props.changeSettings("lineHeight", this.props.settings.lineHeight + 0.01);
+				}
+				break;
+			case 3:
+				if (this.props.settings.colorIndex < 5) {
+					this.props.changeSettings("colorIndex", this.props.settings.colorIndex + 1);
+				} else this.props.changeSettings("colorIndex", 1);
+				break;
+			case 4:
+				if (this.props.settings.textSpeed < 200) {
+					this.props.changeSettings("textSpeed", this.props.settings.textSpeed + 1);
+				}
+				break;
+			case 5:
+				if (this.props.settings.holdButtonTime < 5000) {
+					this.props.changeSettings("holdButtonTime", this.props.settings.holdButtonTime + 100);
+				}
+				break;
+			case 6:
+				this.props.changeOrientation();
+				break;
+			default:
+				console.log("The impossible just happened.");
 		}
 	}
 
@@ -241,19 +245,19 @@ class Settings extends React.Component {
 						fontSize={settings.fontSize}
 						stateColor={stateColor}
 						mouseDownHandler={this.handleButtonAKeyDown}
-						mouseUpHandler={this.state.inChangeMode ? this.handleButtonAUnselect : this.handleButtonASelectHome}
+						mouseUpHandler={inChangeMode ? this.handleButtonAUnselect : this.handleButtonASelectHome}
 						icon="selectHome"
 					/>
 					<ControlButton
 						fontSize={settings.fontSize}
 						stateColor={stateColor}
-						mouseDownHandler={this.handleButtonBUpDecrease}
+						mouseDownHandler={inChangeMode ? this.handleButtonBDecrease : this.handleButtonBUp}
 						icon={inChangeMode ? "left" : "up"}
 					/>
 					<ControlButton
 						fontSize={settings.fontSize}
 						stateColor={stateColor}
-						mouseDownHandler={this.handleButtonCDownIncrease}
+						mouseDownHandler={inChangeMode ? this.handleButtonCIncrease : this.handleButtonCDown}
 						icon={inChangeMode ? "right" : "down"}
 					/>
 				</div>
