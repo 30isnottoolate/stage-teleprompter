@@ -22,7 +22,7 @@ class Reader extends React.Component {
 	}
 
 	componentDidMount() {
-		this.setState({position: 0.25 * this.props.settings.fontSize * this.props.settings.lineHeight});
+		this.setState({ position: 0.25 * this.props.settings.fontSize * this.props.settings.lineHeight });
 		document.addEventListener("keydown", this.handleKeyDown);
 		document.addEventListener("keyup", this.handleKeyUp);
 	}
@@ -100,10 +100,21 @@ class Reader extends React.Component {
 	handleKeyDown = (event) => {
 		this.setState((prevState) => {
 			if (!prevState.keyHold) {
-				if (event.key === "a" || event.key === "b" || event.key === "c") {
+				if (event.key === "a" || event.key === "b") {
 					return {
 						keyHold: true,
 						keyDownTime: (new Date()).getTime()
+					}
+				} else if (event.key === "c" && !event.repeat) {
+					if (!this.state.endReached) {
+						return {
+							active: !prevState.active
+						}
+					} else {
+						return {
+							keyHold: true,
+							keyDownTime: (new Date()).getTime()
+						}
 					}
 				}
 			}
@@ -130,18 +141,10 @@ class Reader extends React.Component {
 						return holdButtonReset;
 					}
 				} else if (event.key === "c") {
-					if (this.state.endReached) {
-						if (holdButtonCondition) {
-							this.nextText();
-						} else {
-							return holdButtonReset;
-						}
+					if (holdButtonCondition) {
+						this.nextText();
 					} else {
-						return {
-							active: !prevState.active,
-							keyHold: false,
-							keyDownTime: 0
-						}
+						return holdButtonReset;
 					}
 				}
 			}
@@ -213,13 +216,13 @@ class Reader extends React.Component {
 					<ControlButton
 						fontSize={settings.fontSize}
 						stateColor={stateColor}
-						mouseDownHandler={this.handleButtonASet}
+						mouseUpHandler={this.handleButtonASet}
 						icon="home"
 					/>
 					<ControlButton
 						fontSize={settings.fontSize}
 						stateColor={stateColor}
-						mouseDownHandler={this.handleButtonBList}
+						mouseUpHandler={this.handleButtonBList}
 						icon="list"
 					/>
 					<ControlButton

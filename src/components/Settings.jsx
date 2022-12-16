@@ -39,50 +39,54 @@ class Settings extends React.Component {
 	}
 
 	handleKeyUp = (event) => {
-		if (event.key === "a") {
-			this.handleButtonAKeyUp();
+		if (event.key === "a" && this.state.keyHold) {
+			if (!this.state.inChangeMode) {
+				this.handleButtonASelectHome();
+			} else this.handleButtonAUnselect();
 		}
 	}
 
 	handleButtonAKeyDown = () => {
 		if (!this.state.keyHold) {
 			this.setState(() => {
-				if (!this.state.inChangeMode) {
-					return {
-						keyHold: true,
-						keyDownTime: (new Date()).getTime()
-					}
-				} else {
-					return {
-						inChangeMode: false
-					}
+				return {
+					keyHold: true,
+					keyDownTime: (new Date()).getTime()
 				}
 			});
 		}
 	}
 
-	handleButtonAKeyUp = () => {
-		if (this.state.keyHold) {
+	handleButtonASelectHome = () => {
+		const resetHold = { keyHold: false, keyDownTime: 0 }
+
+		this.setState(() => {
 			if (((new Date()).getTime() - this.state.keyDownTime) > this.props.settings.holdButtonTime) {
 				this.props.changeMode("home");
 			} else {
-				this.setState((prevState) => {
-					if (this.state.settingsIndex === 7) {
-						this.props.defaultSettings();
-						return {
-							keyHold: false,
-							keyDownTime: 0
-						}
-					} else {
-						return {
-							keyHold: false,
-							keyDownTime: 0,
-							inChangeMode: !prevState.inChangeMode
-						}
+				if (this.state.settingsIndex === 7) {
+					this.props.defaultSettings();
+					return {
+						...resetHold
 					}
-				});
+				} else {
+					return {
+						inChangeMode: true,
+						...resetHold
+					}
+				}
 			}
-		}
+		});
+	}
+
+	handleButtonAUnselect = () => {
+		this.setState(() => {
+			return {
+				inChangeMode: false,
+				keyHold: false,
+				keyDownTime: 0
+			}
+		});
 	}
 
 	handleButtonBUpDecrease = () => {
@@ -184,8 +188,8 @@ class Settings extends React.Component {
 	}
 
 	render() {
-		const {settingsIndex, inChangeMode} = this.state;
-		const {settings} = this.props;
+		const { settingsIndex, inChangeMode } = this.state;
+		const { settings } = this.props;
 
 		let listPosTop = (2.75 - settingsIndex) * settings.fontSize * settings.lineHeight;
 		let listPosLeftA = (inChangeMode) ? settings.fontSize * 0.69 - settings.fontSize * 8.02 : settings.fontSize * 0.69;
@@ -237,7 +241,7 @@ class Settings extends React.Component {
 						fontSize={settings.fontSize}
 						stateColor={stateColor}
 						mouseDownHandler={this.handleButtonAKeyDown}
-						mouseUpHandler={this.handleButtonAKeyUp}
+						mouseUpHandler={this.state.inChangeMode ? this.handleButtonAUnselect : this.handleButtonASelectHome}
 						icon="selectHome"
 					/>
 					<ControlButton

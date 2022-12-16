@@ -14,19 +14,25 @@ class InfoPage extends React.Component {
 
 	componentDidMount() {
 		document.addEventListener("keydown", this.handleKeyDown);
+		document.addEventListener("keyup", this.handleKeyUp);
 	}
 
 	componentWillUnmount() {
 		document.removeEventListener("keydown", this.handleKeyDown);
+		document.removeEventListener("keyup", this.handleKeyUp);
 	}
 
 	handleKeyDown = (event) => {
-		if (event.key === "a") {
-			this.handleButtonAHome();
-		} else if (event.key === "b" && !event.repeat) {
+		if (event.key === "b" && !event.repeat) {
 			this.handleButtonBUp();
 		} else if (event.key === "c" && !event.repeat) {
 			this.handleButtonCDown();
+		}
+	}
+
+	handleKeyUp = (event) => {
+		if (event.key === "a") {
+			this.handleButtonAHome();
 		}
 	}
 
@@ -191,7 +197,7 @@ class InfoPage extends React.Component {
 					<ControlButton
 						fontSize={settings.fontSize}
 						stateColor={stateColor}
-						mouseDownHandler={this.handleButtonAHome}
+						mouseUpHandler={this.handleButtonAHome}
 						icon="home"
 					/>
 					<ControlButton

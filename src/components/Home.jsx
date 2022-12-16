@@ -92,19 +92,19 @@ class Home extends React.Component {
 					<ControlButton
 						fontSize={settings.fontSize}
 						stateColor={stateColor}
-						mouseDownHandler={this.handleButtonASet}
+						mouseUpHandler={this.handleButtonASet}
 						icon="settings"
 					/>
 					<ControlButton
 						fontSize={settings.fontSize}
 						stateColor={stateColor}
-						mouseDownHandler={this.handleButtonBList}
+						mouseUpHandler={this.handleButtonBList}
 						icon={this.props.libraryStatus === "valid" ? "list" : "refresh"}
 					/>
 					<ControlButton
 						fontSize={settings.fontSize}
 						stateColor={stateColor}
-						mouseDownHandler={this.handleButtonCInfo}
+						mouseUpHandler={this.handleButtonCInfo}
 						icon="info"
 					/>
 				</div>
