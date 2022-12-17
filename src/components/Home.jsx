@@ -14,11 +14,11 @@ class Home extends React.Component {
 	}
 
 	handleKeyUp = (event) => {
-		if (event.key === "a") {
+		if (event.key.toLowerCase() === "a") {
 			this.handleButtonASet();
-		} else if (event.key === "b") {
+		} else if (event.key.toLowerCase() === "b") {
 			this.handleButtonBList();
-		} else if (event.key === "c") {
+		} else if (event.key.toLowerCase() === "c") {
 			this.handleButtonCInfo();
 		}
 	}

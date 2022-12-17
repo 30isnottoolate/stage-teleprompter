@@ -100,12 +100,12 @@ class Reader extends React.Component {
 	handleKeyDown = (event) => {
 		this.setState((prevState) => {
 			if (!prevState.keyHold) {
-				if (event.key === "a" || event.key === "b") {
+				if (event.key.toLowerCase() === "a" || event.key.toLowerCase() === "b") {
 					return {
 						keyHold: true,
 						keyDownTime: (new Date()).getTime()
 					}
-				} else if (event.key === "c" && !event.repeat) {
+				} else if (event.key.toLowerCase() === "c" && !event.repeat) {
 					if (!this.state.endReached) {
 						return {
 							active: !prevState.active
@@ -127,20 +127,20 @@ class Reader extends React.Component {
 			let holdButtonReset = { keyHold: false, keyDownTime: 0 };
 
 			if (prevState.keyHold) {
-				if (event.key === "a") {
+				if (event.key.toLowerCase() === "a") {
 					if (holdButtonCondition) {
 						this.handleButtonASet();
 					} else {
 						return holdButtonReset;
 					}
-				} else if (event.key === "b") {
+				} else if (event.key.toLowerCase() === "b") {
 					if (holdButtonCondition) {
 						this.handleButtonBList();
 					}
 					else {
 						return holdButtonReset;
 					}
-				} else if (event.key === "c") {
+				} else if (event.key.toLowerCase() === "c") {
 					if (holdButtonCondition) {
 						this.nextText();
 					} else {

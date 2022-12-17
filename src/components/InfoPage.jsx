@@ -23,15 +23,15 @@ class InfoPage extends React.Component {
 	}
 
 	handleKeyDown = (event) => {
-		if (event.key === "b" && !event.repeat) {
+		if (event.key.toLowerCase() === "b" && !event.repeat) {
 			this.handleButtonBUp();
-		} else if (event.key === "c" && !event.repeat) {
+		} else if (event.key.toLowerCase() === "c" && !event.repeat) {
 			this.handleButtonCDown();
 		}
 	}
 
 	handleKeyUp = (event) => {
-		if (event.key === "a") {
+		if (event.key.toLowerCase() === "a") {
 			this.handleButtonAHome();
 		}
 	}

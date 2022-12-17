@@ -25,15 +25,15 @@ class Settings extends React.Component {
 	}
 
 	handleKeyDown = (event) => {
-		if (event.key === "a") {
+		if (event.key.toLowerCase() === "a") {
 			this.handleButtonAKeyDown();
-		} else if (event.key === "b") {
+		} else if (event.key.toLowerCase() === "b") {
 			if (!this.state.inChangeMode && !event.repeat) {
 				this.handleButtonBUp();
 			} else if (this.state.inChangeMode) {
 				this.handleButtonBDecrease();
 			}
-		} else if (event.key === "c") {
+		} else if (event.key.toLowerCase() === "c") {
 			if (!this.state.inChangeMode && !event.repeat) {
 				this.handleButtonCDown();
 			} else if (this.state.inChangeMode) {
@@ -43,7 +43,7 @@ class Settings extends React.Component {
 	}
 
 	handleKeyUp = (event) => {
-		if (event.key === "a" && this.state.keyHold) {
+		if (event.key.toLowerCase() === "a" && this.state.keyHold) {
 			if (!this.state.inChangeMode) {
 				this.handleButtonASelectHome();
 			} else this.handleButtonAUnselect();
