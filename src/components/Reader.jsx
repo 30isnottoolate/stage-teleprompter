@@ -167,7 +167,7 @@ class Reader extends React.Component {
 			return '<div class="title" style="padding-bottom: ' +
 				0.5 * this.props.settings.fontSize * this.props.settings.lineHeight + 'px;">' +
 				currentText.title + '</div>' +
-				currentText.content.replaceAll("{{", "<span>").replaceAll("}}", "</span>");
+				currentText.content.replace(/{{/g, "<span>").replace(/}}/g, "</span>");
 		} else return "Loading...";
 	}
 
