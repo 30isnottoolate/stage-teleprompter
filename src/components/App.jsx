@@ -1,12 +1,15 @@
 import React from 'react';
+
 import './App.css';
+import remValue from '../utilities/remValue';
+
 import Home from './Home.jsx';
 import TextList from './TextList.jsx';
 import Reader from './Reader.jsx';
 import InfoPage from './InfoPage';
 import Settings from './Settings.jsx';
 
-const FONT_SIZE_DEFAULT = 100;
+const FONT_SIZE_DEFAULT = 100 / remValue;
 const LINE_HEIGHT_DEFAULT = 1.2;
 const COLOR_INDEX_DEFAULT = 3;
 const TEXT_SPEED_DEFAULT = 100;
@@ -58,8 +61,8 @@ class App extends React.Component {
 
 		if (!localStorage["fontSize"] ||
 			isNaN(parseFloat(localStorage["fontSize"])) ||
-			parseFloat(localStorage["fontSize"]) < 80 ||
-			parseFloat(localStorage["fontSize"]) > 150) {
+			parseFloat(localStorage["fontSize"]) < 80 / remValue ||
+			parseFloat(localStorage["fontSize"]) > 150 / remValue) {
 			storageValidity = false;
 		}
 		if (!localStorage["lineHeight"] ||
