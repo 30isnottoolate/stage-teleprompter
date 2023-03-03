@@ -97,8 +97,8 @@ class InfoPage extends React.Component {
 				/>
 				<ul
 					style={{
-						top: listPos,
-						left: settings.fontSize * 0.69,
+						top: listPos + "rem",
+						left: settings.fontSize * 0.69 + "rem",
 						width: responsiveWidth
 					}}>
 					<Icon
