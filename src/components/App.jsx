@@ -23,7 +23,7 @@ const DEFAULT_STATES = {
 }
 
 const localStorageStates = {
-	fontSize: parseInt(localStorage["fontSize"]),
+	fontSize: parseFloat(localStorage["fontSize"]),
 	lineHeight: parseFloat(localStorage["lineHeight"]),
 	colorIndex: parseInt(localStorage["colorIndex"]),
 	textSpeed: parseInt(localStorage["textSpeed"]),
@@ -57,9 +57,9 @@ class App extends React.Component {
 		let storageValidity = true;
 
 		if (!localStorage["fontSize"] ||
-			isNaN(parseInt(localStorage["fontSize"])) ||
-			parseInt(localStorage["fontSize"]) < 80 ||
-			parseInt(localStorage["fontSize"]) > 150) {
+			isNaN(parseFloat(localStorage["fontSize"])) ||
+			parseFloat(localStorage["fontSize"]) < 80 ||
+			parseFloat(localStorage["fontSize"]) > 150) {
 			storageValidity = false;
 		}
 		if (!localStorage["lineHeight"] ||
