@@ -1,10 +1,12 @@
 import React from 'react';
+
 import icons from '../utilities/icons';
+import remValue from '../utilities/remValue';
 
 class ControlButton extends React.Component {
     render() {
         const { fontSize, stateColor, mouseDownHandler, mouseUpHandler, icon, disabled } = this.props;
-        let svgSize = 50 + fontSize * 0.25;
+        let svgSize = 50 / remValue + fontSize * 0.25;
 
         return (
             <button
