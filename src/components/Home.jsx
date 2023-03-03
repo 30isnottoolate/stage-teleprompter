@@ -44,13 +44,13 @@ class Home extends React.Component {
 				id="home"
 				className={settings.orientation === "vertical" ? "rotate-cw" : ""}
 				style={{
-					fontSize: settings.fontSize,
+					fontSize: settings.fontSize + "rem",
 					color: stateColor,
 					lineHeight: settings.lineHeight
 				}}>
 				<p
 					className="title"
-					style={{ paddingTop: 0.25 * settings.fontSize * settings.lineHeight }} >
+					style={{ paddingTop: 0.25 * settings.fontSize * settings.lineHeight + "rem" }} >
 					KV Stage Teleprompter
 				</p>
 				<div className="content">
@@ -82,7 +82,7 @@ class Home extends React.Component {
 							lineHeight={settings.lineHeight}
 							stateColor={stateColor}
 						/>}
-					<p style={{ fontSize: settings.fontSize * 0.75 }}>{libraryStatus === "checking" ? "CHECKING LIBRARY..." :
+					<p style={{ fontSize: settings.fontSize * 0.75 + "rem" }}>{libraryStatus === "checking" ? "CHECKING LIBRARY..." :
 						libraryStatus === "missing" ? "LIBRARY MISSING" :
 							libraryStatus === "invalid" ? "LIBRARY INVALID" :
 								"LIBRARY READY"
