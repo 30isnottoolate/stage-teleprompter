@@ -88,19 +88,19 @@ span {
 	justify-content: space-evenly;
 	background-color: #06080f;
 	position: fixed;
-	left: 0px;
-	bottom: 0px;
+	left: 0rem;
+	bottom: 0rem;
 	width: 100vw;
-	border: 10px solid #06080f;
-	border-bottom: 0px;
+	border: 0.75rem solid #06080f;
+	border-bottom: 0rem;
 }
 
 button {
 	background-color: #06080f;
-	padding: 3px 0 6px 0;
-	border-radius: 10px 10px 0 0;
-	border: 3px solid #06080f;
-	border-bottom: 0px;
+	padding: 0.25rem;
+	border-radius: 1rem 1rem 0 0;
+	border: 0.25rem solid #06080f;
+	border-bottom: 0rem;
 }
 
 button > svg {
