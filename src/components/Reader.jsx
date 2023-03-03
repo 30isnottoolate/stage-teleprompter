@@ -161,7 +161,7 @@ class Reader extends React.Component {
 		} else this.setState(prevState => ({ active: !prevState.active }));
 	}
 
-	displayText = () => {
+	/* displayText = () => {
 		if (this.props.library.texts[this.props.textIndex]) {
 			let currentText = this.props.library.texts[this.props.textIndex];
 			return '<div class="title" style="padding-bottom: ' +
@@ -171,11 +171,11 @@ class Reader extends React.Component {
 					.replace(/{g{/g, "<span class='green-mark'>").replace(/}g}/g, "</span>")
 					.replace(/{b{/g, "<span class='blue-mark'>").replace(/}b}/g, "</span>");
 		} else return "Loading...";
-	}
+	} */
 
 	render() {
 		const { active, position, endReached } = this.state;
-		const { settings } = this.props;
+		const { settings, library, textIndex } = this.props;
 
 		let stateColor = colors[settings.colorIndex].code;
 		let responsiveWidth = settings.orientation === "vertical" ? "100vh" : "100vw";
@@ -206,9 +206,14 @@ class Reader extends React.Component {
 						left: (settings.fontSize * 0.69),
 						transitionProperty: settings.textSpeed < 50 ? "top" : "none"
 					}} >
+					<div
+						className="title"
+						style={{ paddingBottom: 0.5 * settings.fontSize * settings.lineHeight }}>
+						{library.texts[textIndex].title}
+					</div>
 					<p id="text" dangerouslySetInnerHTML={{
 						__html:
-							DOMPurify.sanitize(this.displayText())
+							DOMPurify.sanitize(library.texts[textIndex].content)
 					}} />
 				</div>
 				<div
