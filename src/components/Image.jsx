@@ -8,10 +8,10 @@ class Image extends React.Component {
         return (
             <svg
                 className="status-image"
-                height={2 * this.props.fontSize}
+                height={2 * this.props.fontSize + "rem"}
                 fill={this.props.stateColor}
                 style={{
-                    padding: `${4 * padding}px 0`
+                    padding: `${4 * padding}rem 0`
                 }}
                 viewBox="0 0 16 16">
                 {icons[this.props.icon]}
