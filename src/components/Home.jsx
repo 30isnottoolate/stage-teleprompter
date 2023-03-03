@@ -38,6 +38,7 @@ class Home extends React.Component {
 
 		let stateColor = colors[settings.colorIndex].code;
 		let responsiveWidth = (settings.orientation === "vertical") ? "100vh" : "100vw";
+		let responsiveHeight = (settings.orientation === "vertical") ? "100vw" : "100vh";
 
 		return (
 			<div
@@ -53,7 +54,12 @@ class Home extends React.Component {
 					style={{ paddingTop: 0.25 * settings.fontSize * settings.lineHeight + "rem" }} >
 					KV Stage Teleprompter
 				</p>
-				<div className="content">
+				<div
+					className="content"
+					style={{
+						width: responsiveWidth,
+						height: responsiveHeight
+					}}>
 					{libraryStatus === "checking" &&
 						<Image
 							icon="checking"
