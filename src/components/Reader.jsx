@@ -1,6 +1,9 @@
 import React from 'react';
+
 import DOMPurify from 'dompurify';
 import colors from '../utilities/colors';
+import remValue from '../utilities/remValue';
+
 import Marker from './Marker';
 import ControlButton from './ControlButton';
 
@@ -22,7 +25,7 @@ class Reader extends React.Component {
 	}
 
 	componentDidMount() {
-		this.setState({ position: 0.25 * this.props.settings.fontSize * this.props.settings.lineHeight });
+		this.setState({ position: 0.25 * remValue * this.props.settings.fontSize * this.props.settings.lineHeight });
 		document.addEventListener("keydown", this.handleKeyDown);
 		document.addEventListener("keyup", this.handleKeyUp);
 	}
@@ -51,7 +54,7 @@ class Reader extends React.Component {
 	handleActivityChange = () => {
 		let currentText = this.props.library.texts[this.props.textIndex].content;
 
-		let noEmptyLinesTextHeight = this.slideRef.current.offsetHeight - this.props.settings.fontSize *
+		let noEmptyLinesTextHeight = this.slideRef.current.offsetHeight - this.props.settings.fontSize * remValue * 
 			this.props.settings.lineHeight * this.countEmptyLines(currentText);
 
 		let intervalValue = (currentText.length / (noEmptyLinesTextHeight * READ_SPEED_COEF)) *
@@ -68,7 +71,7 @@ class Reader extends React.Component {
 
 	handlePositionChange = () => {
 		this.setState((prevState) => {
-			if (prevState.position < 2.75 * this.props.settings.fontSize * this.props.settings.lineHeight -
+			if (prevState.position < 2.75 * remValue * this.props.settings.fontSize * this.props.settings.lineHeight -
 				this.slideRef.current.offsetHeight) {
 				return {
 					active: false,
@@ -80,7 +83,7 @@ class Reader extends React.Component {
 
 	handeTextIndexChange = () => {
 		this.setState({
-			position: 0.25 * this.props.settings.fontSize * this.props.settings.lineHeight,
+			position: 0.25 * remValue * this.props.settings.fontSize * this.props.settings.lineHeight,
 			endReached: false,
 			keyHold: false,
 			keyDownTime: 0
@@ -185,7 +188,7 @@ class Reader extends React.Component {
 				id="reader"
 				className={settings.orientation === "vertical" ? "rotate-cw" : ""}
 				style={{
-					fontSize: settings.fontSize,
+					fontSize: settings.fontSize + "rem",
 					color: stateColor,
 					lineHeight: settings.lineHeight
 				}}>
@@ -201,14 +204,14 @@ class Reader extends React.Component {
 					ref={this.slideRef}
 					style={{
 						top: position,
-						width: `calc(${responsiveWidth} - ${(1.5 * settings.fontSize * 0.69)}px)`,
-						fontSize: settings.fontSize,
-						left: (settings.fontSize * 0.69),
+						width: `calc(${responsiveWidth} - ${(1.5 * settings.fontSize * 0.69)}rem)`,
+						fontSize: settings.fontSize + "rem",
+						left: settings.fontSize * 0.69 + "rem",
 						transitionProperty: settings.textSpeed < 50 ? "top" : "none"
 					}} >
 					<div
 						className="title"
-						style={{ paddingBottom: 0.5 * settings.fontSize * settings.lineHeight }}>
+						style={{ paddingBottom: 0.5 * settings.fontSize * settings.lineHeight + "rem" }}>
 						{library.texts[textIndex].title}
 					</div>
 					<p id="text" dangerouslySetInnerHTML={{
