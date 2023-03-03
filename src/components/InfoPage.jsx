@@ -79,13 +79,13 @@ class InfoPage extends React.Component {
 				id="info-page"
 				className={settings.orientation === "vertical" ? "rotate-cw" : ""}
 				style={{
-					fontSize: settings.fontSize,
+					fontSize: settings.fontSize + "rem",
 					color: stateColor,
 					lineHeight: settings.lineHeight
 				}}>
 				<p
 					className={"title " + (infoIndex <= 2 ? "visible" : "hidden")}
-					style={{ paddingTop: 0.25 * settings.fontSize * settings.lineHeight }} >
+					style={{ paddingTop: 0.25 * settings.fontSize * settings.lineHeight + "rem" }} >
 					How to use?
 				</p>
 				<Marker
