@@ -84,8 +84,8 @@ span {
 
 #control {
 	display: grid;
-	grid-template-columns: 30% 30% 30%;
-	justify-content: space-evenly;
+	grid-template-columns: repeat(3, 30%);
+	justify-content: space-around;
 	background-color: #06080f;
 	position: fixed;
 	left: 0rem;
