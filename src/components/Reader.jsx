@@ -164,18 +164,6 @@ class Reader extends React.Component {
 		} else this.setState(prevState => ({ active: !prevState.active }));
 	}
 
-	/* displayText = () => {
-		if (this.props.library.texts[this.props.textIndex]) {
-			let currentText = this.props.library.texts[this.props.textIndex];
-			return '<div class="title" style="padding-bottom: ' +
-				0.5 * this.props.settings.fontSize * this.props.settings.lineHeight + 'px;">' +
-				currentText.title + '</div>' +
-				currentText.content.replace(/{r{/g, "<span class='red-mark'>").replace(/}r}/g, "</span>")
-					.replace(/{g{/g, "<span class='green-mark'>").replace(/}g}/g, "</span>")
-					.replace(/{b{/g, "<span class='blue-mark'>").replace(/}b}/g, "</span>");
-		} else return "Loading...";
-	} */
-
 	render() {
 		const { active, position, endReached } = this.state;
 		const { settings, library, textIndex } = this.props;
