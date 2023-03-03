@@ -14,8 +14,8 @@ class ControlButton extends React.Component {
                 disabled={disabled ? disabled : false}
             >
                 <svg
-                    width={(icon === "selectHome") ? svgSize * 2.25 : svgSize}
-                    height={svgSize}
+                    width={(icon === "selectHome") ? svgSize * 2.25 + "rem" : svgSize + "rem"}
+                    height={svgSize + "rem"}
                     fill={stateColor}
                     viewBox={`0 0 ${(icon === "selectHome") ? 36 : 16} 16`}
                 >
