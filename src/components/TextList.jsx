@@ -87,20 +87,20 @@ class TextList extends React.Component {
 				id="text-list"
 				className={settings.orientation === "vertical" ? "rotate-cw" : ""}
 				style={{
-					fontSize: settings.fontSize,
+					fontSize: settings.fontSize + "rem",
 					color: stateColor,
 					lineHeight: settings.lineHeight
 				}}>
 				<p
 					className={"title " + (textIndex === 0 ? "visible" : "hidden")}
-					style={{ paddingTop: 0.25 * settings.fontSize * settings.lineHeight }} >
+					style={{ paddingTop: 0.25 * settings.fontSize * settings.lineHeight + "rem" }} >
 					LIBRARY:
 				</p>
 				<ul
 					style={{
-						top: listPos,
-						left: (settings.fontSize * 0.69),
-						width: `calc(${responsiveWidth} - ${(settings.fontSize * 0.69)}px)`
+						top: listPos + "rem",
+						left: settings.fontSize * 0.69 + "rem",
+						width: `calc(${responsiveWidth} - ${(settings.fontSize * 0.69)}rem)`
 					}}
 				>
 					{library.texts.map((item, index) => <li key={index}>{item.title}</li>)}
